@@ -367,7 +367,70 @@
     </div>
 </div>
 
+
+<div class="viewmodal" style="display: none;"></div>
+
 <script>
+    function PanggilPasien(nopen) {
+        Swal.fire({
+            html: `<div class="alert alert-info">
+            <strong>Panggilan Nomor Pendaftaran!</strong>
+        </div> <h5>` + nopen + `</h5>`,
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: `Layani`,
+            denyButtonText: `Batalkan Pelayanan`,
+            cancelButtonText: `Lewati Pelayanan`,
+        }).then((result) => {
+            /* Menerima atau pasien dilayani */
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "post",
+                    url: "<?= base_url('rekammedis/tampilModalRekamMedis'); ?>",
+                    data: {
+                        nopen: nopen,
+                        jampel: $('#jampelayanan').val(),
+                        tglpel: $('#tglPel').val(),
+                        sessionUser: $('#user_session').val()
+                    },
+                    success: function(response) {
+                        if (response) {
+                            $('.viewmodal').html(response).show();
+                            $('#modalrekammedis').modal('show');
+                            listrawatjalan();
+                        }
+
+                    }
+                });
+
+            } else if (result.isDenied) { // membatalakan pendaftaran/kunjungan pasien
+                $.ajax({
+                    type: "post",
+                    url: "<?= base_url('rekammedis/batalkanPendaftaran'); ?>",
+                    data: {
+                        nopen: nopen,
+                        jampel: $('#jampelayanan').val(),
+                        tglpel: $('#tglPel').val(),
+                        sessionUser: $('#user_session').val()
+                    },
+                    // dataType: "json",
+                    success: function(response) {
+
+                        Swal.fire({
+                            titel: 'Pembatalan Kunjungan!',
+                            text: "Anda telah berhasil membatalkan kunjungan pasien tersebut!",
+                            icon: 'success'
+                        })
+
+                        listrawatjalan();
+                    }
+                });
+
+            }
+        })
+
+    }
+
     function listrawatjalan() {
         $.ajax({
             type: "GET",

@@ -30,26 +30,26 @@ class Dashboard extends BaseController
                 $isidata = "";
                 foreach ($pendaftaran->getResultArray() as $row) :
 
-                    $isidata .= '<li>
-                                    <table style="width: 100%;">
+                    $isidata .= "<li>
+                                    <table style=\"width: 100%;\">
                                         <tr>
-                                            <td style="width: 50%; font-weight: bold;">
-                                                <h6>' . $row['NORM'] . '<br>' . $row['NAMA'] . '</h6>
+                                            <td style=\"width: 50%; font-weight: bold;\">
+                                                <h6>" . $row['NORM'] . '<br>' . $row['NAMA'] . "</h6>
                                             </td>
-                                            <td style="text-align: right; width: 50%;">
-                                                <h6><label class="label label-info">' . $row['NOPEN'] . '</label><br>' . $row['TGL_PENDAFTARAN'] . '</h6>
+                                            <td style=\"text-align: right; width: 50%;\">
+                                                <h6><label class=\"label label-info\">" . $row['NOPEN'] . "</label><br>" . $row['TGL_PENDAFTARAN'] . "</h6>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 50%;">
-                                                <button type="button" class="btn btn-block btn-primary btn-sm waves-effect waves-light btn-out-dashed" onclick="PanggilPasien(' . $row['NOPEN'] . ')">Layani</button>
+                                            <td style=\"width: 50%;\">
+                                                <button type=\"button\" onclick=\"PanggilPasien('" . $row['NOPEN'] . "')\" class=\"btn btn-block btn-primary btn-sm waves-effect waves-light btn-out-dashed\" data-toggle=\"tooltip\" title=\"Panggila pasien\"><i class=\"ti-hand-open\"></i> Panggil</button>
                                             </td>
-                                            <td style="width: 50%;">
-                                                <button type="button" class="btn btn-block btn-danger btn-sm waves-effect waves-light btn-out-dashed">Batal</button>
+                                            <td style=\"width: 50%;\">
+                                                <button type=\"button\" class=\"btn btn-block btn-danger btn-sm waves-effect waves-light btn-out-dashed\">Batal</button>
                                             </td>
                                         </r>
                                     </table>
-                                </li>';
+                                </li>";
                 endforeach;
 
                 $msg = [
