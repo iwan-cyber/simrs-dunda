@@ -28,6 +28,9 @@
     <!-- Bootstrap CSS -->
     <link href="<?= base_url() ?>/template/files/assets/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <!-- list css -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/pages/list-scroll/list.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/bower_components/stroll/css/stroll.css">
 
     <!-- waves.css -->
     <link rel="stylesheet" href="<?= base_url() ?>/template/files/assets/pages/waves/css/waves.min.css" type="text/css" media="all">

@@ -51,24 +51,20 @@ class Rekammedis extends BaseController
                             return "<div class=\"btn-group\" role=\"group\">
                     
                         <button type=\"button\" onclick=\"detailPasien('" . $data->NOMR . "')\" class=\"btn btn-out-dotted btn-mini waves-effect waves-light btn-primary btn-square\" title=\"Detail informasi dan riwayat pemeriksaan pasien\"><i class=\"ti-align-justify\"></i> Detail</button>
-
                     </div>";
                         } elseif ($data->status == 2) {
                             return "<div class=\"btn-group\" role=\"group\">
                         <button type=\"button\" onclick=\"PanggilPasien('" . $data->nopen . "')\" class=\"btn btn-out-dotted btn-mini waves-effect waves-light btn-inverse btn-square\" data-toggle=\"tooltip\" title=\"Panggila pasien\"><i class=\"ti-hand-open\"></i> Panggil</button>
     
                         <button type=\"button\" onclick=\"detailPasien('" . $data->NOMR . "')\" data-toggle=\"modal\" class=\"btn btn-out-dotted btn-mini waves-effect waves-light btn-primary btn-square\" title=\"Detail informasi dan riwayat pemeriksaan pasien\"><i class=\"ti-align-justify\"></i> Detail</button>
-                        
                         </div>";
                         } elseif ($data->status == 3) {
                             return "<div class=\"btn-group\" role=\"group\">
                     
                         <button type=\"button\" onclick=\"detailPasien('" . $data->NOMR . "')\" data-toggle=\"modal\" class=\"btn btn-out-dotted btn-mini waves-effect waves-light btn-primary btn-square\" title=\"Detail informasi dan riwayat pemeriksaan pasien\"><i class=\"ti-align-justify\"></i> Detail</button>
-
                     </div>";
                         } elseif ($data->status == 4) {
                             return "<div class=\"btn-group\" role=\"group\">
-                    
                         <button type=\"button\" onclick=\"detailPasien('" . $data->NOMR . "')\" data-toggle=\"modal\" class=\"btn btn-out-dotted btn-mini waves-effect waves-light btn-primary btn-square\" title=\"Detail informasi dan riwayat pemeriksaan pasien\"><i class=\"ti-align-justify\"></i> Detail</button>
                         
                     </div>";

@@ -36,7 +36,6 @@
 
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
 
-
 <!-- data-table js -->
 <script src="<?= base_url() ?>/template/files/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?= base_url() ?>/template/files/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
@@ -63,6 +62,10 @@
 <script src="<?= base_url() ?>/template/files/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script src="<?= base_url() ?>/template/files/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/form-validation/validate.js"></script>
+
+<!-- list-scroll js -->
+<script src="<?= base_url() ?>/template/files/bower_components/stroll/js/stroll.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/list-scroll/list-custom.js"></script>
 
 <!-- Tags js -->
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
