@@ -92,9 +92,9 @@ CREATE TABLE IF NOT EXISTS `auth_logins` (
   PRIMARY KEY (`id`),
   KEY `email` (`email`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
 
--- Membuang data untuk tabel ci4login.auth_logins: ~93 rows (lebih kurang)
+-- Membuang data untuk tabel ci4login.auth_logins: ~101 rows (lebih kurang)
 /*!40000 ALTER TABLE `auth_logins` DISABLE KEYS */;
 INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `success`) VALUES
 	(1, '::1', 'ridwanmaksud9@gmail.com', 6, '2021-07-19 13:14:08', 0),
@@ -199,7 +199,15 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 	(100, '::1', 'ridwanmaksud9@gmail.com', 10, '2021-08-03 01:23:54', 1),
 	(101, '::1', 'ridwanmaksud9@gmail.com', 10, '2021-08-03 02:02:55', 1),
 	(102, '::1', 'ridwanmaksud9@gmail.com', 10, '2021-08-03 02:08:37', 1),
-	(103, '::1', 'ridwanmaksud9@gmail.com', 10, '2021-08-03 11:02:47', 1);
+	(103, '::1', 'ridwanmaksud9@gmail.com', 10, '2021-08-03 11:02:47', 1),
+	(104, '::1', 'ridwanmaksud9@gmail.com', 10, '2021-08-04 20:30:14', 1),
+	(105, '::1', 'admin01', NULL, '2021-08-05 21:03:32', 0),
+	(106, '::1', 'ridwanmaksud9@gmail.com', 10, '2021-08-05 21:03:44', 1),
+	(107, '::1', 'ridwanmaksud9@gmail.com', 10, '2021-08-05 21:32:56', 1),
+	(108, '::1', 'ridwanmaksud9@gmail.com', 10, '2021-08-05 21:54:14', 1),
+	(109, '::1', 'ridwanmaksud9@gmail.com', 10, '2021-08-06 22:32:06', 1),
+	(110, '::1', 'ridwanmaksud9@gmail.com', 10, '2021-08-07 05:16:53', 1),
+	(111, '::1', 'ridwanmaksud9@gmail.com', 10, '2021-08-07 19:59:40', 1);
 /*!40000 ALTER TABLE `auth_logins` ENABLE KEYS */;
 
 -- membuang struktur untuk table ci4login.auth_permissions
@@ -299,6 +307,55 @@ INSERT INTO `m_instalasi` (`ID`, `INSTALASI`, `STATUS`) VALUES
 	(3, 'Layanan Penunjang', 'Y'),
 	(4, 'Instalasi Gawat Darurat', 'Y');
 /*!40000 ALTER TABLE `m_instalasi` ENABLE KEYS */;
+
+-- membuang struktur untuk table ci4login.m_kamar
+CREATE TABLE IF NOT EXISTS `m_kamar` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `KODE` varchar(50) DEFAULT NULL,
+  `NAMA_KAMAR` varchar(50) DEFAULT NULL,
+  `ID_RUANGAN` int(11) DEFAULT NULL COMMENT 'join tabel m_kamar',
+  `IDKELAS` int(11) DEFAULT NULL COMMENT 'join tabel m_kelas',
+  `IDTARIF` int(11) DEFAULT NULL,
+  `STATUS` enum('Kosong','Booking','Terisi') DEFAULT 'Kosong',
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `KODE` (`KODE`),
+  KEY `STATUS` (`STATUS`),
+  KEY `IDKELAS` (`IDKELAS`),
+  KEY `IDTARIF` (`IDTARIF`),
+  KEY `ID_RUANGAN` (`ID_RUANGAN`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+-- Membuang data untuk tabel ci4login.m_kamar: ~7 rows (lebih kurang)
+/*!40000 ALTER TABLE `m_kamar` DISABLE KEYS */;
+INSERT INTO `m_kamar` (`ID`, `KODE`, `NAMA_KAMAR`, `ID_RUANGAN`, `IDKELAS`, `IDTARIF`, `STATUS`) VALUES
+	(1, 'KIRH-01', 'Kamar Irina H 1', 1, 3, NULL, 'Kosong'),
+	(2, 'KIRH-02', 'Kamar Irina H 2', 1, 4, NULL, 'Kosong'),
+	(3, 'KIRH-03', 'Kamar Irina H 3', 1, 4, NULL, 'Kosong'),
+	(4, 'KIRF-01', 'Kamar Irina F 1', 2, 3, NULL, 'Kosong'),
+	(5, 'KIRF-02', 'Kamar Irina F 2', 2, 3, NULL, 'Kosong'),
+	(6, 'KIRF-03', 'Kamar Irina F 3', 2, 4, NULL, 'Kosong'),
+	(7, 'KIRF-04', 'Kamar Irina F 4', 2, 4, NULL, 'Kosong');
+/*!40000 ALTER TABLE `m_kamar` ENABLE KEYS */;
+
+-- membuang struktur untuk table ci4login.m_kelas
+CREATE TABLE IF NOT EXISTS `m_kelas` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `KELAS` varchar(50) DEFAULT NULL,
+  `STATUS` enum('Y','N') DEFAULT 'Y',
+  PRIMARY KEY (`ID`),
+  KEY `STATUS` (`STATUS`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+-- Membuang data untuk tabel ci4login.m_kelas: ~6 rows (lebih kurang)
+/*!40000 ALTER TABLE `m_kelas` DISABLE KEYS */;
+INSERT INTO `m_kelas` (`ID`, `KELAS`, `STATUS`) VALUES
+	(1, 'Non Kelas', 'Y'),
+	(2, 'Kelas I', 'Y'),
+	(3, 'Kelas II', 'Y'),
+	(4, 'Kelas III', 'Y'),
+	(5, 'Kelas VIP', 'Y'),
+	(6, 'Kelas VVIP', 'Y');
+/*!40000 ALTER TABLE `m_kelas` ENABLE KEYS */;
 
 -- membuang struktur untuk table ci4login.m_kelompok_pegawai
 CREATE TABLE IF NOT EXISTS `m_kelompok_pegawai` (
@@ -484,6 +541,22 @@ INSERT INTO `m_pegawai_unitlayanan` (`ID`, `IDPEGAWAI`, `IDUNITLAYANAN`, `STATUS
 	(2, 2, 9, 'Y');
 /*!40000 ALTER TABLE `m_pegawai_unitlayanan` ENABLE KEYS */;
 
+-- membuang struktur untuk table ci4login.m_penjamin
+CREATE TABLE IF NOT EXISTS `m_penjamin` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `PENJAMIN` varchar(50) DEFAULT NULL,
+  `STATUS` enum('Y','N') DEFAULT 'Y',
+  PRIMARY KEY (`ID`),
+  KEY `STATUS` (`STATUS`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- Membuang data untuk tabel ci4login.m_penjamin: ~2 rows (lebih kurang)
+/*!40000 ALTER TABLE `m_penjamin` DISABLE KEYS */;
+INSERT INTO `m_penjamin` (`ID`, `PENJAMIN`, `STATUS`) VALUES
+	(1, 'Tanpa Asuransi/Umum', 'Y'),
+	(2, 'BPJS / JKN', 'Y');
+/*!40000 ALTER TABLE `m_penjamin` ENABLE KEYS */;
+
 -- membuang struktur untuk table ci4login.m_ppk
 CREATE TABLE IF NOT EXISTS `m_ppk` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -592,7 +665,7 @@ CREATE TABLE IF NOT EXISTS `pendaftaran` (
   `ID_UNITLAYANAN` int(11) DEFAULT NULL COMMENT 'join tabel m_unit_layanan',
   `ID_RUANGAN` int(11) DEFAULT NULL COMMENT 'join tabel m_ruangan',
   `ID_SMF` int(11) DEFAULT NULL COMMENT 'join tabel m_smf',
-  `ID_DOKTER` int(11) DEFAULT NULL COMMENT 'join tabel m_dokter',
+  `ID_DOKTER` int(11) DEFAULT NULL COMMENT 'join tabel m_pegawai',
   `ID_PAKET` int(11) DEFAULT NULL,
   `ID_PENJAMIN` int(11) DEFAULT NULL COMMENT 'join m_penjamin',
   `PJ_KATEGORI` varchar(50) DEFAULT NULL,
@@ -639,20 +712,23 @@ CREATE TABLE IF NOT EXISTS `pendaftaran` (
   KEY `STATUS_FINAL` (`STATUS_FINAL`(1))
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Membuang data untuk tabel ci4login.pendaftaran: ~12 rows (lebih kurang)
+-- Membuang data untuk tabel ci4login.pendaftaran: ~15 rows (lebih kurang)
 /*!40000 ALTER TABLE `pendaftaran` DISABLE KEYS */;
 INSERT INTO `pendaftaran` (`NOPEN`, `ID_PASIEN`, `NORM`, `CITO`, `RESIKO_JATUH`, `TGL_PENDAFTARAN`, `JAM_PENDAFTARAN`, `ID_INSTALASI`, `ID_UNITLAYANAN`, `ID_RUANGAN`, `ID_SMF`, `ID_DOKTER`, `ID_PAKET`, `ID_PENJAMIN`, `PJ_KATEGORI`, `PJ_HUBUNGAN`, `PJ_KELAMIN`, `PJ_KERJAAN`, `PJ_PENDIDIKAN`, `PJ_ALAMAT`, `PJ_NOTELP`, `STATUS`, `JAM_STATUS`, `TGL_STATUS`, `STATUS_FINAL`, `JAM_STATUS_FINAL`, `TGL_STATUS_FINAL`, `USER_USESSION`) VALUES
-	('PDUNDA-0001/07/2021.RJ-U', '1', '000000', NULL, NULL, '2021-07-31', '08:36:27', 1, 1, 5, 1, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, '10:54:52', '2021-08-01', 'Kontrol', '00:20:21', '2021-08-01', NULL),
-	('PDUNDA-0002/07/2021.RJ-U', '2', '000001', NULL, NULL, '2021-07-31', '08:37:23', 1, 1, 5, 1, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, '10:56:52', '2021-08-01', 'Inap', '00:20:21', '2021-08-01', NULL),
-	('PDUNDA-0003/07/2021.RJ-U', '3', '000002', NULL, NULL, '2021-07-31', '11:25:31', 1, 1, 5, 1, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, '11:01:05', '2021-08-01', 'Kontrol', '00:20:21', '2021-08-01', NULL),
-	('PDUNDA-0004/07/2021.RJ-U', '4', '000003', NULL, NULL, '2021-07-31', '11:26:28', 1, 1, 5, 1, 1, 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, '11:49:59', '2021-08-01', 'Kontrol', '00:00:00', '0000-00-00', NULL),
-	('PDUNDA-0005/07/2021.RJ-U', '5', '000006', NULL, NULL, '2021-08-01', '10:58:54', 1, 1, 5, 1, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, '11:49:59', '2021-08-01', 'Pulang', '00:20:21', '2021-08-01', NULL),
-	('PDUNDA-0006/07/2021.RJ-U', '10', '000230', NULL, NULL, '2021-08-02', '18:34:20', 1, 1, 5, 1, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, '18:35:04', '2021-08-02', 'Kontrol', '00:20:21', '2021-08-02', NULL),
-	('PDUNDA-0008/07/2021.RJ-U', '27', '000910', NULL, NULL, '2021-08-02', '18:37:53', 1, 1, 5, 1, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, '18:38:25', '2021-08-02', NULL, NULL, NULL, NULL),
-	('PDUNDA-0009/07/2021.RJ-U', '27', '000910', 'Y', NULL, '2021-08-02', '20:23:10', 1, 1, 5, 1, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, '20:47:47', '2021-08-02', 'Kontrol', '00:20:21', '2021-08-02', NULL),
-	('PDUNDA-0010/07/2021.RJ-U', '28', '000924', NULL, NULL, '2021-08-02', '20:25:58', 1, 1, 5, 1, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, '01:28:29', '2021-08-03', 'Kontrol', '00:20:21', '2021-08-03', NULL),
-	('PDUNDA-0011/07/2021.RJ-U', '29', '000973', 'Y', 'Y', '2021-08-02', '20:27:28', 1, 1, 5, 1, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, '01:28:29', '2021-08-03', 'Kontrol', '00:20:21', '2021-08-03', NULL),
-	('PDUNDA-0012/07/2021.RJ-U', '10', '000230', NULL, NULL, '2021-08-03', '02:26:51', 1, 1, 5, 1, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, '02:27:28', '2021-08-03', 'Pulang', '00:20:21', '2021-08-03', NULL),
+	('PDUNDA-0001/07/2021.RJ-U', '1', '000000', NULL, NULL, '2021-07-31', '08:36:27', 1, 1, 5, 1, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, 'Kontrol', '00:20:21', '2021-08-01', NULL),
+	('PDUNDA-0002/07/2021.RJ-U', '2', '000001', NULL, NULL, '2021-07-31', '08:37:23', 1, 1, 5, 1, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL, NULL, 'Inap', NULL, NULL, NULL),
+	('PDUNDA-0003/07/2021.RJ-U', '3', '000002', NULL, NULL, '2021-07-31', '11:25:31', 1, 1, 5, 1, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, 'Kontrol', '00:20:21', '2021-08-01', NULL),
+	('PDUNDA-0004/07/2021.RJ-U', '4', '000003', NULL, NULL, '2021-07-31', '11:26:28', 1, 1, 5, 1, 1, 2, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '11:49:59', '2021-08-01', 'Kontrol', '00:00:00', '0000-00-00', NULL),
+	('PDUNDA-0005/07/2021.RJ-U', '5', '000006', NULL, NULL, '2021-08-01', '10:58:54', 1, 1, 5, 1, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '11:49:59', '2021-08-01', 'Pulang', '00:20:21', '2021-08-01', NULL),
+	('PDUNDA-0006/07/2021.RJ-U', '10', '000230', NULL, NULL, '2021-08-02', '18:34:20', 1, 1, 5, 1, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '18:35:04', '2021-08-02', 'Kontrol', '00:20:21', '2021-08-02', NULL),
+	('PDUNDA-0008/07/2021.RJ-U', '27', '000910', NULL, NULL, '2021-08-02', '18:37:53', 1, 1, 5, 1, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '18:38:25', '2021-08-02', NULL, NULL, NULL, NULL),
+	('PDUNDA-0009/07/2021.RJ-U', '27', '000910', 'Y', NULL, '2021-08-02', '20:23:10', 1, 1, 5, 1, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '20:47:47', '2021-08-02', 'Kontrol', '00:20:21', '2021-08-02', NULL),
+	('PDUNDA-0010/07/2021.RJ-U', '28', '000924', NULL, NULL, '2021-08-02', '20:25:58', 1, 1, 5, 1, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '01:28:29', '2021-08-03', 'Kontrol', '00:20:21', '2021-08-03', NULL),
+	('PDUNDA-0011/07/2021.RJ-U', '29', '000973', 'Y', 'Y', '2021-08-02', '20:27:28', 1, 1, 5, 1, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '01:28:29', '2021-08-03', 'Kontrol', '00:20:21', '2021-08-03', NULL),
+	('PDUNDA-0012/07/2021.RJ-U', '10', '000230', NULL, NULL, '2021-08-03', '02:26:51', 1, 1, 5, 1, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, '02:27:28', '2021-08-03', 'Pulang', '00:20:21', '2021-08-03', NULL),
+	('PDUNDA-0015/07/2021.RJ-U', '2', '000001', NULL, NULL, '2021-08-04', '23:40:48', 1, 1, 5, 1, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, 'Inap', NULL, NULL, NULL),
+	('PDUNDA-0016/07/2021.RJ-U', '3', '000002', NULL, NULL, '2021-08-04', '23:44:20', 1, 1, 5, 1, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL),
+	('PDUNDA-0020/07/2021.RJ-U', '1', '000000', NULL, NULL, '2021-08-05', '21:04:13', 1, 1, 5, 1, 1, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, NULL, NULL, NULL, NULL),
 	('PDUNDA-0031/07/2021.RJ-U', '1', '000000', NULL, NULL, '2021-08-03', '03:56:46', 2, 4, 4, 1, 1, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `pendaftaran` ENABLE KEYS */;
 
@@ -676,19 +752,10 @@ CREATE TABLE IF NOT EXISTS `pendaftaran_bpjs` (
   KEY `NOMR` (`NOMR`),
   KEY `ID_PENJAMIN` (`ID_PENJAMIN`),
   KEY `NOKARTU` (`NOKARTU`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Membuang data untuk tabel ci4login.pendaftaran_bpjs: ~8 rows (lebih kurang)
+-- Membuang data untuk tabel ci4login.pendaftaran_bpjs: ~0 rows (lebih kurang)
 /*!40000 ALTER TABLE `pendaftaran_bpjs` DISABLE KEYS */;
-INSERT INTO `pendaftaran_bpjs` (`ID`, `NOPEN`, `NOMR`, `NOKARTU`, `ID_KELASHAK`, `ID_JENISPESERTA`, `NO_SEP`, `NO_SKDP`, `ID_PENJAMIN`) VALUES
-	(1, 'PDUNDA-0002/07/2021.RJ-U', '000001', '02522133', 3, 2, '7878787788', '765', 2),
-	(2, 'PDUNDA-0004/07/2021.RJ-U', '000003', '2122221', 1, 1, '212122221212', '21', 2),
-	(3, 'PDUNDA-0005/07/2021.RJ-U', '000006', '87878', 1, 2, '12122', '566', 2),
-	(4, 'PDUNDA-0006/07/2021.RJ-U', '000230', '232', 1, 1, '73463463', '763', 2),
-	(5, 'PDUNDA-0009/07/2021.RJ-U', '000910', '313', 1, 2, '998932993V00001', '2578', 2),
-	(6, 'PDUNDA-0010/07/2021.RJ-U', '000924', '3434', 34, 345, '345', '2514', 2),
-	(7, 'PDUNDA-0011/07/2021.RJ-U', '000973', '32342', 1, 1, '34343', '7778', 2),
-	(8, 'PDUNDA-0031/07/2021.RJ-U', '000000', '343', 33, 4, '4343', '3477', 2);
 /*!40000 ALTER TABLE `pendaftaran_bpjs` ENABLE KEYS */;
 
 -- membuang struktur untuk table ci4login.pendaftaran_non_bpjs
@@ -707,15 +774,10 @@ CREATE TABLE IF NOT EXISTS `pendaftaran_non_bpjs` (
   KEY `NO_KARTU` (`NOKARTU`) USING BTREE,
   KEY `NOMR` (`NOMR`),
   KEY `ID_PENJAMIN` (`ID_PENJAMIN`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Membuang data untuk tabel ci4login.pendaftaran_non_bpjs: ~4 rows (lebih kurang)
+-- Membuang data untuk tabel ci4login.pendaftaran_non_bpjs: ~0 rows (lebih kurang)
 /*!40000 ALTER TABLE `pendaftaran_non_bpjs` DISABLE KEYS */;
-INSERT INTO `pendaftaran_non_bpjs` (`ID`, `NOPEN`, `NOMR`, `NOKARTU`, `NAMA_PENJAMIN`, `ALAMAT_PENJAMIN`, `TELP`, `ID_PENJAMIN`) VALUES
-	(1, 'PDUNDA-0001/07/2021.RJ-U', '000000', '-', '-', '-', '-', 1),
-	(2, 'PDUNDA-0003/07/2021.RJ-U', '000002', '-', '-', '-', '-', 1),
-	(3, 'PDUNDA-0008/07/2021.RJ-U', '000910', '-', '-', '-', '-', 1),
-	(4, 'PDUNDA-0012/07/2021.RJ-U', '000230', '-', '-', '-', '-', 1);
 /*!40000 ALTER TABLE `pendaftaran_non_bpjs` ENABLE KEYS */;
 
 -- membuang struktur untuk table ci4login.pendaftaran_pasien_kontrol
@@ -761,12 +823,10 @@ CREATE TABLE IF NOT EXISTS `pendaftaran_rujukan` (
   KEY `NORUJUKAN` (`NORUJUKAN`),
   KEY `NOMR` (`NOMR`),
   KEY `ID_PPK` (`ID_PPK`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Membuang data untuk tabel ci4login.pendaftaran_rujukan: ~0 rows (lebih kurang)
 /*!40000 ALTER TABLE `pendaftaran_rujukan` DISABLE KEYS */;
-INSERT INTO `pendaftaran_rujukan` (`ID`, `NOPEN`, `NOMR`, `NOBPJS`, `ID_PPK`, `NORUJUKAN`, `TGL_RUJUKAN`, `DOKTER`, `SMF_DOKTER`, `DIAGNOSA`, `ID_IDC10`) VALUES
-	(1, 'PDUNDA-0011/07/2021.RJ-U', '000973', '32342', NULL, '23232', '2021-08-03', 'dr. nurhija', 'umum', 'anemia', 2);
 /*!40000 ALTER TABLE `pendaftaran_rujukan` ENABLE KEYS */;
 
 -- membuang struktur untuk table ci4login.users
