@@ -87,9 +87,8 @@ foreach ($dataArr->data as $item) { ?>
 
                                         </tr>
                                         <tr>
-                                            <td colspan="2">
-                                                <select class="form-control form-control-sm" id="tarif" name="tarif" required>
-                                                </select>
+                                            <td colspan="2" class="cek-status-instalasi">
+
                                             </td>
                                         </tr>
                                     </table>
@@ -198,9 +197,6 @@ foreach ($dataArr->data as $item) { ?>
                             </div>
                         </div>
                     </div>
-
-
-
 
                 </div>
                 <div class="modal-footer">
@@ -347,6 +343,7 @@ foreach ($dataArr->data as $item) { ?>
 
     // ketika id instalasi terjadi perubahan select
     $('#instalasi').change(function(e) {
+        var cekinstalasi = $('#instalasi').val();
         $.ajax({
             type: "post",
             url: "<?= base_url('masterdata/AmbilUnitLayanan') ?>",
@@ -362,11 +359,21 @@ foreach ($dataArr->data as $item) { ?>
                         theme: "classic",
                         selectOnClose: true,
                     })
+                    if (cekinstalasi == '2' || cekinstalasi == '4') { //rawat inap dan ugd
+                        $('.cek-status-instalasi').html(`<div class="input-group flex-nowrap">
+                                        <input type="text" class="form-control input-sm" placeholder="Kode Booking" aria-label="Username" aria-describedby="addon-wrapping">
+                                        <button type="button" class="input-group-text" id="addon-wrapping" style="background-color: #08606e; color: white;"><i class="ti-share"></i></button>
+                                    </div>`);
+                    } else {
+                        $('.cek-status-instalasi').html('<select class="form-control form-control-sm" id="tarif" name="tarif" required></select>');
+                        Datatrif();
+                    }
 
                 }
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 $('#unitlayanan').val(null).trigger('change');
+                $('.cek-status-instalasi').html('');
                 clearselect();
             }
         });

@@ -49,6 +49,11 @@
 
     <link rel="stylesheet" href="<?= base_url() ?>/template/files/assets/select2/dist/css/select2.css" />
     <link rel="stylesheet" href="<?= base_url() ?>/template/files/assets/select2/dist/css/select2.min.css">
+    <!-- Treeview css -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/pages/treeview/treeview.css">
+
+    <!-- nestable css -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/pages/nestable/nestable.css">
 
     <!-- ajax jquery letakan diatas body html -->
     <script src="<?= base_url() ?>/template/files/assets/js/jquery-3.5.1.js"></script>

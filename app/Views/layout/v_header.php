@@ -50,41 +50,31 @@
                         <i class="ti-bell"></i>
                         <span class="badge bg-c-red"></span>
                     </a>
-                    <ul class="show-notification">
+                    <ul class="scroll-list show-notification">
                         <li>
-                            <h6>Notifications</h6>
-                            <label class="label label-danger">New</label>
+                            <h6>Pasien Control</h6>
+                            <label class="label label-danger">1</label>
                         </li>
                         <li class="waves-effect waves-light">
                             <div class="media">
                                 <img class="d-flex align-self-center img-radius" src="<?= base_url() ?>/template/files/assets/images/avatar-2.jpg" alt="Generic placeholder image">
                                 <div class="media-body">
-                                    <h5 class="notification-user">Iwan Maksud</h5>
-                                    <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                    <span class="notification-time">30 minutes ago</span>
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td>
+                                                <h5 class="notification-user">0000 | Iwan Maksud</h5>
+                                                <p class="notification-msg">Asal: Poli Interna </p>
+                                                <span class="notification-time">30:00 Wita - 01-01-2021</span>
+                                            </td>
+                                            <td>
+                                                <h5>Layani</h5>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </li>
-                        <li class="waves-effect waves-light">
-                            <div class="media">
-                                <img class="d-flex align-self-center img-radius" src="<?= base_url() ?>/template/files/assets/images/avatar-4.jpg" alt="Generic placeholder image">
-                                <div class="media-body">
-                                    <h5 class="notification-user">Joseph William</h5>
-                                    <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                    <span class="notification-time">30 minutes ago</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="waves-effect waves-light">
-                            <div class="media">
-                                <img class="d-flex align-self-center img-radius" src="<?= base_url() ?>/template/files/assets/images/avatar-3.jpg" alt="Generic placeholder image">
-                                <div class="media-body">
-                                    <h5 class="notification-user">Sara Soudein</h5>
-                                    <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                    <span class="notification-time">30 minutes ago</span>
-                                </div>
-                            </div>
-                        </li>
+
                     </ul>
                 </li>
                 <li class="">

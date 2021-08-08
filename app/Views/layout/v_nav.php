@@ -21,6 +21,13 @@
                                 </a>
                             </li>
                             <li class="">
+                                <a href="<?= base_url('setingaplikasi/maneglayanan'); ?>" class="waves-effect waves-dark">
+                                    <span class="ti-hand-point-right"></span>
+                                    <span>Manajemen Pelayanan</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                            <li class="">
                                 <a href="<?= base_url('setingaplikasi/pengaturanumum'); ?>" class="waves-effect waves-dark">
                                     <span class="ti-hand-point-right"></span>
                                     <span>Pengaturan Umum</span>
@@ -376,16 +383,16 @@
                         </a>
                         <ul class="pcoded-submenu">
                             <li class="">
-                                <a href="<?= base_url('seting/seting1'); ?>" class="waves-effect waves-dark">
+                                <a href="<?= base_url('datapasien/daftarInap'); ?>" class="waves-effect waves-dark">
                                     <span class="ti-hand-point-right"></span>
-                                    <span>Cek Permintaan Inap</span>
+                                    <span>Pendaftaran</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
                             <li class="">
                                 <a href="<?= base_url('seting/seting1'); ?>" class="waves-effect waves-dark">
                                     <span class="ti-hand-point-right"></span>
-                                    <span>Buat Permintaan Sendiri</span>
+                                    <span>Cek Permintaan Inap</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>

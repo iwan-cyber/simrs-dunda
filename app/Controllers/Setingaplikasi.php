@@ -10,6 +10,18 @@ use CodeIgniter\Database\Query;
 class Setingaplikasi extends BaseController
 {
 
+    public function maneglayanan()
+    { {
+            $data = [
+                'title'         => 'Managemen Pelayanan',
+                'subtitle'      => 'Mengatur Ruangan, Kamar, Bed dan Kelas Tarif',
+                'isi'           => 'setingaplikasi/v_managemen_layanan',
+            ];
+        }
+        echo view('layout/v_wrapper', $data);
+    }
+
+
     public function managemenUser()
     { {
             $data = [

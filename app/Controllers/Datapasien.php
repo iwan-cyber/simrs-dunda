@@ -29,6 +29,17 @@ class Datapasien extends BaseController
         echo view('layout/v_wrapper', $data);
     }
 
+    public function daftarInap()
+    { {
+            $data = [
+                'title'         => 'Data Pasien',
+                'subtitle'      => 'Pendaftaran Pasien Rawat Inap',
+                'isi'           => 'pendaftaran/v_dataPasien.php',
+            ];
+        }
+        echo view('layout/v_wrapper', $data);
+    }
+
     public function TampilPasien()
     {
         return DataTables::use('m_pasien')

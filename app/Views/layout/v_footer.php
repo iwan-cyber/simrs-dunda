@@ -67,6 +67,13 @@
 <script src="<?= base_url() ?>/template/files/bower_components/stroll/js/stroll.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/list-scroll/list-custom.js"></script>
 
+<!-- nestable js -->
+<script src="<?= base_url() ?>/template/files/assets/pages/nestable/jquery.nestable.js"></script>
+<!-- Custom js -->
+<script src="<?= base_url() ?>/template/files/assets/pages/nestable/custom-nestable.js"></script>
+
+<script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/jstree/js/jstree.min.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/treeview/jquery.tree.js"></script>
 <!-- Tags js -->
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
 
