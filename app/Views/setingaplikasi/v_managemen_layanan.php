@@ -1,8 +1,3 @@
-<link href="https://jonmiles.github.io/bootstrap-treeview/bower_components/bootstrap/dist/css/bootstrap.css">
-
-<!-- Custom js -->
-<!-- <script src="https://jonmiles.github.io/bootstrap-treeview/bower_components/jquery/dist/jquery.js"></script> -->
-<!-- <script src="https://jonmiles.github.io/bootstrap-treeview/js/bootstrap-treeview.js"></script> -->
 <div class="col-sm-12">
     <div class="card">
         <div class="card-header">
@@ -43,6 +38,8 @@
             dataType: "json",
             success: function(data) {
                 $('#listruangan').treeview({
+                    levels: 4,
+                    tags: true,
                     data: data
                 });
             }

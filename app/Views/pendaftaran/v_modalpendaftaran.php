@@ -7,7 +7,7 @@ foreach ($dataArr->data as $item) { ?>
     <!-- Modal Pendaftaran -->
     <!-- <div class="modal fade" id="ModalPendaftaran" tabindex="-1" role="dialog"> -->
     <div class="modal fade" id="ModalPendaftaran" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"><?= $item->NOMR; ?> | <?= $item->NAMA; ?>, <?= $item->TITLE; ?></h5>
@@ -176,7 +176,6 @@ foreach ($dataArr->data as $item) { ?>
                                                     <option value="2">BPJS / JKN</option>
                                                 </select>
                                             </td>
-
                                         </tr>
                                     </table>
                                     <div class="tampilinputpenjamin"></div>
@@ -197,6 +196,10 @@ foreach ($dataArr->data as $item) { ?>
                             </div>
                         </div>
                     </div>
+                    <!-- Button trigger modal -->
+
+
+                    <!-- Button trigger modal -->
 
                 </div>
                 <div class="modal-footer">
@@ -208,14 +211,41 @@ foreach ($dataArr->data as $item) { ?>
             <?= form_close(); ?>
         </div>
     </div>
-    </div>
+
+
     <!-- END Modal Pendaftaran -->
+    <div class="cekkamarbed" style="display: none;"></div>
 <?php } ?>
 
 <script>
     $(document).ready(function() {
         $('#area-rujukan *').prop('disabled', true);
+        $('.select2').select2({
+            dropdownParent: $('#ModalPendaftaran'),
+            selectOnClose: true,
+            theme: "classic"
+        })
     });
+
+    // fungtion booking kamar
+    function cekkamar() {
+        var ruangan = $('#ruangan').val();
+        $.ajax({
+            type: "post",
+            url: "<?= base_url('pendaftaran/infodatakamar') ?>",
+            data: {
+                ruangan: ruangan
+            },
+            // dataType: "json",
+            success: function(response) {
+                if (response) {
+                    $('.cekkamarbed').html(response).show();
+                    $('#modalinfokamar').modal('show');
+                }
+            }
+        });
+
+    }
 
     $('#cekrujukan').change(function() {
         if ($(this).prop('checked')) {
@@ -225,7 +255,6 @@ foreach ($dataArr->data as $item) { ?>
         }
 
     })
-
 
     function DataInstalsi() {
         $('#rujukan_icd').select2({
@@ -361,8 +390,11 @@ foreach ($dataArr->data as $item) { ?>
                     })
                     if (cekinstalasi == '2' || cekinstalasi == '4') { //rawat inap dan ugd
                         $('.cek-status-instalasi').html(`<div class="input-group flex-nowrap">
-                                        <input type="text" class="form-control input-sm" placeholder="Kode Booking" aria-label="Username" aria-describedby="addon-wrapping">
-                                        <button type="button" class="input-group-text" id="addon-wrapping" style="background-color: #08606e; color: white;"><i class="ti-share"></i></button>
+                                        <input type="text" class="form-control input-sm" placeholder="Kode Booking" aria-label="Username" aria-describedby="addon-wrapping" readonly>
+                                        
+                                        <button type="button" class="btn btn-info btn-mini btn-cek disabled" id="btn-cek" data-toggle="modal" disabled onclick="cekkamar()">
+                                            <i class="ti-share"></i> Cek Kamar
+                                        </button>
                                     </div>`);
                     } else {
                         $('.cek-status-instalasi').html('<select class="form-control form-control-sm" id="tarif" name="tarif" required></select>');
@@ -377,6 +409,12 @@ foreach ($dataArr->data as $item) { ?>
                 clearselect();
             }
         });
+    })
+
+    $('#ruangan').change(function() {
+        $('#btn-cek').removeAttr('disabled');
+        $('#btn-cek').removeClass('disabled');
+
     })
 
     // ketika id unitlayanan terjadi perubahan select
@@ -406,7 +444,7 @@ foreach ($dataArr->data as $item) { ?>
         });
     })
 
-    // ketika id unitlayanan terjadi perubahan select
+    // ketika id smf terjadi perubahan select
     $('#smf').change(function(e) {
         $.ajax({
             type: "post",
@@ -513,7 +551,6 @@ foreach ($dataArr->data as $item) { ?>
 
     })
 
-
     $('#penjamin').change(function(e) {
 
         var penjamin = $(this).val()
@@ -585,6 +622,7 @@ foreach ($dataArr->data as $item) { ?>
         });
         return false;
     })
+
 
 
     function infobed() {

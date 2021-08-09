@@ -41,6 +41,7 @@
                     </tr>
                 </thead>
             </table>
+
         </div>
     </div>
 </div>
@@ -175,14 +176,13 @@
         $('#ModalDetailPasien').modal('show');
     }
 
-
     function daftarPasien(id) {
 
         $.ajax({
             type: 'POST',
             url: "<?= base_url('pendaftaran/formpendaftaran'); ?>",
             data: {
-                "id": id,
+                "idpasien": id,
             },
             // dataType: 'json',
             success: function(response) {

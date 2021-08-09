@@ -9,7 +9,7 @@
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- Meta -->
@@ -19,10 +19,11 @@
     <meta name="description" content="Gradient Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
     <meta name="keywords" content="Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
     <meta name="author" content="Phoenixcoded" />
+
     <!-- Favicon icon -->
     <link rel="icon" href="<?= base_url() ?>/template/files/assets/images/logo-pemda.jpg" type="image/x-icon">
     <!-- Google font-->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
     <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/bower_components/bootstrap/css/bootstrap.min.css">
     <!-- Bootstrap CSS -->
@@ -39,7 +40,10 @@
     <!-- ico font -->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/icon/icofont/css/icofont.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/bower_components/font-awesome/css/font-awesome.min.css">
+    <link href="<?= base_url() ?>/template/files/bower_components/font-awesome/css/fontawesome.css" type="text/css" rel="stylesheet">
+    <link href="<?= base_url() ?>/template/files/bower_components/font-awesome/css/fontawesome.min.css" type="text/css" rel="stylesheet">
+    <link href="<?= base_url() ?>/template/files/bower_components/font-awesome/css/all.css" type="text/css" rel="stylesheet">
+    <link href="<?= base_url() ?>/template/files/bower_components/font-awesome/css/all.min.css" type="text/css" rel="stylesheet">
 
     <!-- Syntax highlighter Prism css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/pages/prism/prism.css">

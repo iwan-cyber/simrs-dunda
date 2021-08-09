@@ -18,6 +18,12 @@
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/popper.js/js/popper.min.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/font-awesome/js/fontawesome.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/font-awesome/js/fontawesome.min.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/font-awesome/js/all.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/font-awesome/js/all.min.js"></script>
+
 <!-- waves js -->
 <script src="<?= base_url() ?>/template/files/assets/pages/waves/js/waves.min.js"></script>
 <!-- jquery slimscroll js -->
@@ -51,7 +57,7 @@
 
 <!-- sweet alert js -->
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/sweetalert2@11.js"></script>
-<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/modal.js"></script>
+<!-- <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/modal.js"></script> -->
 
 <!-- sweet alert modal.js intialize js -->
 <!-- modalEffects js nifty modal window effects -->
@@ -59,9 +65,9 @@
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/modalEffects.js"></script>
 
 <!-- Validation js -->
-<script src="<?= base_url() ?>/template/files/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-<script src="<?= base_url() ?>/template/files/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/form-validation/validate.js"></script>
+<!-- <script src="<?= base_url() ?>/template/files/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script> -->
+<!-- <script src="<?= base_url() ?>/template/files/ajax/libs/moment.js/2.10.6/moment.min.js"></script> -->
+<!-- <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/form-validation/validate.js"></script> -->
 
 <!-- list-scroll js -->
 <script src="<?= base_url() ?>/template/files/bower_components/stroll/js/stroll.js"></script>
@@ -83,8 +89,8 @@
 <script src="<?= base_url() ?>/template/files/assets/js/sweetalert.min.js"></script>
 <script src="<?= base_url() ?>/template/files/assets/select2/dist/js/select2.full.min.js"></script>
 <script src="<?= base_url() ?>/template/files/assets/pages/data-table/js/data-table-custom.js"></script>
-<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/form-validation/form-validation.js"></script>
-<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/advance-elements/swithces.js"></script>
+<!-- <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/form-validation/form-validation.js"></script> -->
+<!-- <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/advance-elements/swithces.js"></script> -->
 <script src="<?= base_url() ?>/template/files/assets/js/pcoded.min.js"></script>
 <script src="<?= base_url() ?>/template/files/assets/js/vertical/menu/menu-hori-fixed.js"></script>
 <script src="<?= base_url() ?>/template/files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>

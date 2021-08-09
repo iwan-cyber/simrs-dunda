@@ -19,15 +19,37 @@ class Pendaftaran extends BaseController
         $db = \Config\Database::connect();
 
         if ($this->request->isAJAX()) {
-            $idpasien = $this->request->getVar('id');
-            // $query  = $db->table('m_pasien')->where('id', $idpasien)->get();
-            // $a = $query->get()
+            $idpasien = $this->request->getVar('idpasien');
             $row = DataTables::use('m_pasien')->where(['id' => $idpasien])->make(true);
             $data = [
                 'id' => $idpasien,
                 'data'  => $row,
             ];
             echo view('pendaftaran/v_modalpendaftaran', $data);
+        } else {
+            return view('error_page');
+        }
+    }
+
+    public function infodatakamar()
+    {
+        if ($this->request->isAJAX()) {
+            $idruangan = $this->request->getVar('ruangan');
+            $row = DataTables::use('m_kamar')->where(['ID_RUANGAN' => $idruangan])
+                ->select('m_kamar.ID as IDKAMAR, m_kamar.NAMA_KAMAR as KAMAR, m_kamar.ID_RUANGAN as ID_RUANGAN, m_bed.STATUS as STATUSKAMAR, m_kelas.KELAS as KELAS,  m_kamar.KODE as KD_KAMAR, m_ruangan.RUANGAN as RUANGAN, m_kelas.TARIF_INAP as TARIF_INAP, m_bed.KODE_BED as KODE_BED, m_bed.NO_BED as NOBED, m_bed.ID as IDBED')
+                ->join('m_kelas', 'm_kelas.ID=m_kamar.IDKELAS')
+                ->join('m_ruangan', 'm_ruangan.ID=m_kamar.ID_RUANGAN')
+                ->join('m_bed', 'm_bed.IDKAMAR=m_kamar.ID')
+                ->make(true);
+            $data = [
+                'id' => $idruangan,
+                'data'  => $row,
+            ];
+            // d($data);
+            echo view('pendaftaran/v_modalinfokamar', $data);
+            // echo json_encode($msg);
+        } else {
+            return view('error_page');
         }
     }
 
