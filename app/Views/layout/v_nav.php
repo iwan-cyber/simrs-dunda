@@ -199,7 +199,7 @@
                                 </a>
                             </li>
                             <li class="">
-                                <a href="<?= base_url('seting/seting1'); ?>" class="waves-effect waves-dark">
+                                <a href="<?= base_url('master/pekerjaan'); ?>" class="waves-effect waves-dark">
                                     <span class="ti-hand-point-right"></span>
                                     <span>Pekerjaan</span>
                                     <span class="pcoded-mcaret"></span>

@@ -82,6 +82,7 @@
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/jstree/js/jstree.min.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/treeview/jquery.tree.js"></script>
 
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/aplikasi.js?<?= rand() ?>"></script>
 
 <!-- Tags js -->
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
@@ -96,6 +97,8 @@
 <script src="<?= base_url() ?>/template/files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/script.js"></script>
 
+
+
 <script>
     $(document).ready(function() {
 
@@ -107,12 +110,8 @@
     })
 </script>
 
-<script>
 
-</script>
 </body>
 
-
-<!-- Mirrored from html.phoenixcoded.net/mega-able/default/menu-horizontal-fixed.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 06:59:00 GMT -->
 
 </html>
