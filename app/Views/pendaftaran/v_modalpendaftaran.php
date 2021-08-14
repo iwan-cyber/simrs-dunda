@@ -20,7 +20,7 @@ foreach ($dataArr->data as $item) { ?>
                 <div class="modal-body">
 
                     <h6 class="text-danger">[No. Pendaftaran]</h6>
-                    <input type="text" value="PDUNDA-0001/07/2021.RJ-U" class="form-control form-control-sm input-danger" name="nopen" required>
+                    <input type="text" id="nopen" class="form-control form-control-sm input-danger" name="nopen" required>
                     <input type="hidden" value="<?= $item->NOMR; ?>" name="nomr" required readonly>
                     <input type="hidden" value="<?= $item->id; ?>" name="idpasien" required readonly>
                     <br />
@@ -219,6 +219,16 @@ foreach ($dataArr->data as $item) { ?>
 
 <script>
     $(document).ready(function() {
+        // generate nopen inap
+        detik = new Date().getSeconds();
+        menit = new Date().getMinutes();
+        jamSekarang = new Date().getHours();
+        tglSekarang = new Date().getDate();
+        blnSekarang = new Date().getMonth();
+        thnSekarang = new Date().getFullYear();
+
+        document.getElementById("nopen").value = '' + getNopen(5) + '' + tglSekarang + '' + blnSekarang + '' + thnSekarang + '' + jamSekarang + '' + menit + '' + detik;
+
         $('#area-rujukan *').prop('disabled', true);
         $('.select2').select2({
             dropdownParent: $('#ModalPendaftaran'),
@@ -390,7 +400,8 @@ foreach ($dataArr->data as $item) { ?>
                     })
                     if (cekinstalasi == '2' || cekinstalasi == '4') { //rawat inap dan ugd
                         $('.cek-status-instalasi').html(`<div class="input-group flex-nowrap">
-                                        <input type="text" class="form-control input-sm" placeholder="Kode Booking" aria-label="Username" aria-describedby="addon-wrapping" readonly>
+                                        <input type="text" class="form-control input-sm kdBookingBed" id="kdBookingBed" name="kdBookingBed" placeholder="Kode Booking" aria-label="Kodebooking" aria-describedby="addon-wrapping" readonly>
+                                        <input type="hidden" class="form-control input-sm idbed" id="idbed" name="idbed" placeholder="Kode Booking" aria-label="Kodebooking" aria-describedby="addon-wrapping" readonly>
                                         
                                         <button type="button" class="btn btn-info btn-mini btn-cek disabled" id="btn-cek" data-toggle="modal" disabled onclick="cekkamar()">
                                             <i class="ti-share"></i> Cek Kamar
@@ -503,6 +514,7 @@ foreach ($dataArr->data as $item) { ?>
             theme: "classic",
             selectOnClose: true,
         })
+
         $('#dokterlayanan').val(null).trigger('change');
         $('#dokterlayanan').select2({
             dropdownParent: $('#ModalPendaftaran'),
@@ -518,7 +530,9 @@ foreach ($dataArr->data as $item) { ?>
             theme: "classic",
         })
 
-        $('#penjamin').select2()
+        $('#penjamin').select2({
+            theme: "classic",
+        })
 
     }
 

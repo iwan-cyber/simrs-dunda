@@ -7,7 +7,10 @@ use CodeIgniter\Controller;
 use App\Models\Modelpendaftaran;
 use App\Models\Modelpendaftaran_bpjs;
 use App\Models\Modelpendaftaran_non_bpjs;
+use App\Models\Modelpendaftaran_ranap;
 use App\Models\Modelpendaftaran_rujukan;
+use App\Models\Modelantrian_poli;
+use App\Models\Modelbed;
 use CodeIgniter\Database\Query;
 
 
@@ -53,10 +56,15 @@ class Pendaftaran extends BaseController
         }
     }
 
-
     public function simpanPendaftaran()
     {
         if ($this->request->isAJAX()) { {
+
+                $penjamin = $this->request->getVar('penjamin');
+                $rujukan = $this->request->getVar('rujukan_ppk');
+                $kodebooking = $this->request->getVar('kdBookingBed');
+                $idbed = $this->request->getPost('idbed');
+                $tglDaftar = $this->request->getPost('tglpendaftaran');
 
                 $simpanPendaftaran = [
                     'NOPEN' => $this->request->getPost('nopen'),
@@ -85,9 +93,63 @@ class Pendaftaran extends BaseController
                 $tPendaftaran = new Modelpendaftaran;
                 $tPendaftaran->insert($simpanPendaftaran);
 
+                if ($kodebooking == "") { // insert antrian poliklinik
+                    $antrianpoli = $this->db->table('antrian_poli')
+                        ->join('pendaftaran', 'pendaftaran.NOPEN = antrian_poli.NOPEN', 'INNER JOIN')
+                        ->where(['pendaftaran.TGL_PENDAFTARAN' => $tglDaftar, 'pendaftaran.ID_INSTALASI' => 1, 'pendaftaran.ID_UNITLAYANAN' => 1, 'pendaftaran.ID_RUANGAN' => $this->request->getPost('ruangan')])->get();
 
-                $penjamin = $this->request->getVar('penjamin');
-                $rujukan = $this->request->getVar('rujukan_ppk');
+                    if ($antrianpoli->getNumRows() > 0) {
+                        $jmlAntrian = $antrianpoli->getNumRows();
+                        $noAntrian = $jmlAntrian + 1;
+                    } else {
+                        $noAntrian = 1;
+                    }
+                    $simpanAntrian = [
+                        'NOPEN' => $this->request->getPost('nopen'),
+                        'ANTRIAN' => $noAntrian,
+                        'IDUNIT_LAYANAN' => $this->request->getPost('unitlayanan'),
+                        'ID_RUANGAN' => $this->request->getPost('ruangan'),
+                    ];
+
+                    $tAntrianPoli = new Modelantrian_poli();
+                    $tAntrianPoli->insert($simpanAntrian);
+                }
+
+                if ($kodebooking != "") { // insert pasien pendaftaran ranap
+                    $simpanPendaftaranRanap = [
+                        'NOPEN' => $this->request->getPost('nopen'),
+                        'KODE_BOOKING' => $this->request->getVar('kdBookingBed'),
+                        'ID_PASIEN' => $this->request->getPost('idpasien'),
+                        'NORM' => $this->request->getPost('nomr'),
+                        'CITO' => $this->request->getPost('cito'),
+                        'RESIKO_JATUH' => $this->request->getPost('resikojatuh'),
+                        'TGL_PENDAFTARAN' => $this->request->getPost('tglpendaftaran'),
+                        'JAM_PENDAFTARAN' => $this->request->getPost('jampendaftran'),
+                        'ID_INSTALASI' => $this->request->getPost('instalasi'),
+                        'ID_UNITLAYANAN' => $this->request->getPost('unitlayanan'),
+                        'ID_RUANGAN' => $this->request->getPost('ruangan'),
+                        'ID_BED' => $this->request->getPost('idbed'),
+                        'ID_SMF' => $this->request->getPost('smf'),
+                        'ID_DOKTER' => $this->request->getPost('dokterlayanan'),
+                        'ID_PAKET' => $this->request->getPost('tarif'),
+                        'ID_PENJAMIN' => $this->request->getPost('penjamin'),
+                        'PJ_KATEGORI' => $this->request->getPost('pjkategori'),
+                        'PJ_HUBUNGAN' => $this->request->getPost('pjhubungan'),
+                        'PJ_KELAMIN' => $this->request->getPost('pjjenkel'),
+                        'PJ_KERJAAN' => $this->request->getPost('pjpekerjaan'),
+                        'PJ_PENDIDIKAN' => $this->request->getPost('pjpendidikan'),
+                        'PJ_ALAMAT' => $this->request->getPost('pjalamat'),
+                        'PJ_NOTELP' => $this->request->getPost('pjtelp')
+                    ];
+                    $tpenRanap = new Modelpendaftaran_ranap();
+                    $tpenRanap->insert($simpanPendaftaranRanap);
+
+                    $updateBed = [
+                        'STATUS' => "Booking"
+                    ];
+                    $tbed = new Modelbed();
+                    $tbed->update($idbed, $updateBed); // ubah status bed
+                }
 
                 if ($rujukan != "") { // jika pasien rujukan maka simpan tabel rujukan
                     $simpanRujukan = [

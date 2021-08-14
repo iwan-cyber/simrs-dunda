@@ -89,13 +89,29 @@
 <script src="<?= base_url() ?>/template/files/assets/js/sweetalert.min.js"></script>
 <script src="<?= base_url() ?>/template/files/assets/select2/dist/js/select2.full.min.js"></script>
 <script src="<?= base_url() ?>/template/files/assets/pages/data-table/js/data-table-custom.js"></script>
-<!-- <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/form-validation/form-validation.js"></script> -->
-<!-- <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/advance-elements/swithces.js"></script> -->
+
 <script src="<?= base_url() ?>/template/files/assets/js/pcoded.min.js"></script>
 <script src="<?= base_url() ?>/template/files/assets/js/vertical/menu/menu-hori-fixed.js"></script>
 <script src="<?= base_url() ?>/template/files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/script.js"></script>
 
+
+<script type="text/javascript" src="<?= base_url() ?>/files/bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js">
+</script>
+
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/jquery-ui-1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+
+
+<script type="text/javascript">
+    // AJAX call for autocomplete 
+
+    //To select country name
+    function selectCountry(val) {
+        $("#inputseacrh").val(val);
+        $("#suggesstion-box").hide();
+    }
+</script>
 <script>
     $(document).ready(function() {
 
@@ -108,7 +124,25 @@
 </script>
 
 <script>
+    function randKodeBooking(length) {
+        var result = '';
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
 
+    function getNopen(length) {
+        var result = '';
+        var characters = '0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
 </script>
 </body>
 
