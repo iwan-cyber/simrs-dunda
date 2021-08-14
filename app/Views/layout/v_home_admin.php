@@ -219,7 +219,7 @@
                     type: "post",
                     url: "<?= base_url('rekammedis/penerimaanpasien'); ?>",
                     data: {
-                        nopen: NOPEN,
+                        NOPEN: NOPEN,
                         jampel: $('#jampelayanan').val(),
                         tglpel: $('#tglPel').val(),
                         sessionUser: $('#user_session').val()
@@ -359,7 +359,7 @@
 
     $(document).ready(function() {
         listpendaftaran();
-        listpendaftaranRanap();
+        listPasienSedangInap();
         // var auto_refresh = setInterval(
         //     function() {
         //         listPasienSedangInap();

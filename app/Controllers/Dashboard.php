@@ -121,13 +121,13 @@ class Dashboard extends BaseController
 
             $pendaftaran = $this->db->table('pendaftaran_ranap')
                 ->select('pendaftaran_ranap.NOPEN as NOPEN, pendaftaran_ranap.NORM as NORM, m_pasien.NAMA as NAMA, pendaftaran_ranap.STATUS as STATUS, m_pasien.NOMR, pendaftaran_ranap.TGL_PENDAFTARAN as TGL_PENDAFTARAN, pendaftaran_ranap.JAM_PENDAFTARAN as JAM_PENDAFTARAN, m_pegawai.NAMA_PEGAWAI as DPJP, m_ruangan.RUANGAN as RUANGAN, m_penjamin.PENJAMIN as PENJAMIN, pendaftaran_ranap.CITO as CITO, pendaftaran_ranap.RESIKO_JATUH as RESIKO_JATUH, m_instalasi.INSTALASI as INSTALASI,  pendaftaran_ranap.ID_INSTALASI as IDINSTALASI, m_kamar.NAMA_KAMAR as KAMAR, m_bed.NO_BED as BED')
-                ->join('m_pasien', 'pendaftaran_ranap.NORM = m_pasien.NOMR', 'INNER JOIN')
-                ->join('m_pegawai', 'pendaftaran_ranap.ID_DOKTER = m_pegawai.ID', 'INNER JOIN')
-                ->join('m_ruangan', 'pendaftaran_ranap.ID_RUANGAN = m_ruangan.ID', 'INNER JOIN')
-                ->join('m_kamar', 'pendaftaran_ranap.ID_KAMAR = m_kamar.id', 'INNER JOIN')
-                ->join('m_bed', 'pendaftaran_ranap.ID_BED = m_bed.ID', 'INNER JOIN')
-                ->join('m_penjamin', 'pendaftaran_ranap.ID_PENJAMIN = m_penjamin.ID', 'INNER JOIN')
-                ->join('m_instalasi', 'pendaftaran_ranap.ID_INSTALASI = m_instalasi.ID', 'INNER JOIN')
+                ->join('m_pasien', 'pendaftaran_ranap.NORM = m_pasien.NOMR', 'INNER')
+                ->join('m_pegawai', 'pendaftaran_ranap.ID_DOKTER = m_pegawai.ID', 'INNER')
+                ->join('m_ruangan', 'pendaftaran_ranap.ID_RUANGAN = m_ruangan.ID', 'INNER')
+                ->join('m_bed', 'pendaftaran_ranap.ID_BED = m_bed.ID', 'INNER')
+                ->join('m_kamar', 'm_bed.IDKAMAR = m_kamar.id', 'INNER')
+                ->join('m_penjamin', 'pendaftaran_ranap.ID_PENJAMIN = m_penjamin.ID', 'INNER')
+                ->join('m_instalasi', 'pendaftaran_ranap.ID_INSTALASI = m_instalasi.ID', 'INNER')
                 ->where(['pendaftaran_ranap.status' => 1]) // pasien sedang inap
                 ->get();
 

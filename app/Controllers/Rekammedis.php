@@ -160,6 +160,7 @@ class Rekammedis extends BaseController
                 'USER_USESSION' => $sessionuser,
             ];
 
+
             $pendaftaran = new Modelpendaftaran();
             $pendaftaran->update($nopen, $updatedata);
 
