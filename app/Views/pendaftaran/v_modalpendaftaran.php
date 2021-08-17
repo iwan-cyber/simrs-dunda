@@ -6,19 +6,19 @@ $dataArr = json_decode($data);
 foreach ($dataArr->data as $item) { ?>
     <!-- Modal Pendaftaran -->
     <!-- <div class="modal fade" id="ModalPendaftaran" tabindex="-1" role="dialog"> -->
+    <?= form_open('pendaftaran/simpanPendaftaran', ['class' => 'formpendaftarn']); ?>
     <div class="modal fade" id="ModalPendaftaran" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><?= $item->NOMR; ?> | <?= $item->NAMA; ?>, <?= $item->TITLE; ?></h5>
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="modal-header bg-info">
+                    <h6 class="modal-title"><?= $item->NOMR; ?> | <?= $item->NAMA; ?>, <?= $item->TITLE; ?></h6>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-danger btn-sm waves-effect" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn waves-effect waves-light btn-linkedin btn-sm btn-simpan">Daftarkan</button>
+                    </div>
                 </div>
-                <?= form_open('pendaftaran/simpanPendaftaran', ['class' => 'formpendaftarn']); ?>
-                <div class="modal-body">
 
+                <div class="modal-body">
                     <h6 class="text-danger">[No. Pendaftaran]</h6>
                     <input type="text" id="nopen" class="form-control form-control-sm input-danger" name="nopen" required>
                     <input type="hidden" value="<?= $item->NOMR; ?>" name="nomr" required readonly>
@@ -202,16 +202,13 @@ foreach ($dataArr->data as $item) { ?>
                     <!-- Button trigger modal -->
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-mini waves-effect" data-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary btn-mini waves-effect waves-light btn-simpan">Daftarkan</button>
+                <div class="modal-footer bg-info">
+
                 </div>
             </div>
-
-            <?= form_close(); ?>
         </div>
     </div>
-
+    <?= form_close(); ?>
 
     <!-- END Modal Pendaftaran -->
     <div class="cekkamarbed" style="display: none;"></div>

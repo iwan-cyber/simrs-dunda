@@ -72,6 +72,7 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/css/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/css/pcoded-horizontal.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/css/main.css">
     <style>
         a,
         a:hover {

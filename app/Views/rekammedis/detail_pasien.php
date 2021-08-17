@@ -6,87 +6,52 @@ $dataArr = json_decode($data);
 
 foreach ($dataArr->data as $item) { ?>
     <div class="row">
-        <div class="col-md-6">
+
+        <div class="col-lg-12">
             <div class="card">
-                <div class="card-header">N. Rekam Medik Pasien : <?= $item->norm ?></div>
-                <div class="card-body">
-                    isi
+                <div class="card-header">
+                    <div class="header-right">
+                        <table>
+                            <tr>
+                                <td>
+                                    <h5 class="card-header-text"><?= $item->norm ?>| <?= $item->nama ?></h5>
+                                </td>
+                                <td><label class="label label-info">NOPEN: <?= $item->nopen ?></label></td>
+                                <td><label class="label label-info">INSTALASI: <?= $item->nopen ?></label></td>
+                                <td><label class="label label-info">UNIT LAYANAN: <?= $item->nopen ?></label></td>
+                                <td><label class="label label-info">RUANGAN: <?= $item->nopen ?></label></td>
+                                <td><label class="label label-info">DPJP: <?= $item->nopen ?></label></td>
+                                <td><label class="label label-info">STATUS: <?= $item->nopen ?></label></td>
+                            </tr>
+                        </table>
+                        <hr />
+                    </div>
+
                 </div>
+                <div class="table-responsive">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien bg-info" onclick="btn_tab_rekamedis('<?= $item->nopen ?>')"><i class="fas fa-notes-medical"></i> REKAM MEDIS </button></td>
+                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_laboratorium()"><i class="fas fa-microscope"></i> LABORATORIUM</button></td>
+                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_radiologi()"><i class="fas fa-x-ray"></i> RADIOLOGI</button></td>
+                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_utd()"><i class="fas fa-heartbeat"></i> UTDRS</button></td>
+                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_ok()"><i class="fas fa-procedures"></i> KAMAR OPERASI</button></td>
+                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_mutasi()"><i class="fas fa-arrows-alt-v"></i> MUTASI</button></td>
+                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_riwayat()"><i class="far fa-folder-open"></i> RIWAYAT/STATUS</button></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="card-body card-body-anamnesis"></div>
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">Info Pasien</div>
-                <div class="card-body">
-                    isi
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">Info Pasien</div>
-                <div class="card-body">
-                    isi
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">Info Pasien</div>
-                <div class="card-body">
-                    isi
-                </div>
-            </div>
-        </div>
     </div>
 <?php } ?>
 
 
 <script>
-    function finalLayanan(NOPEN) {
-        if ($('#statusFinalLayanan').val() == "") {
-            Swal.fire('Anda belum menentukan Status Final Layanan!');
-            $('#statusFinalLayanan').addClass('is-invalid');
-            return false;
-        }
-        $('#statusFinalLayanan').removeClass('is-invalid');
-        Swal.fire({
-            title: 'Yakin Final Layanan?',
-            text: "Anda akan memfinalkan layanan pada pasien ini ?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yakin',
-            cancelButtonText: 'Tidak'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    type: "post",
-                    url: "<?= base_url('rekammedis/finallayanan') ?>",
-                    data: {
-                        nopen: NOPEN,
-                        statusFinal: $('#statusFinalLayanan').val(),
-                        tglFinal: $('#tglPel').val(),
-                        jamFinal: $('#tglPel').val(),
-                        sessionUser: $('#user_session').val()
-                    },
-                    // dataType: "dataType",
-                    success: function(response) {
-                        $('.btn-final-layanan').html(`<button type="button" id="selesaiLayanan" class="btn btn btn-out btn-danger btn-sm waves-effect" data-dismiss="modal">Tutup</button>`);
-                        Swal.fire(
-                            'Sukses!',
-                            'Pelayanan medis selesai! Terima kasih.',
-                            'success'
-                        )
-                        $('#dataPendaftaran').DataTable().ajax.reload();
-
-                    }
-                });
-
-            }
-        })
-
-    }
+    $('.btn-tab-pasien').click(function() {
+        $('.btn-tab-pasien').removeClass('bg-info');
+        $(this).addClass('bg-info');
+    })
 </script>

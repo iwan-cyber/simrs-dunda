@@ -147,6 +147,47 @@
 
                 <script type="text/javascript">
                     // AJAX call for autocomplete 
+                    function tabsPanggilPasienPOli([NOPEN, NORM]) {
+                        var hapusTab = '<a href="#" id="delCol' + NORM + '" class="text-danger">x</a>';
+                        var tableID = "tb-tabs-dashboard";
+                        var tblBodyObj = document.getElementById(tableID).tBodies[0];
+                        for (var i = 0; i < tblBodyObj.rows.length; i++) {
+                            var newCell = tblBodyObj.rows[i].insertCell(-1);
+                            newCell.innerHTML = "<div class=\"btn-group\" role=\"group\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\".btn-xlg\"><button class=\"btn waves-effect waves-light btn-linkedin btn-sm btn-tab-dashboard\" onclick=\"return tabsambildetail(['" + NOPEN + "','" + NORM + "'])\"><i class=\"fas fa-user-injured\"></i> " + NORM + " " + hapusTab + " </button></div>";
+                        }
+
+                        $('.btn-linkedin').click(function() {
+                            $('.btn-linkedin').removeClass('bg-danger');
+                            $(this).addClass('bg-danger');
+                        })
+
+                        $('#delCol' + NORM).click(function() {
+                            var tableID = "tb-tabs-dashboard";
+                            var allRows = document.getElementById(tableID).rows;
+                            for (var i = 0; i < allRows.length; i++) {
+                                if (allRows[i].cells.length > 1) {
+                                    allRows[i].deleteCell(-1);
+                                }
+                            }
+
+                            return false;
+                        });
+
+                        $.ajax({
+                            type: "post",
+                            url: "<?= base_url('rekammedis/penerimaanpasien'); ?>",
+                            data: {
+                                NOPEN: NOPEN
+                            },
+                            success: function(response) {
+                                if (response) {
+                                    $("#card-body").html(response);
+                                }
+                            }
+                        });
+                    }
+
+
                     $(document).ready(function() {
 
                         $('#tpasiensearch').DataTable({
@@ -157,7 +198,7 @@
                             serverSide: true,
                             orderMulti: false,
                             ajax: {
-                                url: '<?= base_url('datapasien/pasienserach'); ?>'
+                                url: '<?= base_url('dashboard/listpasienpolilayani'); ?>'
                             },
 
                             columns: [{

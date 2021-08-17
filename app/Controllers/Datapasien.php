@@ -87,15 +87,4 @@ class Datapasien extends BaseController
             ->rawColumns(['aksi']) //tambahkan rawColumns agar terbaca kode HTML pada name aksiubah
             ->make(true);
     }
-
-    public function pasienserach()
-    {
-        return DataTables::use('m_pasien')
-
-            ->addColumn('NAMA', function ($data) {
-                return "<button type=\"button\" onclick=\"tabsambildetail('" . $data->NOMR . "')\"  class=\"btn btn-info btn-block btn-mini waves-effect waves-light text-left\"><i class=\"ti-user\"></i>" . $data->NAMA . " - " . $data->NOMR . "</button>";
-            })
-            ->rawColumns(['NAMA']) //tambahkan rawColumns agar terbaca kode HTML pada name aksiubah
-            ->make(true);
-    }
 }

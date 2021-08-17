@@ -184,4 +184,20 @@ class Dashboard extends BaseController
             }
         }
     }
+
+    public function listpasienpolilayani()
+    {
+        if ($this->request->isAJAX()) {
+
+            return DataTables::use('pendaftaran')
+                ->select('pendaftaran.NOPEN as NOPEN, pendaftaran.NORM as NORM, m_pasien.NAMA as NAMA')
+                ->join('m_pasien', 'pendaftaran.NORM = m_pasien.NOMR', 'INNER')
+                ->addColumn('NAMA', function ($data) {
+                    return "<button type=\"button\" onclick=\"return tabsPanggilPasienPOli(['" . $data->NOPEN . "','" . $data->NORM . "'])\"  class=\"btn btn-info btn-block btn-sm waves-effect waves-light text-left\"><i class=\"fas fa-user-injured\"></i> " . $data->NAMA . " - " . $data->NORM . "</button>";
+                })
+                ->where(['pendaftaran.ID_INSTALASI' => 1]) // pasien sedang dilayani di poli
+                ->rawColumns(['NAMA'])
+                ->make(true);
+        }
+    }
 }

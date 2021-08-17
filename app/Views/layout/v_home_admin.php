@@ -1,119 +1,18 @@
-<div class="col-sm-12 m-l-0">
-    <!-- List scroll card start -->
-    <div class="card">
-        <ul class="nav nav-tabs md-tabs" role="tablist">
-            <li class="nav-item" style="color: aliceblue;">
-                <a class="nav-link active show" data-toggle="tab" id="home1" href="#tabhome1" role="tab" aria-selected="true">Home</a>
-                <div class="slide"></div>
-            </li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tab-content card-block">
-            <div class="tab-pane active show" id="tabhome1" role="tabpanel">
-                <div class="row card-block">
-                    <div class="col-md-12 col-lg-4">
-                        <div class="card-header">
-                            <table style="width: 100%;">
-                                <tr>
-                                    <td>
-                                        <h5>Pendaftaran</h5>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control form-control-sm form-control-right" placeholder="Cari..">
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <ul class="scroll-list cards ListAntriRajal">
-                        </ul>
-                    </div>
-                    <div class="col-md-12 col-lg-4">
-                        <div class="card-header">
-                            <table style="width: 100%;">
-                                <tr>
-                                    <td>
-                                        <h5>Pasien Mutasi</h5>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control form-control-sm form-control-right" placeholder="Cari..">
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="scroll-list wave">
-                            <table style="width: 100%;">
-                                <tr>
+<div class="card">
+    <div class="bg-info table-responsive">
+        <table id="tb-tabs-dashboard">
+            <tr>
+                <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-dashboard" onclick="btnhomedashboard()"><i class="fas fa-home"></i></button></td>
+            </tr>
+        </table>
+    </div>
+    <div class="card-body">
+        <div id="card-body"></div>
 
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-lg-4">
-                        <div class="card-header">
-                            <h5>Antrian Resep Apotik</h5>
-                            <div class="header-right">
-                                <input type="text" class="form-control form-control-sm form-control-right" placeholder="Cari..">
-                            </div>
-                        </div>
-                        <ul class="scroll-list flip">
-                            <li>
-                                <h6>Item1</h6>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="col-md-12 col-lg-4">
-                        <div class="card-header text-white" style="background-color: #8f41fb;">
-                            <table style="width: 100%;">
-                                <tr>
-                                    <td>
-                                        <h5>Pasien Sedang Inap</h5>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="form-control form-control-sm form-control-right" placeholder="Cari..">
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <ul class="scroll-list helix ListPasienInap">
-                        </ul>
-                    </div>
-
-                    <div class="col-md-12 col-lg-4">
-
-                        <div class="card-header">
-                            <h5>Antrian Lab. Anatomi</h5>
-                            <div class="header-right">
-                                <input type="text" class="form-control form-control-sm form-control-right" placeholder="Cari..">
-                            </div>
-                        </div>
-                        <ul class="scroll-list twirl">
-                            <li>
-                                <h6>Item1</h6>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div class="col-md-12 col-lg-4">
-
-                        <div class="card-header">
-                            <h5>Pasien Sedang Inap</h5>
-                            <div class="header-right">
-                                <input type="text" class="form-control form-control-sm form-control-right" placeholder="Cari..">
-                            </div>
-                        </div>
-                        <ul class="scroll-list twirl">
-                            <li>
-                                <h6>Item1</h6>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
+
+
 
 <div class="viewmodal" style="display: none;"></div>
 <script>
@@ -131,32 +30,7 @@
             /* Menerima atau pasien dilayani */
 
             if (result.isConfirmed) {
-                var tutuptab = '<button class="btn btn-mini btn-danger pull-right" id="tutup' + NORM + '">x</button>';
-                $(".nav-tabs").append(`<li class="nav-item" id="linkitem` + NORM + `">
-                                            <a class="nav-link" id="nav-link` + NORM + `" data-toggle="tab" href="#tabs` + NORM + `" role="tab" aria-selected="true">
-                                            <div class="btn-group " role="group" data-toggle="tooltip" data-placement="top" title="" data-original-title=".btn-xlg"><button class="btn btn-mini btn-blok btn-info" onclick="tabsambildetail([` + NOPEN + `,` + NORM + `])">` + NORM + `</button> ` + tutuptab + `</div></a>
-                                            <div class="slide"></div>
-                                        </li>`);
 
-                $(".tab-content").append(`<div class="tab-pane" id="tabs` + NORM + `" role="tabpanel"><div class="isitab` + NORM + `"></div></div>`);
-
-                $(".nav-tabs li").removeClass("active show");
-                $("#home1").removeClass("active show");
-                $("#tabhome1").removeClass("active show");
-                $("#nav-link" + NORM).addClass("active show");
-                $("#tabs" + NORM).addClass("active show");
-
-
-                $("#tutup" + NORM).bind("click", function() {
-                    // activate the previous tab
-                    $(this).parent().prev().addClass("active show");
-                    $("#tabs" + NORM).prev().fadeIn('slow');
-
-                    $(this).parent().remove();
-                    $("#linkitem" + NORM).remove();
-                    $("#tabs" + NORM).remove();
-                    return false;
-                });
                 $.ajax({
                     type: "post",
                     url: "<?= base_url('rekammedis/penerimaanpasien'); ?>",
@@ -199,6 +73,7 @@
     }
 
     function TerimaPasien([NOPEN, NORM]) {
+
         $nopen = NOPEN;
         Swal.fire({
             html: `<div class="alert alert-info">
@@ -226,6 +101,7 @@
                     },
                     success: function(response) {
                         if (response) {
+                            $('.isitab' + NORM).html(response);
                             listpendaftaran();
                         }
                     }
@@ -274,8 +150,8 @@
         });
     }
 
-
     function listPasienSedangInap() {
+
         $.ajax({
             type: "GET",
             url: "<?= base_url('dashboard/listPasienSedangInap') ?>",
@@ -291,31 +167,30 @@
         });
     }
 
+
     function lihatDetail([NOPEN, NORM]) {
-        var tutuptab = '<button class="btn btn-mini btn-danger pull-right" id="tutup' + NORM + '">x</button>';
-        $(".nav-tabs").append(`<li class="nav-item" id="linkitem` + NORM + `">
-                                            <a class="nav-link" id="nav-link` + NORM + `" data-toggle="tab" href="#tabs` + NORM + `" role="tab" aria-selected="true">
-                                            <div class="btn-group " role="group" data-toggle="tooltip" data-placement="top" title="" data-original-title=".btn-xlg"><button class="btn btn-mini btn-blok btn-info" onclick="tabsambildetail([` + NOPEN + `,` + NORM + `])">` + NORM + `</button> ` + tutuptab + `</div></a>
-                                            <div class="slide"></div>
-                                        </li>`);
+        var hapusTab = '<a href="#" id="delCol' + NORM + '" class="text-danger">x</a>';
+        var tableID = "tb-tabs-dashboard";
+        var tblBodyObj = document.getElementById(tableID).tBodies[0];
+        for (var i = 0; i < tblBodyObj.rows.length; i++) {
+            var newCell = tblBodyObj.rows[i].insertCell(-1);
+            newCell.innerHTML = "<div class=\"btn-group\" role=\"group\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\".btn-xlg\"><button class=\"btn waves-effect waves-light btn-linkedin btn-sm btn-tab-dashboard\" onclick=\"return tabsambildetail(['" + NOPEN + "','" + NORM + "'])\"><i class=\"fas fa-user-injured\"></i> " + NORM + " " + hapusTab + " </button></div>";
+        }
 
-        $(".tab-content").append(`<div class="tab-pane" id="tabs` + NORM + `" role="tabpanel"><div class="isitab` + NORM + `"></div></div>`);
+        $('.btn-linkedin').click(function() {
+            $('.btn-linkedin').removeClass('bg-danger');
+            $(this).addClass('bg-danger');
+        })
 
-        $(".nav-tabs li").removeClass("active show");
-        $("#home1").removeClass("active show");
-        $("#tabhome1").removeClass("active show");
-        $("#nav-link" + NORM).addClass("active show");
-        $("#tabs" + NORM).addClass("active show");
+        $('#delCol' + NORM).click(function() {
+            var tableID = "tb-tabs-dashboard";
+            var allRows = document.getElementById(tableID).rows;
+            for (var i = 0; i < allRows.length; i++) {
+                if (allRows[i].cells.length > 1) {
+                    allRows[i].deleteCell(-1);
+                }
+            }
 
-
-        $("#tutup" + NORM).bind("click", function() {
-            // activate the previous tab
-            $(this).parent().prev().addClass("active show");
-            $("#tabs" + NORM).prev().fadeIn('slow');
-
-            $(this).parent().remove();
-            $("#linkitem" + NORM).remove();
-            $("#tabs" + NORM).remove();
             return false;
         });
 
@@ -323,43 +198,130 @@
             type: "post",
             url: "<?= base_url('rekammedis/detailpasien'); ?>",
             data: {
-                NOPEN: NOPEN,
-                jampel: $('#jampelayanan').val(),
-                tglpel: $('#tglPel').val(),
-                sessionUser: $('#user_session').val()
+                NOPEN: NOPEN
             },
             success: function(response) {
                 if (response) {
-                    $('.isitab' + NORM).html(response);
-                    listpendaftaran();
+                    $("#card-body").html(response);
                 }
             }
         });
     }
 
-    function tabsambildetail([NOPEN, NOMR]) {
 
-        $.ajax({
-            type: "post",
-            url: "<?= base_url('rekammedis/detailpasien'); ?>",
-            data: {
-                NOPEN: NOPEN,
-                jampel: $('#jampelayanan').val(),
-                tglpel: $('#tglPel').val(),
-                sessionUser: $('#user_session').val()
-            },
-            success: function(response) {
-                if (response) {
-                    $('.isitab' + NOMR).html(response.data);
+    function btnhomedashboard() {
+        listpendaftaran();
+        listPasienSedangInap();
+        $('#card-body').html(`<div class=\"row card-block\">
+                <div class=\"col-md-12 col-lg-4\">
+                    <div class=\"card-header\">
+                        <table style=\"width: 100%;\">
+                            <tr>
+                                <td>
+                                    <h5>Pendaftaran</h5>
+                                </td>
+                                <td>
+                                    <input type=\"text\" class=\"form-control form-control-sm form-control-right\" placeholder=\"Cari..\">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <ul class=\"scroll-list cards ListAntriRajal\">
+                    </ul>
+                </div>
+                <div class=\"col-md-12 col-lg-4\">
+                    <div class=\"card-header\">
+                        <table style=\"width: 100%;\" id=\"tabs-dasboard\">
+                            <tr>
+                                <td>
+                                    <h5>Pasien Mutasi</h5>
+                                </td>
+                                <td>
+                                    <input type=\"text\" class=\"form-control form-control-sm form-control-right\" placeholder=\"Cari..\">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class=\"scroll-list wave\">
+                        <table style=\"width: 100%;\">
+                            <tr>
 
-                }
-            }
-        });
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class=\"col-md-12 col-lg-4\">
+                    <div class=\"card-header\">
+                        <h5>Antrian Resep Apotik</h5>
+                        <div class=\"header-right\">
+                            <input type=\"text\" class=\"form-control form-control-sm form-control-right\" placeholder=\"Cari..\">
+                        </div>
+                    </div>
+                    <ul class=\"scroll-list flip\">
+                        <li>
+                            <h6>Item1</h6>
+                        </li>
+                    </ul>
+                </div>
+                <div class=\"col-md-12 col-lg-4\">
+                    <div class=\"card-header text-white\" style=\"background-color: #8f41fb;\">
+                        <table style=\"width: 100%;\">
+                            <tr>
+                                <td>
+                                    <h5>Pasien Sedang Inap</h5>
+                                </td>
+                                <td>
+                                    <input type=\"text\" class=\"form-control form-control-sm form-control-right\" placeholder=\"Cari..\">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <ul class=\"scroll-list helix ListPasienInap\">
+                    </ul>
+                </div>
+
+                <div class=\"col-md-12 col-lg-4\">
+
+                    <div class=\"card-header\">
+                        <h5>Antrian Lab. Anatomi</h5>
+                        <div class=\"header-right\">
+                            <input type=\"text\" class=\"form-control form-control-sm form-control-right\" placeholder=\"Cari..\">
+                        </div>
+                    </div>
+                    <ul class=\"scroll-list twirl\">
+                        <li>
+                            <h6>Item1</h6>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class=\"col-md-12 col-lg-4\">
+
+                    <div class=\"card-header\">
+                        <h5>Pasien Sedang Inap</h5>
+                        <div class=\"header-right\">
+                            <input type=\"text\" class=\"form-control form-control-sm form-control-right\" placeholder=\"Cari..\">
+                        </div>
+                    </div>
+                    <ul class=\"scroll-list twirl\">
+                        <li>
+                            <h6>Item1</h6>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+    `);
+
     }
 
     $(document).ready(function() {
+
         listpendaftaran();
         listPasienSedangInap();
+        btnhomedashboard();
+        // $('.card-body-dashboard').hide();
+        // dashboard();
         // var auto_refresh = setInterval(
         //     function() {
         //         listPasienSedangInap();
