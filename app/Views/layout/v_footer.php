@@ -82,6 +82,7 @@
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/jstree/js/jstree.min.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/treeview/jquery.tree.js"></script>
 
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/aplikasi.js?<?= rand() ?>"></script>
 
 <!-- Accordion js -->
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/accordion/accordion.js"></script>
@@ -105,6 +106,7 @@
 <script type="text/javascript" src="<?= base_url() ?>/files/bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js">
 </script>
 
+
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/jquery-ui-1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
 
@@ -118,6 +120,7 @@
         $("#suggesstion-box").hide();
     }
 </script>
+
 <script>
     $(document).ready(function() {
 
@@ -128,6 +131,7 @@
 
     })
 </script>
+
 
 <script>
     function randKodeBooking(length) {
@@ -150,9 +154,8 @@
         return result;
     }
 </script>
+
 </body>
 
-
-<!-- Mirrored from html.phoenixcoded.net/mega-able/default/menu-horizontal-fixed.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 06:59:00 GMT -->
 
 </html>

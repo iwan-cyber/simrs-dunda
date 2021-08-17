@@ -50,6 +50,14 @@ $routes->get('/setingaplikasi/ambilAntrianLoket', 'setingaplikasi::ambilAntrianL
 $routes->get('/setingaplikasi/BridgingEktp', 'setingaplikasi::BridgingEktp', ['filter' => 'role:admin']);
 
 
+//routing untuk master
+$routes->get('/master/pekerjaan', 'Pekerjaan::index', ['filter' => 'role:admin']);
+$routes->get('/master/pekerjaan/data', 'Pekerjaan::dataPekerjaan', ['filter' => 'role:admin']);
+$routes->post('/master/pekerjaan/simpan', 'Pekerjaan::simpan', ['filter' => 'role:admin']);
+
+
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
