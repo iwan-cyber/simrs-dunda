@@ -6,6 +6,7 @@ use Irsyadulibad\DataTables\DataTables;
 use CodeIgniter\Controller;
 use CodeIgniter\Database\Query;
 use App\Models\Modelpendaftaran;
+use App\Models\Modelpendaftaran_ranap;
 
 class Rekammedis extends BaseController
 {
@@ -54,7 +55,7 @@ class Rekammedis extends BaseController
                     </div>";
                         } elseif ($data->status == 2) {
                             return "<div class=\"btn-group\" role=\"group\">
-                        <button type=\"button\" onclick=\"PanggilPasien('" . $data->nopen . "')\" class=\"btn btn-out-dotted btn-mini waves-effect waves-light btn-inverse btn-square\" data-toggle=\"tooltip\" title=\"Panggila pasien\"><i class=\"ti-hand-open\"></i> Panggil</button>
+                        <button type=\"button\" onclick=\"PanggilPasien('" . $data->NOMR . "')\" class=\"btn btn-out-dotted btn-mini waves-effect waves-light btn-inverse btn-square\" data-toggle=\"tooltip\" title=\"Panggila pasien\"><i class=\"ti-hand-open\"></i> Panggil</button>
     
                         <button type=\"button\" onclick=\"detailPasien('" . $data->NOMR . "')\" data-toggle=\"modal\" class=\"btn btn-out-dotted btn-mini waves-effect waves-light btn-primary btn-square\" title=\"Detail informasi dan riwayat pemeriksaan pasien\"><i class=\"ti-align-justify\"></i> Detail</button>
                         </div>";
@@ -142,11 +143,10 @@ class Rekammedis extends BaseController
         }
     }
 
-    public function tampilModalRekamMedis()
+    public function penerimaanpasien()
     {
         if ($this->request->isAJAX()) {
-
-            $nopen = $this->request->getVar('nopen');
+            $nopen = $this->request->getVar('NOPEN');
             $jampel = $this->request->getVar('jampel');
             $tglpel = $this->request->getVar('tglpel');
             $sessionuser = $this->request->getVar('sessionUser');
@@ -160,8 +160,12 @@ class Rekammedis extends BaseController
                 'USER_USESSION' => $sessionuser,
             ];
 
+
             $pendaftaran = new Modelpendaftaran();
             $pendaftaran->update($nopen, $updatedata);
+
+            $penRanapa = new Modelpendaftaran_ranap();
+            $penRanapa->update($nopen, $updatedata);
 
             $row = DataTables::use('pendaftaran')
                 ->select('pendaftaran.NOPEN as nopen, pendaftaran.NORM as norm, m_pasien.NAMA as nama, pendaftaran.STATUS as status, m_pasien.NOMR')
@@ -171,7 +175,7 @@ class Rekammedis extends BaseController
                 'id' => $nopen,
                 'data'  => $row,
             ];
-            echo view('rekammedis/v_modal_rekammedis', $data);
+            echo view('rekammedis/detail_pasien', $data);
         }
     }
 
@@ -198,6 +202,23 @@ class Rekammedis extends BaseController
                 'sukses' => 'Anda telah membatalkan kunjungan No. Pendaftaran '
             ];
             echo json_encode($msg);
+        }
+    }
+
+    public function detailpasien()
+    {
+        if ($this->request->isAJAX()) {
+            $nopen = $this->request->getVar('NOPEN');
+
+            $row = DataTables::use('pendaftaran_ranap')
+                ->select('pendaftaran_ranap.NOPEN as nopen, pendaftaran_ranap.NORM as norm, m_pasien.NAMA as nama, pendaftaran_ranap.STATUS as status, m_pasien.NOMR')
+                ->join('m_pasien', 'pendaftaran_ranap.NORM = m_pasien.NOMR', 'INNER JOIN')
+                ->where(['NOPEN' => $nopen])->make(true);
+            $data = [
+                'id' => $nopen,
+                'data'  => $row,
+            ];
+            echo view('rekammedis/detail_pasien', $data);
         }
     }
 
