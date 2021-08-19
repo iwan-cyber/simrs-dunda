@@ -51,8 +51,9 @@
     <!-- Tags css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/bower_components/bootstrap-tagsinput/css/bootstrap-tagsinput.css" />
 
-    <link rel="stylesheet" href="<?= base_url() ?>/template/files/assets/select2/dist/css/select2.css" />
-    <link rel="stylesheet" href="<?= base_url() ?>/template/files/assets/select2/dist/css/select2.min.css">
+    <!-- select2 -->
+    <link rel="stylesheet" href="<?= base_url() ?>/template/files/bower_components/select2/css/select2.min.css">
+
     <!-- Treeview css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/pages/treeview/treeview.css">
 
