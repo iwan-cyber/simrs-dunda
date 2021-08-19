@@ -19,9 +19,8 @@
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/popper.js/js/popper.min.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/bootstrap/js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/font-awesome/js/fontawesome.js"></script>
+
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/font-awesome/js/fontawesome.min.js"></script>
-<script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/font-awesome/js/all.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/font-awesome/js/all.min.js"></script>
 
 <!-- waves js -->

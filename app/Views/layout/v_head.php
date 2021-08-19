@@ -23,11 +23,11 @@
     <!-- Favicon icon -->
     <link rel="icon" href="<?= base_url() ?>/template/files/assets/images/logo-pemda.jpg" type="image/x-icon">
     <!-- Google font-->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <!--link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet"-->
     <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/bower_components/bootstrap/css/bootstrap.min.css">
     <!-- Bootstrap CSS -->
-    <link href="<?= base_url() ?>/template/files/assets/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="<?= base_url() ?>/template/files/assets/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- list css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/pages/list-scroll/list.css">
