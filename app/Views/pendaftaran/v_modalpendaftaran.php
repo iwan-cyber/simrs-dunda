@@ -4,8 +4,7 @@
 $dataArr = json_decode($data);
 
 foreach ($dataArr->data as $item) { ?>
-    <!-- Modal Pendaftaran -->
-    <!-- <div class="modal fade" id="ModalPendaftaran" tabindex="-1" role="dialog"> -->
+
     <?= form_open('pendaftaran/simpanPendaftaran', ['class' => 'formpendaftarn']); ?>
     <div class="modal fade" id="ModalPendaftaran" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">

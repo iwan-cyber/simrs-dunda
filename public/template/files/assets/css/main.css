@@ -1,3 +1,27 @@
 .main-body .page-wrapper {
   padding: 0px;
 }
+
+.card .card-header {
+  padding: 0px;
+}
+
+.card {
+  padding: 20px;
+}
+
+.card .card-body {
+  padding: 0px;
+}
+
+.myScroll {
+  background-color: lightblue;
+  height: 200px;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.table td,
+.table th {
+  padding: 2px;
+}

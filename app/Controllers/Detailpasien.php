@@ -33,7 +33,19 @@ class Detailpasien extends BaseController
     public function body_laboratorium()
     {
         if ($this->request->isAJAX()) {
-            return view('detail_laboratorium/body_laboratorium');
+            $nopen = $this->request->getVar('nopen');
+
+            $row = DataTables::use('pendaftaran_ranap')
+                ->select('pendaftaran_ranap.NOPEN as nopen, pendaftaran_ranap.NORM as norm, m_pasien.NAMA as nama, pendaftaran_ranap.STATUS as status')
+                ->join('m_pasien', 'pendaftaran_ranap.NORM = m_pasien.NOMR', 'INNER JOIN')
+                ->where(['pendaftaran_ranap.NOPEN' => $nopen])->make(true);
+
+            $data = [
+                'id' => $nopen,
+                'data'  => $row
+            ];
+
+            return view('detail_laboratorium/body_laboratorium', $data);
         }
     }
 
