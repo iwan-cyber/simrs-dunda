@@ -88,6 +88,9 @@
                     'Berhasil Dibooking! Silahkan daftarkan dan arahakan pasien ke ruangan tersebut!',
                     'success'
                 )
+
+                document.getElementById("kdBookingBed").value = IDBED + randKodeBooking(6);
+                document.getElementById("idbed").value = IDBED;
             }
         })
 

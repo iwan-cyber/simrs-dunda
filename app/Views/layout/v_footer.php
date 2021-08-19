@@ -76,12 +76,19 @@
 <script src="<?= base_url() ?>/template/files/assets/pages/nestable/jquery.nestable.js"></script>
 <!-- Custom js -->
 <!-- <script src="https://jonmiles.github.io/bootstrap-treeview/bower_components/jquery/dist/jquery.js"></script> -->
+<<<<<<< HEAD
 <!--script src="https://jonmiles.github.io/bootstrap-treeview/js/bootstrap-treeview.js"></script-->
+=======
+<!-- <script src="https://jonmiles.github.io/bootstrap-treeview/js/bootstrap-treeview.js"></script> -->
+>>>>>>> 65642fda9c909568e8a941f526d2ed84769cb91f
 
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/jstree/js/jstree.min.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/treeview/jquery.tree.js"></script>
 
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/aplikasi.js?<?= rand() ?>"></script>
+
+<!-- Accordion js -->
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/accordion/accordion.js"></script>
 
 <!-- Tags js -->
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
@@ -89,19 +96,46 @@
 <script src="<?= base_url() ?>/template/files/assets/js/sweetalert.min.js"></script>
 
 <script src="<?= base_url() ?>/template/files/assets/pages/data-table/js/data-table-custom.js"></script>
+<<<<<<< HEAD
 <!-- <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/form-validation/form-validation.js"></script> -->
 <!-- <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/advance-elements/swithces.js"></script> -->
 
 <!-- select2 -->
 <script src="<?= base_url() ?>/template/files/bower_components/select2/js/select2.full.min.js"></script>
 
+=======
+>>>>>>> 65642fda9c909568e8a941f526d2ed84769cb91f
 
 <script src="<?= base_url() ?>/template/files/assets/js/pcoded.min.js"></script>
 <script src="<?= base_url() ?>/template/files/assets/js/vertical/menu/menu-hori-fixed.js"></script>
 <script src="<?= base_url() ?>/template/files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<<<<<<< HEAD
 <script src="<?= base_url() ?>/template/files/assets/js/script.js"></script>
+=======
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/script.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/rekam-medis.js"></script>
+
+<!-- Editable-table js -->
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/edit-table/jquery.tabledit.js"></script>
+
+<script type="text/javascript" src="<?= base_url() ?>/files/bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js">
+</script>
+
+>>>>>>> 65642fda9c909568e8a941f526d2ed84769cb91f
+
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/jquery-ui-1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
 
 
+<script type="text/javascript">
+    // AJAX call for autocomplete 
+
+    //To select country name
+    function selectCountry(val) {
+        $("#inputseacrh").val(val);
+        $("#suggesstion-box").hide();
+    }
+</script>
 
 <script>
     $(document).ready(function() {
@@ -114,6 +148,28 @@
     })
 </script>
 
+
+<script>
+    function randKodeBooking(length) {
+        var result = '';
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+
+    function getNopen(length) {
+        var result = '';
+        var characters = '0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+</script>
 
 </body>
 
