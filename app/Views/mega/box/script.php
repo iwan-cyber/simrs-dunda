@@ -25,6 +25,8 @@
 <!-- modernizr js -->
 <script type="text/javascript" src="<?= base_url('template/files/bower_components/modernizr/js/modernizr.js'); ?>"></script>
 <script type="text/javascript" src="<?= base_url('template/files/bower_components/modernizr/js/css-scrollbars.js'); ?>"></script>
+<!-- jquery-confirm -->
+<script type="text/javascript" src="<?= base_url('template/files/bower_components/confirm/jquery-confirm.min.js'); ?>"></script>
 <!-- Syntax highlighter prism js -->
 <script type="text/javascript" src="<?= base_url('template/files/assets/pages/prism/custom-prism.js'); ?>"></script>
 <!-- Custom js -->
@@ -32,3 +34,4 @@
 <script src="<?= base_url('template/files/assets/js/vertical/menu/box-layout.js'); ?>"></script>
 <script src="<?= base_url('template/files/assets/js/jquery.mCustomScrollbar.concat.min.js'); ?>"></script>
 <script type="text/javascript" src="<?= base_url('template/files/assets/js/script.js'); ?>"></script>
+<script type="text/javascript" src="<?= base_url('template/files/assets/js/aplikasi.js'); ?>"></script>

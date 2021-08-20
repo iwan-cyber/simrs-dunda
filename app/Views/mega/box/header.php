@@ -23,6 +23,8 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url('template/files/assets/icon/icofont/css/icofont.css'); ?>">
     <!-- Font Awesome -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('template/files/bower_components/font-awesome/css/fontawesome.min.css'); ?>">
+    <!-- confirm -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('template/files/bower_components/confirm/jquery-confirm.min.css'); ?>">
     <!-- Syntax highlighter Prism css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('template/files/assets/pages/prism/prism.css'); ?>">
     <!-- Style.css -->
@@ -32,7 +34,7 @@
 
 <body>
     <!-- Pre-loader start -->
-    <div class="theme-loader">
+    <!--div class="theme-loader">
         <div class="loader-track">
             <div class="preloader-wrapper">
                 <div class="spinner-layer spinner-blue">
@@ -84,7 +86,7 @@
             </div>
         </div>
     </div>
-    <!-- Pre-loader end -->
+    <Pre-loader end -->
 
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>

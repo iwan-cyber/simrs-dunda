@@ -42,7 +42,6 @@ class Starter extends BaseController {
 
 	public function endTema()
 	{
-		echo view('mega/box/script');
 		echo view('mega/box/footer');
 	}
 

@@ -206,6 +206,13 @@
                                 </a>
                             </li>
                             <li class="">
+                                <a href="<?= base_url('master/ruangan'); ?>" class="waves-effect waves-dark">
+                                    <span class="ti-hand-point-right"></span>
+                                    <span>ruangan</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                            <li class="">
                                 <a href="<?= base_url('seting/seting1'); ?>" class="waves-effect waves-dark">
                                     <span class="ti-hand-point-right"></span>
                                     <span>Kelas</span>

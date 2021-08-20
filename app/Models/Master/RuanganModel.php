@@ -25,7 +25,7 @@ class RuanganModel extends Model
     public function getAll()
     {
        return $this->db->table('m_ruangan')
-         ->select('m_ruangan.ID, m_ruangan.RUANGAN, m_unit_layanan.NAMA_UNIT_LAYANAN')
+         ->select('m_ruangan.ID, m_ruangan.RUANGAN, m_unit_layanan.NAMA_UNIT_LAYANAN, m_unit_layanan.ID as ID_UNIT')
          ->join('m_unit_layanan', 'm_unit_layanan.ID = m_ruangan.IDUNITLAYANAN', 'INNER JOIN')
          ->get()->getResult();  
     }

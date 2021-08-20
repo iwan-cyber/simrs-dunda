@@ -1,9 +1,14 @@
+<?php 
+
+echo view('mega/box/css-dt');
+
+?>
+
 <div class="col-sm-12">
     <div class="card">
 
         <div class="card-header">
-            <h5>Data Card</h5>
-            <span class="text-info">subtitle</span>
+            <h5>Ruangan</h5>
             <div class="card-header-right">
                 <div class="row">
                     <div class="col-md-12">
@@ -56,80 +61,47 @@
 
         <form id="form">
             <div class="form-group">
-                <label for="ID_PEKERJAAN">ID Ruangan</label>
-                <input type="text" class="form-control" id="ID" aria-describedby="id ruangan" placeholder="Otomatis" readonly="">
+                <label for="ID">ID Ruangan</label>
+                <input type="text" class="form-control" id="ID" name="ID" aria-describedby="id ruangan" placeholder="Otomatis" readonly="">
             </div>
             <div class="form-group">
                 <label for="RUANGAN">Nama Ruangan</label>
                 <input type="text" class="form-control" id="RUANGAN" name="RUANGAN" placeholder="Ketik Nama Ruangan">
             </div>
             <div class="form-group">
-                <label for="LAYANAN">Unit Layanan</label>
-                <input type="text" class="form-control" id="LAYANAN" name="LAYANAN">
+                <label for="IDUNITLAYANAN">Unit Layanan</label>
+                <select type="text" class="form-control" id="IDUNITLAYANAN" name="IDUNITLAYANAN">
                     <option value=""> Pilih Unit Layanan</option>
+                    <?php
+
+                        foreach ($UNIT as $key => $value) {
+                            echo '<option value="' . $value['ID'] . '">' . $value['NAMA_UNIT_LAYANAN'] . '</option>';
+                        }
+
+                    ?>
+
+                </select>
 
             </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-        <button type="button" class="btn btn-primary" onclick="simpan()">Simpan</button>
+        <button type="button" class="btn btn-primary" onclick="simpan()" id="btnSimpan">Simpan</button>
       </div>
     </div>
   </div>
 </div>
 
 
+<?php echo view("mega/box/script"); ?>
+
+<?php echo view("mega/box/script-dt"); ?>
+
+
 
 
 <script>
-
-const url = '<?= base_url('master/ruangan'); ?>'
-
-const modalRuangan = (tipe='show') => $('#modal').modal(tipe);
-
-var tabel = '';
-
-function simpan() {
-
-    let simpandata = $.ajax(url+'/simpan', {
-        dataType: 'json',
-        type: 'POST',
-        data: $('#form').serialize()
-    })
-    
-    .done(function(data, textStatus, jqXHR) {
-
-        if( ! data.RESULT)
-        {
-            Pesan.error(data.PESAN);
-        }
-        else
-        {
-            Pesan.done(data.PESAN);
-            tabel.ajax.reload();
-        }
-            
-        // modalPekerjaan('hide');
-
-    });
-        
-}
-
-function register() {
-
-   tabel = $('#table').DataTable({
-        processing: true,
-        serverSide: true,
-        ajax:{
-            url: '<?= base_url('master/ruangan/data'); ?>'
-        }
-    });
-}
-
-$(document).ready(function() {
-    register();
-})
-
+    const url = '<?= base_url('master/ruangan'); ?>';
 </script>
 <script src="<?= base_url('app/master/ruangan.js?'.rand()); ?>"></script>

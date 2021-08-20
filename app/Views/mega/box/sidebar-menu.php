@@ -31,12 +31,12 @@
                 </div>
             </form>
         </div -->
-        <div class="pcoded-navigation-label">Navigation</div>
+        <div class="pcoded-navigation-label">Menu</div>
         <ul class="pcoded-item pcoded-left-item">
             <li class="">
-                <a href="navbar-light.html" class="waves-effect waves-dark">
+                <a href="<?= base_url('master/ruangan'); ?>" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                    <span class="pcoded-mtext">Navigation</span>
+                    <span class="pcoded-mtext">Ruangan</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
