@@ -16,7 +16,8 @@
                             </div>
                         </div>
                         <a href="index.html">
-                            <img class="img-fluid" src="<?= base_url('template/files/assets/images/logo.png'); ?>" alt="Theme-Logo" />
+                            <!--img class="img-fluid" src="<?= base_url('template/files/assets/images/logo.png'); ?>" alt="Theme-Logo" /-->
+                            <center>DATA MASTER SIMRSGOS-3</center>
                         </a>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="ti-more"></i>
@@ -44,7 +45,12 @@
                             </li>
                         </ul>
                         <ul class="nav-right">
-                            <li class="user-profile header-notification">
+                            <li>
+                                <a href="<?= base_url(); ?>" class="waves-effect waves-light">
+                                   Kembali ke Menu Utama
+                                </a>
+                            </li>
+                            <!--li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
                                     <span>Menu</span>
                                     <i class="ti-angle-down"></i>
@@ -56,7 +62,7 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li-->
                         </ul>
                     </div>
                 </div>

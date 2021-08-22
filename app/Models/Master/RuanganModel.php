@@ -30,6 +30,15 @@ class RuanganModel extends Model
          ->get()->getResult();  
     }
 
+    public function get($id_unit='')
+    {
+       return $this->db->table('m_ruangan')
+         ->where('IDUNITLAYANAN',$id_unit)
+         ->get()->getResult();  
+    }
+
+
+
 
 
 }

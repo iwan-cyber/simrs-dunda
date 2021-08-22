@@ -2,11 +2,10 @@
 
 namespace App\Controllers\Master;
 
-use App\Models\Master\RuanganModel;
+use App\Models\Master\InstalasiModel;
 use App\Models\Master\UnitModel;
-use App\Models\Master\KamarModel;
 
-class Ruangan extends \App\Controllers\BaseController
+class Instalasi extends \App\Controllers\BaseController
 {
 
     public function index()
@@ -15,51 +14,71 @@ class Ruangan extends \App\Controllers\BaseController
         $data = [];
 
         $data['content'] = [
-            'TITLE'=>'Data Ruangan',
-            'DESC'=>'Pengelolaan Data Ruangan',
+            'TITLE'=>'Data Instalasi',
+            'DESC'=>'Pengelolaan Data Instalasi',
         ];
 
         $data['content']['ITEM'] = [
             ['LINK'=>'#', 'DESC'=>'Master'],
-            ['LINK'=>'#', 'DESC'=>'Ruangan']
+            ['LINK'=>'#', 'DESC'=>'Instalasi']
         ];
 
         $this->startTema();
-        echo view('mega/box/content-header', $data);
-
-        //isi view ruangan
-        $unit = new UnitModel();
-
-        $ruangan['UNIT'] = $unit->findAll();
-        
-        echo view('master/ruangan', $ruangan);
+        echo view('mega/box/content-header', $data);       
+        echo view('master/instalasi');
         echo view('mega/box/content-footer');
         $this->endTema();
         
     }
 
+    public function register()
+    {
+        $instalasi = new InstalasiModel();
+
+        $register = $instalasi->findAll();
+
+        $this->sukses('Berhasil mengambil data register', $register);
+    }
+
+    public function get()
+    {
+        
+        $request = \Config\Services::request();
+            
+        $id_instalasi = $request->uri->getSegment(4);
+
+
+        $unit = new UnitModel();
+
+        $data = $unit->get($id_instalasi);
+
+        $this->sukses('berhasil mengambil data unit', $data);
+    }
+
+
+
+
     public function data() 
     {
 
-        $ruangan = new RuanganModel();
+        $instalasi = new InstalasiModel();
 
-        //var_dump($ruangan->getAll());
+        //var_dump($instalasi->getAll());
             
         $start = (int) $this->request->getPost('start');
         $length = (int) $this->request->getPost('length');
 
         
-        $data = $ruangan->getAll();
+        $data = $instalasi->findAll();
         
         foreach ($data as $row)
         {
-            $id = $row->ID;
+            $id = $row['ID'];
             
             $edit = '<button type="button" class="btn btn-info btn-out btn-sm waves-effect waves-light" 
                         id="edit_' . $id . '" 
                         onclick="edit(' . $id . ')"
-                        ruangan="' . $row->RUANGAN . '"
-                        unit="' . $row->ID_UNIT . '">
+                        instalasi="' . $row['INSTALASI'] . '">
                             <i class="ti-close"></i>Edit
                     </button>&nbsp;';
 
@@ -75,9 +94,9 @@ class Ruangan extends \App\Controllers\BaseController
             
 
             $list[] = [
-                $row->ID,
-                $row->RUANGAN,
-                $row->NAMA_UNIT_LAYANAN,
+                $row['ID'],
+                $row['INSTALASI'],
+                $row['STATUS'],
                 $tombol
          ];
 
@@ -96,48 +115,23 @@ class Ruangan extends \App\Controllers\BaseController
         $this->response->send();
     }
 
-    public function register()
-    {
-        $ruangan = new RuanganModel();
-
-        $register = $ruangan->findAll();
-
-        $this->sukses('Berhasil mengambil data register', $register);
-
-
-    }
-
-    public function get()
-    {
-        
-        $request = \Config\Services::request();
-        $id_ruangan = $request->uri->getSegment(4);
-
-        $kamar = new KamarModel();
-        $get = $kamar->get($id_ruangan);
-
-        
-        $this->sukses('Berhasil mengambil data ruangan', $get);
-    }
-
     public function simpan()
     {
 
-            $ruangan = new RuanganModel();
+            $instalasi = new InstalasiModel();
 
             $data = [
-                'RUANGAN'=>$this->request->getPost('RUANGAN'),
-                'IDUNITLAYANAN'=>$this->request->getPost('IDUNITLAYANAN')
+                'INSTALASI'=>$this->request->getPost('INSTALASI'),
             ];
 
             if(empty($this->request->getPost('ID')))
             {
-                $proses = $ruangan->insert($data);
+                $proses = $instalasi->insert($data);
             }
             else
             {
                 $id = $this->request->getPost('ID');
-                $proses = $ruangan->update($id, $data);
+                $proses = $instalasi->update($id, $data);
             }
 
 
@@ -159,8 +153,8 @@ class Ruangan extends \App\Controllers\BaseController
 
             if( ! empty($id))
             {
-                $ruangan = new RuanganModel();
-                $hapus = $ruangan->delete($id);
+                $instalasi = new InstalasiModel();
+                $hapus = $instalasi->delete($id);
 
                 if($hapus)
                     $this->sukses('Berhasil menghapus Item', $hapus);
