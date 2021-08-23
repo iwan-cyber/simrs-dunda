@@ -41,6 +41,13 @@
                 </a>
             </li>
             <li class="">
+                <a href="<?= base_url('master/referensi'); ?>" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                    <span class="pcoded-mtext">REFERENSI</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="">
                 <a href="<?= base_url('master/instalasi'); ?>" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
                     <span class="pcoded-mtext">INSTALASI</span>

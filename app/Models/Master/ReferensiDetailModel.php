@@ -8,7 +8,7 @@ class ReferensiDetailModel extends Model
 {
 
 
-    protected $table = 'm_ref_detail';
+    protected $table = 'm_referensi_detail';
     protected $primaryKey = 'ID';
     protected $useAutoIncrement = true;
 
@@ -17,7 +17,7 @@ class ReferensiDetailModel extends Model
 
     // menentukan file apa saja yang dapat diinsert atau diupdated
     protected $allowedFields = [
-        'ref',
-        'deskripsi',
+        'ID_REFERENSI',
+        'DESKRIPSI',
     ];
 }

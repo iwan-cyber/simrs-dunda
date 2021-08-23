@@ -1,85 +1,143 @@
-
-
-const modalRuangan = (tipe='show') => $('#modal').modal(tipe);
+const modalRef = (tipe='show') => $('#modal').modal(tipe);
 
 var tabel = '';
 var btnHapus = '';
 var btnRef = new Tombol('#btnRef');
 
-function simpan() {
+Ref = {
+    ID: '',
+    REFERENSI: ''
+};
+
+$(document).ready(function() {
+    Ref.get();
+})
+
+
+Ref.simpan = () => {
+
+    Ref.ID = $('#ID').val();
+    Ref.REFERENSI = $('#REFERENSI').val();
 
     let simpandata = $.ajax(url+'/simpan', {
         dataType: 'json',
         type: 'POST',
-        data: $('#form').serialize(),
-        beforeSend: () => btnSimpan.loading('menyimpan')
+        data: {
+            ID: Ref.ID,
+            REFERENSI: Ref.REFERENSI
+
+        },
+        beforeSend: () => btnRef.loading('menyimpan')
     })
     
     .done(function(data, textStatus, jqXHR) {
 
         if( ! data.RESULT)
         {
-            Msg.error(data.PESAN);
+            Msg.err(data.PESAN);
+            return false;
         }
-        else
-        {
-            Msg.done(data.PESAN);
-            tabel.ajax.reload();
-        }
-            
-        modalUnit('hide');
+        
+        if(Ref.ID === '')
+            Ref.tambah_list(data.DATA);
+        else 
+            Ref.update_list(Ref.ID);
 
+
+        modalRef('hide');
+        
     })
 
-    .always(() => reset());
-        
+    .always(() => {
+        btnRef.reset();
+        Ref.reset();
+    });
 }
 
-function hapus(id) {
+Ref.tambah_list = (id) => {
+
+    $('#list-referensi').append(`<li id="li_referensi_${id}"><h6><span id="edit_${id}" onclick="RefDetail.get(${id})" ondblclick="Ref.edit(${id})">${Ref.REFERENSI}</span><span class="label label-danger float-right"  id="hapus_${id}" onclick="konfirmasi_hapus(${id})">hapus</span></h6></li>`);
+}
+
+Ref.update_list = (id) => $('#edit_'+id).text(Ref.REFERENSI)
+
+Ref.hapus = (id) => {
 
     let hapusdata = $.ajax(url+'/hapus/'+id, {
         dataType: 'json',
         type: 'POST',
-        // beforeSend: () => btnHapus.loading('menghapus')
     })
     
     .done(function(data, textStatus, jqXHR) {
 
         if( ! data.RESULT)
         {
-            Msg.error(data.PESAN);
+            Msg.err(data.PESAN);
+            return false;
         }
-        else
+        
+        Msg.done(data.PESAN);
+        Ref.hapus_list(id);
+               
+    })
+
+
+}
+
+Ref.reset = () => {
+
+    Ref.ID = '';
+    Ref.REFERENSI = '';
+
+    $('#ID').val('');
+    $('#REFERENSI').val('');
+    
+
+}
+
+Ref.get = () => {
+
+    let simpandata = $.ajax(url+'/get', {
+        dataType: 'json',
+        type: 'POST',
+        // beforeSend: () => btnSimpan.loading('menyimpan')
+    })
+    
+    .done(function(data, textStatus, jqXHR) {
+
+        if( ! data.RESULT)
         {
-            Msg.done(data.PESAN);
-            //tabel.ajax.reload();
+            Msg.err(data.PESAN);
+            return false;
         }
+
+        $('#list-referensi').empty();
+        data.DATA.forEach(function(referensi){
+            $('#list-referensi').append(`<li id="li_referensi_${referensi.ID}"><h6><span id="edit_${referensi.ID}" onclick="RefDetail.get(${referensi.ID})" ondblclick="Ref.edit(${referensi.ID})">${referensi.REFERENSI}</span><span class="label label-danger float-right"  id="hapus_${referensi.ID}" onclick="konfirmasi_hapus(${referensi.ID})">hapus</span></h6></li>`);
+        });
+        
     })
 }
 
 
-function reset() {
-    $('#ID').val('');
-    $('#IDINSTALASI').val('');
-    $('#NAMA_UNIT_LAYANAN').val('');
-}
 
-function edit(id) {
+Ref.hapus_list = id => $('#li_referensi_'+id).remove();
 
-    //ambil data edit
-    let ruangan = $('#edit_'+id).attr('ruangan');
-    let unit = $('#edit_'+id).attr('unit');
+Ref.edit = id => {
 
-    //set data edit di modal
+    //getter
+    Ref.REFERENSI =  $('#edit_'+id).text();
+    Ref.ID = id;
+
+    //setter
     $('#ID').val(id);
-    $('#RUANGAN').val(ruangan);
-    $('#IDUNITLAYANAN').val(unit);
-
-    modalRuangan();
+    $('#REFERENSI').val(Ref.REFERENSI);
+    
+    modalRef();
 
 }
 
-var konfirmasi_hapus = (id) => {
+var konfirmasi_hapus = id => {
 
     $.confirm({
         title: 'Konfirmasi',
@@ -90,7 +148,7 @@ var konfirmasi_hapus = (id) => {
                 keys: ['enter'],
                 action: () => {
                     btnHapus = new Tombol('#hapus_'+id);
-                    hapus(id);
+                    Ref.hapus(id);
                 }
             },
             Batal: {
@@ -100,107 +158,8 @@ var konfirmasi_hapus = (id) => {
         }
     });
 
-} 
-
+}
 
 $('#modal').on('hidden.bs.modal', function (event) {
-  reset();
+  Ref.reset();
 })
-
-function getDetail(referensi) {
-
-    let simpandata = $.ajax(url+'/get/'+referensi, {
-        dataType: 'json',
-        type: 'POST',
-        // beforeSend: () => btnSimpan.loading('menyimpan')
-    })
-    
-    .done(function(data, textStatus, jqXHR) {
-
-        if( ! data.RESULT)
-        {
-            Msg.error(data.PESAN);
-            return false;
-        }
-
-        // $('#IDINSTALASI').val(instalasi);
-        setDetail(data.DATA);
-        
-    })
-
-}
-
-function getReferensi() {
-
-    let simpandata = $.ajax(url+'/jenis', {
-        dataType: 'json',
-        type: 'POST',
-        // beforeSend: () => btnSimpan.loading('menyimpan')
-    })
-    
-    .done(function(data, textStatus, jqXHR) {
-
-        if( ! data.RESULT)
-        {
-            Msg.error(data.PESAN);
-            return false;
-        }
-
-        setReferensi(data.DATA);
-        
-    })
-
-}
-
-$(document).ready(function() {
-    getReferensi();
-})
-
-
-function setReferensi(dataReferensi)
-{
-    $('#list-referensi').empty();
-    dataReferensi.forEach(function(referensi){
-        $('#list-referensi').append(`<li onclick="getDetail(${referensi.ID})"><h6>${referensi.REFERENSI}</h6></li>`);
-    });
-}
-
-function setDetail(dataDetail)
-{
-    $('#list-detail').empty();
-    dataDetail.forEach(function(detail){
-
-        $('#list-detail').append(`<li><h6>${detail.deskripsi}</h6></li>`);
-    });
-}
-
-function simpan() {
-
-    let simpandata = $.ajax(url+'/simpan', {
-        dataType: 'json',
-        type: 'POST',
-        data: $('#form').serialize(),
-        beforeSend: () => btnRef.loading('')
-    })
-    
-    .done(function(data, textStatus, jqXHR) {
-
-        if( ! data.RESULT)
-        {
-            Msg.error(data.PESAN);
-            return false;
-        }
-        
-            
-    })
-
-    .always(() => {
-        btnRef.reset();
-    });
-        
-}
-
-
-function test() {
-    alert('test');
-}
