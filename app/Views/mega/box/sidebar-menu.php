@@ -40,13 +40,7 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-            <li class="">
-                <a href="<?= base_url('master/referensi'); ?>" class="waves-effect waves-dark">
-                    <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                    <span class="pcoded-mtext">REFERENSI</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
+
             <li class="">
                 <a href="<?= base_url('master/instalasi'); ?>" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
@@ -86,7 +80,7 @@
         <div class="pcoded-navigation-label">PEGAWAI</div>
         <ul class="pcoded-item pcoded-left-item">
             <li class="">
-                <a href="<?= base_url('master/smf'); ?>" class="waves-effect waves-dark">
+                <a href="<?= base_url('master/pegawai/unit'); ?>" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
                     <span class="pcoded-mtext">JENIS PEGAWAI</span>
                     <span class="pcoded-mcaret"></span>
@@ -103,6 +97,13 @@
         <div class="pcoded-navigation-label">ENTITAS</div>
         <ul class="pcoded-item pcoded-left-item">
             <li class="">
+                <a href="<?= base_url('master/referensi'); ?>" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                    <span class="pcoded-mtext">REFERENSI</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="">
                 <a href="<?= base_url('master/ppk'); ?>" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
                     <span class="pcoded-mtext">PPK</span>
@@ -113,6 +114,13 @@
                 <a href="<?= base_url('master/penjamin'); ?>" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
                     <span class="pcoded-mtext">PENJAMIN</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+            <li class="">
+                <a href="<?= base_url('master/user'); ?>" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                    <span class="pcoded-mtext">USER</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
