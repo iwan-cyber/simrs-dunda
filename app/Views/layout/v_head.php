@@ -72,7 +72,8 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/bower_components/owl.carousel/css/owl.theme.default.css">
     <!-- swiper css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/bower_components/swiper/css/swiper.min.css">
-
+    <!-- Switch component css -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/bower_components/switchery/css/switchery.min.css">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/css/jquery.mCustomScrollbar.css">

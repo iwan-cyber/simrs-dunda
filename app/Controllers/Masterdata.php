@@ -33,20 +33,22 @@ class Masterdata extends BaseController
     public function AmbilPPK()
     {
         if ($this->request->isAJAX()) {
-            $caridata = $this->request->getGet('search');
+            $kdPPKbpjs = $this->request->getVar('search');
 
-            $tppk = $this->db->table('m_ppk')->LIKE('NAMA_PPK', $caridata)->get();
+            $dataPPK = $this->db->table('m_ppk')->LIKE('BPJS', $kdPPKbpjs)->get();
 
-            if ($tppk->getNumRows() > 0) {
-                $list = [];
-                $key = 0;
-                foreach ($tppk->getResultArray() as $row) :
-                    $list[$key]['id'] = $row['ID'];
-                    $list[$key]['text'] = $row['NAMA_PPK'];
-                    $key++;
-                endforeach;
-                echo json_encode($list);
-            }
+            $isidata = "";
+            foreach ($dataPPK->getResultArray() as $row) :
+
+                $isidata .= '<option value="' . $row['ID'] . '">' . $row['NAMA_PPK'] . '</option>';
+
+            endforeach;
+
+            $msg = [
+                'data' => $isidata
+            ];
+
+            echo json_encode($msg);
         }
     }
 
@@ -163,6 +165,27 @@ class Masterdata extends BaseController
                 foreach ($datatarif->getResultArray() as $row) :
                     $list[$key]['id'] = $row['ID'];
                     $list[$key]['text'] = 'Rp. ' . $row['TARIF'] . ' - ' . $row['NAMA_PAKET'];
+                    $key++;
+                endforeach;
+                echo json_encode($list);
+            }
+        }
+    }
+
+
+    public function GetDokterOrder()
+    {
+        if ($this->request->isAJAX()) {
+            $caridata = $this->request->getGet('search');
+
+            $instalasi = $this->db->table('m_pegawai')->LIKE('NAMA_PEGAWAI', $caridata)->get();
+
+            if ($instalasi->getNumRows() > 0) {
+                $list = [];
+                $key = 0;
+                foreach ($instalasi->getResultArray() as $row) :
+                    $list[$key]['id'] = $row['ID'];
+                    $list[$key]['text'] = $row['NAMA_PEGAWAI'];
                     $key++;
                 endforeach;
                 echo json_encode($list);

@@ -9,7 +9,6 @@ use App\Models\Modelpendaftaran_ranap;
 class Detailpasien extends BaseController
 {
 
-
     public function bodyrekamedis()
     {
         if ($this->request->isAJAX()) {
@@ -55,7 +54,6 @@ class Detailpasien extends BaseController
             return view('detail_radiologi/body_radiologi');
         }
     }
-
 
     public function body_utd()
     {

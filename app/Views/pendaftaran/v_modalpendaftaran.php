@@ -122,37 +122,41 @@ foreach ($dataArr->data as $item) { ?>
                                         </tr>
                                         <tr>
                                             <td colspan="2">
-                                                <select class="form-control select2 form-control-sm" id="rujukan_ppk" name="rujukan_ppk" required>
-                                                </select>
+                                                <select class="form-control select2 form-control-sm" id="rujukan_ppk" name="rujukan_ppk" required></select>
+                                                <!-- <input type="text" class="form-control input-sm" placeholder="PPK Perujuk" name="rujukan_ppk" id="rujukan_ppk" required> -->
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="text" class="form-control input-sm" placeholder="Nomor Surat Rujukan" name="rujukan_nomor" required>
+                                                <input type="text" class="form-control input-sm" placeholder="Nomor Surat Rujukan" name="rujukan_nomor" id="rujukan_nomor" required>
                                             </td>
                                             <td>
-                                                <input type="date" class="form-control input-sm" placeholder="Tanggal rujukan" name="rujukan_tanggal" required>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input type="text" class="form-control input-sm" placeholder="Nama Dokter" name="rujukan_dokter" required>
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control input-sm" placeholder="S M F Dokter" name="rujukan_smf" required>
+                                                <input type="date" class="form-control input-sm" placeholder="Tanggal rujukan" name="rujukan_tanggal" id="rujukan_tanggal" required>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input type="text" class="form-control input-sm" placeholder="Diagnosa masuk" name="rujukan_diagnosa" required>
+                                                <input type="text" class="form-control input-sm" placeholder="Nama Dokter Perujuk" name="rujukan_dokter" id="rujukan_dokter" required>
                                             </td>
                                             <td>
-                                                <select class="form-control select2 form-control-sm" id="rujukan_icd" name="rujukan_icd" required>
+                                                <input type="text" class="form-control input-sm" placeholder="S M F Dokter" name="rujukan_smf" id="rujukan_smf" required>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <input type="text" class="form-control input-sm" placeholder="Kode Diagnosa" name="rujukan_diagnosa" id="rujukan_diagnosa" required>
+                                            </td>
+                                            <td>
+                                                <!-- <select class="form-control select2 form-control-sm" id="rujukan_icd" name="rujukan_icd" id="rujukan_icd" required>
                                                     <option value="">Pilih</option>
                                                     <option value="1">contoh 1</option>
                                                     <option value="2">conto 2</option>
-                                                </select>
+                                                </select> -->
+                                                <input type="text" class="form-control input-sm" placeholder="Diagnosa" name="rujukan_icd" id="rujukan_icd" required>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><input type="text" class="form-control input-sm" placeholder="Keluhan" name="rujukan_keluhan" id="rujukan_keluhan" required></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -231,6 +235,32 @@ foreach ($dataArr->data as $item) { ?>
             selectOnClose: true,
             theme: "classic"
         })
+
+        DataInstalsi();
+        $('#unitlayanan').select2({
+            placeholder: '[ Pilih Unit Layanan ]',
+            theme: "classic",
+        })
+        $('#ruangan').select2({
+            placeholder: '[ Pilih Ruangan ]',
+            theme: "classic",
+        })
+        $('#dokterlayanan').select2({
+            placeholder: '[ Pilih Dokter ]',
+            theme: "classic",
+        })
+        $('#smf').select2({
+            placeholder: '[ Pilih SMF ]',
+            theme: "classic",
+        })
+        $('#tarif').select2({
+            placeholder: '[ Pilih Tarif Layanan ]',
+            theme: "classic",
+        })
+        $('#penjamin').select2({
+            placeholder: '[ Pilih Penjamin ]',
+            theme: "classic",
+        })
     });
 
     // fungtion booking kamar
@@ -259,14 +289,14 @@ foreach ($dataArr->data as $item) { ?>
         } else {
             $('#area-rujukan *').prop('disabled', true);
         }
-
     })
 
+
     function DataInstalsi() {
-        $('#rujukan_icd').select2({
-            theme: "classic",
-            placeholder: '[ Masukkan / Pilih Kode ICD ]'
-        });
+        // $('#rujukan_icd').select2({
+        //     theme: "classic",
+        //     placeholder: '[ Masukkan / Pilih Kode ICD ]'
+        // });
 
         $('#instalasi').select2({
             onSelecting: true,
@@ -279,33 +309,6 @@ foreach ($dataArr->data as $item) { ?>
             ajax: {
                 dataType: 'json',
                 url: '<?= base_url('masterdata/AmbilInstalasi') ?>',
-                delay: 500,
-                data: function(params) {
-                    return {
-                        search: params.term
-                    }
-                },
-                processResults: function(data, page) {
-                    return {
-                        results: data
-                    }
-                }
-
-
-            }
-        })
-
-        $('#rujukan_ppk').select2({
-            onSelecting: true,
-            dropdownParent: $('#ModalPendaftaran'),
-            minimumInputLength: 1,
-            allowClear: true,
-            placeholder: '[ Cari / Pilih nama P P K ]',
-            theme: "classic",
-            selectOnClose: true,
-            ajax: {
-                dataType: 'json',
-                url: '<?= base_url('masterdata/AmbilPPK') ?>',
                 delay: 500,
                 data: function(params) {
                     return {
@@ -532,34 +535,6 @@ foreach ($dataArr->data as $item) { ?>
 
     }
 
-    $(document).ready(function() {
-        DataInstalsi();
-        $('#unitlayanan').select2({
-            placeholder: '[ Pilih Unit Layanan ]',
-            theme: "classic",
-        })
-        $('#ruangan').select2({
-            placeholder: '[ Pilih Ruangan ]',
-            theme: "classic",
-        })
-        $('#dokterlayanan').select2({
-            placeholder: '[ Pilih Dokter ]',
-            theme: "classic",
-        })
-        $('#smf').select2({
-            placeholder: '[ Pilih SMF ]',
-            theme: "classic",
-        })
-        $('#tarif').select2({
-            placeholder: '[ Pilih Tarif Layanan ]',
-            theme: "classic",
-        })
-        $('#penjamin').select2({
-            placeholder: '[ Pilih Penjamin ]',
-            theme: "classic",
-        })
-
-    })
 
     $('#penjamin').change(function(e) {
 
@@ -576,26 +551,24 @@ foreach ($dataArr->data as $item) { ?>
                     <td><input type="text" class="form-control input-sm" placeholder="Telepon/HP penjamin" name="umum_telp" required></td>
                 </tr>
             </table>`)
-        } else {
+        } else { // jika bpjs
             $('.tampilinputpenjamin').html(`
-
                 <table style="width: 100%;">
                     <tr>
-                        <td><input type="text" class="form-control input-sm" placeholder="No. Kartu BPJS Penjamin" name="bpjs_nokartu" required></td>
+                        <td><input type="text" class="form-control input-sm" placeholder="No. Kartu BPJS Penjamin" name="bpjs_nokartu" id="bpjs_nokartu" required></td>
                         <td>
-
                             <div class="btn-group pull-left" role="group" data-toggle="tooltip" data-placement="top" title="" data-original-title=".btn-xlg">
-                                <button type="button" class="btn btn-info btn-mini waves-effect waves-light"><i class="ti-list"></i> Daftar Surat Rujukan</button>
-                                <button type="button" class="btn btn-primary btn-mini waves-effect waves-light"><i class="ti-file"></i> Get SEP</button>
+                                <button type="button" class="btn btn-info btn-mini waves-effect waves-light" onclick="cekRujukan()"><i class="ti-list"></i> Cek Rujukan</button>
+                                <button type="button" class="btn btn-primary btn-mini waves-effect waves-light" onclick="getSEP()"><i class="ti-file"></i> Pengajuan SEP</button>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td><input type="text" class="form-control input-sm" placeholder="Kelas hak" name="bpjs_kelashak" required></td>
-                        <td><input type="text" class="form-control input-sm" placeholder="Jenis peserta" name="bpjs_jenis" required></td>
+                        <td><input type="text" class="form-control input-sm" placeholder="Kelas hak" name="bpjs_kelashak" id="bpjs_kelashak" required></td>
+                        <td><input type="text" class="form-control input-sm" placeholder="Jenis peserta" name="bpjs_jenis" id="bpjs_jenis" required></td>
                     </tr>
                     <tr>
-                        <td><input type="text" class="form-control input-sm" placeholder="No. Surat Eligibilitas Peserta (SEP)" name="bpjs_sep" required></td>
+                        <td><input type="text" class="form-control input-sm" placeholder="No. Surat Eligibilitas Peserta (SEP)" name="bpjs_sep" id="bpjs_sep" required></td>
                         <td colspan="2"><input type="text" class="form-control input-sm" placeholder="Nomor SKDP" name="bpjs_skdp" required></td>
                     </tr>
                     <tr>
@@ -605,6 +578,110 @@ foreach ($dataArr->data as $item) { ?>
         }
 
     })
+
+
+    function getSEP() {
+        var noBpjs = $('#bpjs_nokartu').val()
+        $.ajax({
+            type: "get",
+            url: "http://192.168.3.22:5000/api/v1/bpjs/nokartu/" + noBpjs,
+            success: function(response) {
+                console.log(response)
+                if (response.metaData.code == '201') {
+                    console.log(response.metaData.message)
+                } else {
+                    if (response.response.peserta.statusPeserta.kode != 'NON AKTIF') {
+                        isiDataBpjs(response.response.peserta.hakKelas.keterangan, '0', response.response.peserta.jenisPeserta.keterangan, '0', '0')
+                    } else {
+                        console.log('TIDAK AKTIF')
+                    }
+                }
+            },
+            error: function() {
+                console.log('Gangguan Jaringan! Hubungi Admin')
+            }
+        });
+    }
+
+
+    function cekRujukan() {
+        var noBpjs = $('#bpjs_nokartu').val()
+        $.ajax({
+            type: "get",
+            url: "http://192.168.3.22:5000/api/v1/bpjs/rujukan/nokartu/" + noBpjs,
+            success: function(response) {
+                if (response.metaData.code == '200') {
+                    $('#cekrujukan').prop('checked', true);
+                    $('#area-rujukan *').prop('disabled', false);
+                    if (response.response.rujukan.peserta.statusPeserta.kode != 'NON AKTIF') {
+                        isiRujukanPcareBpjs(
+                            response.response.rujukan.provPerujuk.nama,
+                            response.response.rujukan.noKunjungan,
+                            response.response.rujukan.tglKunjungan,
+                            '',
+                            response.response.rujukan.poliRujukan.nama,
+                            response.response.rujukan.diagnosa.kode,
+                            response.response.rujukan.diagnosa.kode + ' - ' + response.response.rujukan.diagnosa.nama,
+                            response.response.rujukan.keluhan
+                        )
+                        // select PPK
+
+                        $.ajax({
+                            type: "post",
+                            url: "<?= base_url('masterdata/AmbilPPK') ?>",
+                            data: {
+                                search: response.response.rujukan.provPerujuk.kode
+                            },
+                            dataType: "json",
+                            success: function(response) {
+                                if (response.data) {
+                                    $('#rujukan_ppk').html(response.data)
+                                    $('#rujukan_ppk').select2({
+                                        dropdownParent: $('#ModalPendaftaran'),
+                                        theme: "classic",
+                                        selectOnClose: true,
+                                    })
+                                }
+                            },
+                            error: function(xhr, ajaxOptions, thrownError) {
+                                $('#rujukan_ppk').val(null).trigger('change');
+                                $('#rujukan_ppk').select2({
+                                    dropdownParent: $('#ModalPendaftaran'),
+                                    minimumInputLength: 2,
+                                    placeholder: '[ PPK Tidak Ditemukan]',
+                                    theme: "classic",
+                                })
+                            }
+                        });
+
+                    } else {
+                        console.log('TIDAK AKTIF')
+                    }
+                } else {
+                    $('#cekrujukan').prop('checked', false);
+
+                    $('#area-rujukan *').prop('disabled', true);
+
+                }
+                console.log(response)
+            }
+        });
+    }
+
+    function isiDataBpjs(kelas, sep, jenis, skdp, dpjp) {
+        $('#bpjs_kelashak').val(kelas);
+        $('#bpjs_jenis').val(jenis);
+    }
+
+    function isiRujukanPcareBpjs(ppkrujuk, nosurat, tglrujukan, dokperujuk, smfrujuk, diagnosarujuk, icdrujuk, keluhanrujuk) {
+        $('#rujukan_ppk').val(ppkrujuk);
+        $('#rujukan_nomor').val(nosurat);
+        $('#rujukan_tanggal').val(tglrujukan);
+        $('#rujukan_smf').val(smfrujuk);
+        $('#rujukan_diagnosa').val(diagnosarujuk);
+        $('#rujukan_icd').val(icdrujuk);
+        $('#rujukan_keluhan').val(keluhanrujuk);
+    }
 
     $('.formpendaftarn').submit(function(e) {
         e.preventDefault();
@@ -632,8 +709,6 @@ foreach ($dataArr->data as $item) { ?>
         });
         return false;
     })
-
-
 
     function infobed() {
         alert('ok')

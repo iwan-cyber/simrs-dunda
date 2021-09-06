@@ -191,4 +191,5 @@ function tabsambildetail([NOPEN]) {
 
 $(document).ready(function () {
     btn_tab_rekamedis();
+    
 });
