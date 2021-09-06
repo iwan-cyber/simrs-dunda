@@ -43,6 +43,8 @@
 
 <!-- data-table js -->
 <script src="<?= base_url() ?>/template/files/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<!-- <script src="<?= base_url() ?>/template/files/bower_components/datatables.net/js/dataTables.rowGroup.min.js"></script> -->
+
 <script src="<?= base_url() ?>/template/files/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
 <script src="<?= base_url() ?>/template/files/assets/pages/data-table/js/jszip.min.js"></script>
 <script src="<?= base_url() ?>/template/files/assets/pages/data-table/js/pdfmake.min.js"></script>
@@ -54,6 +56,7 @@
 <script src="<?= base_url() ?>/template/files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 
 
+
 <!-- sweet alert js -->
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/sweetalert2@11.js"></script>
 <!-- <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/modal.js"></script> -->
@@ -63,24 +66,21 @@
 <script src="<?= base_url() ?>/template/files/assets/js/classie.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/modalEffects.js"></script>
 
-<!-- Validation js -->
-<!-- <script src="<?= base_url() ?>/template/files/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script> -->
-<!-- <script src="<?= base_url() ?>/template/files/ajax/libs/moment.js/2.10.6/moment.min.js"></script> -->
-<!-- <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/form-validation/validate.js"></script> -->
+
 
 <!-- list-scroll js -->
 <script src="<?= base_url() ?>/template/files/bower_components/stroll/js/stroll.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/list-scroll/list-custom.js"></script>
 
-<!-- nestable js -->
-<script src="<?= base_url() ?>/template/files/assets/pages/nestable/jquery.nestable.js"></script>
 <!-- Custom js -->
 <!-- <script src="https://jonmiles.github.io/bootstrap-treeview/bower_components/jquery/dist/jquery.js"></script> -->
-<<<<<<< HEAD
+
 <!--script src="https://jonmiles.github.io/bootstrap-treeview/js/bootstrap-treeview.js"></script-->
-=======
+
 <!-- <script src="https://jonmiles.github.io/bootstrap-treeview/js/bootstrap-treeview.js"></script> -->
->>>>>>> 65642fda9c909568e8a941f526d2ed84769cb91f
+
+<script src="https://jonmiles.github.io/bootstrap-treeview/js/bootstrap-treeview.js"></script>
+
 
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/jstree/js/jstree.min.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/treeview/jquery.tree.js"></script>
@@ -96,48 +96,55 @@
 <script src="<?= base_url() ?>/template/files/assets/js/sweetalert.min.js"></script>
 
 <script src="<?= base_url() ?>/template/files/assets/pages/data-table/js/data-table-custom.js"></script>
-<<<<<<< HEAD
+
 <!-- <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/form-validation/form-validation.js"></script> -->
 <!-- <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/advance-elements/swithces.js"></script> -->
 
 <!-- select2 -->
 <script src="<?= base_url() ?>/template/files/bower_components/select2/js/select2.full.min.js"></script>
 
-=======
->>>>>>> 65642fda9c909568e8a941f526d2ed84769cb91f
+
+
 
 <script src="<?= base_url() ?>/template/files/assets/js/pcoded.min.js"></script>
 <script src="<?= base_url() ?>/template/files/assets/js/vertical/menu/menu-hori-fixed.js"></script>
 <script src="<?= base_url() ?>/template/files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<<<<<<< HEAD
+
 <script src="<?= base_url() ?>/template/files/assets/js/script.js"></script>
-=======
+
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/script.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/rekam-medis.js"></script>
+
 
 <!-- Editable-table js -->
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/edit-table/jquery.tabledit.js"></script>
 
-<script type="text/javascript" src="<?= base_url() ?>/files/bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js">
-</script>
+<!-- <script type="text/javascript" src="<?= base_url() ?>/files/bower_components/bootstrap-multiselect/js/bootstrap-multiselect.js"> </script> -->
 
->>>>>>> 65642fda9c909568e8a941f526d2ed84769cb91f
+<!-- owl carousel 2 js -->
+<script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/owl.carousel/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/owl-custom.js"></script>
+<!-- swiper js -->
+<script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/swiper/js/swiper.min.js"></script>
 
+
+<script src="<?= base_url() ?>/template/files/assets/pages/nestable/jquery.nestable.js"></script>
+<script src="<?= base_url() ?>/template/files/assets/js/pcoded.min.js"></script>
+
+<script src="<?= base_url() ?>/template/files/assets/js/vertical/menu/menu-hori-fixed.js"></script>
+<script src="<?= base_url() ?>/template/files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/script.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/rekam-medis.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/jquery-ui-1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
 
 
 <script type="text/javascript">
-    // AJAX call for autocomplete 
-
-    //To select country name
     function selectCountry(val) {
         $("#inputseacrh").val(val);
         $("#suggesstion-box").hide();
     }
-</script>
 
-<script>
     $(document).ready(function() {
 
         $('.select2').select2({
@@ -146,10 +153,7 @@
         })
 
     })
-</script>
 
-
-<script>
     function randKodeBooking(length) {
         var result = '';
         var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

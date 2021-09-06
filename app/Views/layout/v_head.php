@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <!-- Mirrored from html.phoenixcoded.net/mega-able/default/menu-horizontal-fixed.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Jul 2021 06:58:59 GMT -->
 
 <head>
@@ -69,11 +67,20 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css">
     <!-- ajax jquery letakan diatas body html -->
     <script src="<?= base_url() ?>/template/files/assets/js/jquery-3.5.1.js"></script>
+
+    <!-- owl carousel css -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/bower_components/owl.carousel/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/bower_components/owl.carousel/css/owl.theme.default.css">
+    <!-- swiper css -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/bower_components/swiper/css/swiper.min.css">
+    <!-- Switch component css -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/bower_components/switchery/css/switchery.min.css">
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/css/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/css/pcoded-horizontal.min.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/template/files/assets/pages/nestable/nestable.css">
     <style>
         a,
         a:hover {

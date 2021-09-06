@@ -32,12 +32,13 @@ foreach ($dataArr->data as $item) { ?>
                     <table style="width: 100%;">
                         <tr>
                             <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien bg-info" onclick="btn_tab_rekamedis('<?= $item->nopen ?>')"><i class="fas fa-notes-medical"></i> REKAM MEDIS </button></td>
-                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_laboratorium()"><i class="fas fa-microscope"></i> LABORATORIUM</button></td>
-                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_radiologi()"><i class="fas fa-x-ray"></i> RADIOLOGI</button></td>
-                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_utd()"><i class="fas fa-heartbeat"></i> UTDRS</button></td>
-                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_ok()"><i class="fas fa-procedures"></i> KAMAR OPERASI</button></td>
-                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_mutasi()"><i class="fas fa-arrows-alt-v"></i> MUTASI</button></td>
-                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_riwayat()"><i class="far fa-folder-open"></i> RIWAYAT/STATUS</button></td>
+                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_laboratorium('<?= $item->nopen ?>')"><i class="fas fa-microscope"></i> LABORATORIUM PK</button></td>
+                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_laboratorium_pa()"><i class="fas fa-microscope"></i> LABORATORIUM PA</button></td>
+                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_radiologi('<?= $item->nopen ?>')"><i class="fas fa-x-ray"></i> RADIOLOGI</button></td>
+                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_utd('<?= $item->nopen ?>')"><i class="fas fa-heartbeat"></i> UTDRS</button></td>
+                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_ok('<?= $item->nopen ?>')"><i class="fas fa-procedures"></i> KAMAR OPERASI</button></td>
+                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_mutasi('<?= $item->nopen ?>')"><i class="fas fa-arrows-alt-v"></i> MUTASI</button></td>
+                            <td><button class="btn waves-effect waves-light btn-linkedin btn-sm btn-block btn-tab-pasien" onclick="btn_tab_riwayat('<?= $item->nopen ?>')"><i class="far fa-folder-open"></i> RIWAYAT/STATUS</button></td>
                         </tr>
                     </table>
                 </div>

@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use Irsyadulibad\DataTables\DataTables;
+
 class User extends BaseController
 {
     public function index()
@@ -16,6 +18,7 @@ class User extends BaseController
         }
         echo view('layout/v_wrapper', $data);
     }
+
 
     public function register()
     {

@@ -8,7 +8,6 @@
     </div>
     <div class="card-body">
         <div id="card-body"></div>
-
     </div>
 </div>
 
@@ -264,11 +263,11 @@
                     </ul>
                 </div>
                 <div class=\"col-md-12 col-lg-4\">
-                    <div class=\"card-header text-white\" style=\"background-color: #8f41fb;\">
+                    <div class=\"card-header\" style=\"background-color: #8f41fb;\">
                         <table style=\"width: 100%;\">
                             <tr>
                                 <td>
-                                    <h5>Pasien Sedang Inap</h5>
+                                    <h5 style=\"color: #ffffff;\">Pasien Sedang Inap</h5>
                                 </td>
                                 <td>
                                     <input type=\"text\" class=\"form-control form-control-sm form-control-right\" placeholder=\"Cari..\">

@@ -1,9 +1,12 @@
 
 // tabes - menu laboratorium
-function btn_tab_laboratorium() {
+function btn_tab_laboratorium(nopen) {
     $.ajax({
         type: "post",
         url: "Detailpasien/body_laboratorium",
+        data:{
+            nopen: nopen
+        },
         success: function(response) {
             $('.card-body-anamnesis').html(response).show()
         }
@@ -157,6 +160,7 @@ function btn_konsul() {
     `);
     
 }
+
 function btn_final(nopen) {
     $.ajax({
         type: "post",
@@ -168,7 +172,6 @@ function btn_final(nopen) {
             $('.area-input-rekam-medis').html(response).show()
         }
     });
-    
 }
 
 function tabsambildetail([NOPEN]) {
@@ -187,5 +190,6 @@ function tabsambildetail([NOPEN]) {
 }
 
 $(document).ready(function () {
-    load.btn_tab_rekamedis();
+    btn_tab_rekamedis();
+    
 });
