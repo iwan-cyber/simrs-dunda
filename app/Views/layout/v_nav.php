@@ -157,12 +157,12 @@
 
                     <!-- Master Data -->
                     <li class="pcoded-hasmenu">
-                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                        <a href="<?= base_url('master'); ?>" class="waves-effect waves-dark">
                             <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
                             <span class="pcoded-mtext">Master Data</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
-                        <ul class="pcoded-submenu">
+                        <!--ul class="pcoded-submenu">
                             <li class="">
                                 <a href="<?= base_url('seting/seting1'); ?>" class="waves-effect waves-dark">
                                     <span class="ti-hand-point-right"></span>
@@ -202,6 +202,13 @@
                                 <a href="<?= base_url('master/pekerjaan'); ?>" class="waves-effect waves-dark">
                                     <span class="ti-hand-point-right"></span>
                                     <span>Pekerjaan</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="<?= base_url('master/ruangan'); ?>" class="waves-effect waves-dark">
+                                    <span class="ti-hand-point-right"></span>
+                                    <span>ruangan</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
@@ -259,7 +266,7 @@
                                     </li>
                                 </ul>
                             </li>
-                        </ul>
+                        </ul-->
                     </li>
 
                     <!-- Rawat Jalan -->

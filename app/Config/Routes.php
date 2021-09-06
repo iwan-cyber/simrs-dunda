@@ -55,6 +55,10 @@ $routes->get('/master/pekerjaan', 'Pekerjaan::index', ['filter' => 'role:admin']
 $routes->get('/master/pekerjaan/data', 'Pekerjaan::dataPekerjaan', ['filter' => 'role:admin']);
 $routes->post('/master/pekerjaan/simpan', 'Pekerjaan::simpan', ['filter' => 'role:admin']);
 
+$routes->get('/master/ruangan', 'Master/Ruangan::index');
+$routes->get('/master/ruangan/data', 'Master/Ruangan::data');
+
+$routes->get('/master', 'Master/Master::index');
 
 
 

@@ -19,9 +19,8 @@
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/popper.js/js/popper.min.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/bootstrap/js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/font-awesome/js/fontawesome.js"></script>
+
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/font-awesome/js/fontawesome.min.js"></script>
-<script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/font-awesome/js/all.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/font-awesome/js/all.min.js"></script>
 
 <!-- waves js -->
@@ -75,6 +74,11 @@
 
 <!-- Custom js -->
 <!-- <script src="https://jonmiles.github.io/bootstrap-treeview/bower_components/jquery/dist/jquery.js"></script> -->
+
+<!--script src="https://jonmiles.github.io/bootstrap-treeview/js/bootstrap-treeview.js"></script-->
+
+<!-- <script src="https://jonmiles.github.io/bootstrap-treeview/js/bootstrap-treeview.js"></script> -->
+
 <script src="https://jonmiles.github.io/bootstrap-treeview/js/bootstrap-treeview.js"></script>
 
 
@@ -90,8 +94,27 @@
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
 
 <script src="<?= base_url() ?>/template/files/assets/js/sweetalert.min.js"></script>
-<script src="<?= base_url() ?>/template/files/assets/select2/dist/js/select2.full.min.js"></script>
+
 <script src="<?= base_url() ?>/template/files/assets/pages/data-table/js/data-table-custom.js"></script>
+
+<!-- <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/form-validation/form-validation.js"></script> -->
+<!-- <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/advance-elements/swithces.js"></script> -->
+
+<!-- select2 -->
+<script src="<?= base_url() ?>/template/files/bower_components/select2/js/select2.full.min.js"></script>
+
+
+
+
+<script src="<?= base_url() ?>/template/files/assets/js/pcoded.min.js"></script>
+<script src="<?= base_url() ?>/template/files/assets/js/vertical/menu/menu-hori-fixed.js"></script>
+<script src="<?= base_url() ?>/template/files/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script src="<?= base_url() ?>/template/files/assets/js/script.js"></script>
+
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/script.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/rekam-medis.js"></script>
+
 
 <!-- Editable-table js -->
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/pages/edit-table/jquery.tabledit.js"></script>
@@ -103,6 +126,7 @@
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/owl-custom.js"></script>
 <!-- swiper js -->
 <script type="text/javascript" src="<?= base_url() ?>/template/files/bower_components/swiper/js/swiper.min.js"></script>
+
 
 <script src="<?= base_url() ?>/template/files/assets/pages/nestable/jquery.nestable.js"></script>
 <script src="<?= base_url() ?>/template/files/assets/js/pcoded.min.js"></script>
