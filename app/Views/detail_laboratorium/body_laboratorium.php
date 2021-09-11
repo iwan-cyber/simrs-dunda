@@ -5,7 +5,7 @@ use App\Controllers\Detailpasien;
 $dataArr = json_decode($data);
 
 foreach ($dataArr->data as $item) { ?>
-    <h5>Laboratorium</h5>
+    <h3>Laboratorium</h3>
     <button class="btn btn-sm btn-primary" data-toggle="modal" onclick="orderlabpk('<?= $item->nopen ?>')"><i class="far fa-file"></i> Order Baru</button>
     <hr />
     <table class="table table-bordered table-hover nowarp" id="torder_labpk" style="width: 100%;">
@@ -65,6 +65,24 @@ foreach ($dataArr->data as $item) { ?>
         });
     }
 
+    function cetakHasil(NOORDER) {
+        $.ajax({
+            type: 'POST',
+            url: "<?= base_url('Laboratoriumpk/cetakhasil'); ?>",
+            data: {
+                "norder": NOORDER,
+            },
+            // dataType: 'json',
+            success: function(response) {
+                $('.tampilmodal').html(response);
+                $('#ModalCetakHasil').modal('show');
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+
+            }
+        });
+    }
 
     $(document).ready(function() {
         var getnorm = $('#id_norm').val();

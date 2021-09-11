@@ -137,9 +137,27 @@
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/rekam-medis.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/jquery-ui-1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
-
+<!-- <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script> -->
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/print.js"></script>
 
 <script type="text/javascript">
+    function printDiv(divName) {
+        $("#print_01").print({
+            globalStyles: true,
+            mediaPrint: false,
+            stylesheet: null,
+            noPrintSelector: ".no-print",
+            iframe: true,
+            append: null,
+            prepend: null,
+            manuallyCopyFormValues: true,
+            deferred: $.Deferred(),
+            timeout: 750,
+            title: null,
+            doctype: '<!doctype html>'
+        });
+    }
+
     function selectCountry(val) {
         $("#inputseacrh").val(val);
         $("#suggesstion-box").hide();
