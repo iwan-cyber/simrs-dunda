@@ -80,12 +80,13 @@
         <div class="pcoded-navigation-label">PEGAWAI</div>
         <ul class="pcoded-item pcoded-left-item">
             <li class="">
-                <a href="<?= base_url('master/pegawai/unit'); ?>" class="waves-effect waves-dark">
+                <a href="<?= base_url('master/pegawaiKelompok'); ?>" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                    <span class="pcoded-mtext">JENIS PEGAWAI</span>
+                    <span class="pcoded-mtext">KELOMPOK PEGAWAI</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
+
             <li class="">
                 <a href="<?= base_url('master/pegawai'); ?>" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
