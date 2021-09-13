@@ -149,21 +149,23 @@ foreach ($dataArr->data as $item) { ?>
                             </div>
                         </div>
 
-                        <div class="col-md-6 col-lg-6">
+                        <div class="col-md-6 col-lg-6 col-xs-12">
                         </div>
-                        <div class="col-md-6 col-lg-6">
+                        <div class="col-md-6 col-lg-6 col-xs-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h5>DAFTAR TINDAKAN RADIOLOGI</h5>
                                 </div>
-                                <div class="card-body myScroll">
-                                    <table class="table table-bordered" id="daftartindakanrad" style="width: 100%;">
+                                <div class="card-body myScroll2">
+                                    <table class="display table-hover" cellspacing="0" id="daftartindakanrad" style="width: 100%;">
                                         <thead>
                                             <tr>
-                                                <td>NAMA PEMERIKSAAN</td>
-                                                <td>ACTION</td>
+                                                <th class="text-center">NAMA PEMERIKSAAN</th>
+                                                <th class="text-center">GOLONGAN</th>
+                                                <th class="text-center">ACTION</th>
                                             </tr>
                                         </thead>
+                                        <tbody></tbody>
                                     </table>
                                 </div>
                             </div>
@@ -212,6 +214,9 @@ foreach ($dataArr->data as $item) { ?>
             columns: [{
                 data: 'NAMA_TINDAKAN',
                 name: 'NAMA_TINDAKAN'
+            }, {
+                data: 'KATEGORI',
+                name: 'KATEGORI'
             }, {
                 data: 'aksi',
                 name: 'aksi'

@@ -21,6 +21,13 @@
   overflow-y: scroll;
 }
 
+.myScroll2 {
+  background-color: lightblue;
+  height: 260px;
+  width: 100%;
+  overflow-y: scroll;
+}
+
 .table td,
 .table th {
   padding: 2px;

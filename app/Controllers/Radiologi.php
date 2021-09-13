@@ -44,6 +44,10 @@ class Radiologi extends BaseController
                 return "$data->NAMA_TINDAKAN";
             })
 
+            ->addColumn('KATEGORI', function ($data) {
+                return "$data->KATEGORI";
+            })
+
 
             ->addColumn('aksi', function ($data) {
                 return "<button type=\"button\" onclick=\"addOrderRad(['" . $data->ID . "','" . $data->NAMA_TINDAKAN . "'])\"  data-backdrop=\"static\" class=\"btn btn-danger btn-mini waves-effect waves-light\"><i class=\"fas fa-plus-circle pull-right\"></i> Order</button>";
