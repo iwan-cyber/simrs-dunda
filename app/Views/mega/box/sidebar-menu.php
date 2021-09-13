@@ -90,7 +90,15 @@
             <li class="">
                 <a href="<?= base_url('master/pegawai'); ?>" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                    <span class="pcoded-mtext">PEGAWAI</span>
+                    <span class="pcoded-mtext">DATA PEGAWAI</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
+
+            <li class="">
+                <a href="<?= base_url('master/pegawai/profesi'); ?>" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                    <span class="pcoded-mtext">PROFESI PEGAWAI</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>

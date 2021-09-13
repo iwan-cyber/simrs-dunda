@@ -4,7 +4,7 @@ namespace App\Models\Master;
 
 use CodeIgniter\Model;
 
-class PegawaiModel extends Model
+class PegawaiProfesiModel extends Model
 {
 
 
@@ -26,11 +26,12 @@ class PegawaiModel extends Model
         'STATUS',
     ];
 
-    public function get()
+    public function get($kelompok='')
     {
         return $this->db->table('m_pegawai')
-        ->select('m_pegawai.*, m_kelompok_pegawai.KELOMPOK_PEGAWAI')
+        ->select('m_pegawai.ID, m_pegawai.NAMA_PEGAWAI, m_pegawai.IDKELOMPOK_PEGAWAI, m_kelompok_pegawai.KELOMPOK_PEGAWAI')
          ->join('m_kelompok_pegawai', 'm_kelompok_pegawai.ID = m_pegawai.IDKELOMPOK_PEGAWAI', 'INNER JOIN')
+         ->where('m_pegawai.IDKELOMPOK_PEGAWAI', $kelompok)
          ->get()->getResultArray();  
     }
 
