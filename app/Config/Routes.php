@@ -61,6 +61,20 @@ $routes->get('/master/ruangan/data', 'Master/Ruangan::data');
 $routes->get('/master', 'Master/Master::index');
 
 
+//routing untuk referensi detail
+$routes->post('/master/referensi/detail/simpan', 'Master/Referensi::simpanDetail');
+$routes->post('/master/referensi/detail/get/(:num)', 'Master/Referensi::getDetail');
+$routes->post('/master/referensi/detail/hapus', 'Master/Referensi::hapusDetail');
+
+//routing untuk pegawai
+$routes->get('/master/pegawai/unit', 'Master/PegawaiUnit::index');
+
+//routing untuk pegawai
+$routes->get('/master/pegawai/profesi', 'Master/PegawaiProfesi::index');
+$routes->post('/master/pegawai/profesi/simpan', 'Master/PegawaiProfesi::simpan');
+$routes->post('/master/pegawai/profesi/hapus/(:num)', 'Master/PegawaiProfesi::hapus');
+$routes->post('/master/pegawai/profesi/(:num)', 'Master/PegawaiProfesi::get');
+
 
 /*
  * --------------------------------------------------------------------
