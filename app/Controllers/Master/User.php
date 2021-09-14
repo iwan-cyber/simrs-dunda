@@ -10,23 +10,7 @@ class User extends \App\Controllers\BaseController
     public function index()
     {
 
-        $data = [];
-
-        $data['content'] = [
-            'TITLE'=>'Data User',
-            'DESC'=>'Pengelolaan Data User',
-        ];
-
-        $data['content']['ITEM'] = [
-            ['LINK'=>'#', 'DESC'=>'Master'],
-            ['LINK'=>'#', 'DESC'=>'User']
-        ];
-
-        $this->startTema();
-        echo view('mega/box/content-header', $data);       
         echo view('master/user');
-        echo view('mega/box/content-footer');
-        $this->endTema();
         
     }
 
@@ -193,21 +177,4 @@ class User extends \App\Controllers\BaseController
         $this->response->setJSON($data);
         $this->response->send();
     }
-
-    public function startTema()
-    {
-        echo view('mega/box/header');
-        echo view('mega/box/navbar');
-        echo view('mega/box/sidebar-menu');
-    }
-
-    public function endTema()
-    {
-        echo view('mega/box/footer');
-    }
-
-
-
-
-
 }

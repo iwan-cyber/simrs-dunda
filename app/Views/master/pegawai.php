@@ -1,8 +1,8 @@
-<?php 
+<?= $this->extend('mega/horizontal/template'); ?>
 
-echo view('mega/box/css-dt');
+<?= $this->section('content'); ?>
 
-?>
+<?= $this->include('mega/horizontal/css-dt'); ?>
 
 <div class="col-sm-12">
     <div class="card">
@@ -97,9 +97,8 @@ echo view('mega/box/css-dt');
 </div>
 
 
-<?php echo view("mega/box/script"); ?>
-
-<?php echo view("mega/box/script-dt"); ?>
+<?= $this->include('mega/horizontal/script'); ?>
+<?= $this->include('mega/horizontal/script-dt'); ?>
 
 
 
@@ -108,3 +107,5 @@ echo view('mega/box/css-dt');
     const url = '<?= base_url('master/pegawai'); ?>';
 </script>
 <script src="<?= base_url('app/master/pegawai.js?'.rand()); ?>"></script>
+
+<?= $this->endSection(); ?>

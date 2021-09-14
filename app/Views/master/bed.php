@@ -1,8 +1,8 @@
-<?php 
+<?= $this->extend('mega/horizontal/template'); ?>
 
-echo view('mega/box/css-dt');
+<?= $this->section('content'); ?>
 
-?>
+<?= $this->include('mega/horizontal/css-dt'); ?>
 
 <!-- list css -->
 <link rel="stylesheet" type="text/css" href="<?= base_url('template/files/assets/pages/list-scroll/list.css'); ?>">
@@ -110,10 +110,8 @@ echo view('mega/box/css-dt');
 </div>
 
 
-<?php echo view("mega/box/script"); ?>
-
-<?php echo view("mega/box/script-dt"); ?>
-
+<?= $this->include('mega/horizontal/script'); ?>
+<?= $this->include('mega/horizontal/script-dt'); ?>
 
 <!-- list-scroll js -->
 <script src="<?= base_url('template/files/bower_components/stroll/js/stroll.js'); ?>"></script>
@@ -125,3 +123,5 @@ echo view('mega/box/css-dt');
     const url_ruangan = '<?= base_url('master/ruangan'); ?>';
 </script>
 <script src="<?= base_url('app/master/bed.js?'.rand()); ?>"></script>
+
+<?= $this->endSection(); ?>

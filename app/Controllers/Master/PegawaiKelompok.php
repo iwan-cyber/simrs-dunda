@@ -10,24 +10,7 @@ class PegawaiKelompok extends \App\Controllers\BaseController
     public function index()
     {
 
-        $data = [];
-
-        $data['content'] = [
-            'TITLE'=>'Data Pegawai Kelompok',
-            'DESC'=>'Pengelolaan Data Pegawai Kelompok',
-        ];
-
-        $data['content']['ITEM'] = [
-            ['LINK'=>'#', 'DESC'=>'Master'],
-            ['LINK'=>'#', 'DESC'=>'Pegawai Kelompok']
-        ];
-
-        $this->startTema();
-        echo view('mega/box/content-header', $data);
         echo view('master/pegawaiKelompok');
-        echo view('mega/box/content-footer');
-        $this->endTema();
-        
     }    
 
     public function data() 
