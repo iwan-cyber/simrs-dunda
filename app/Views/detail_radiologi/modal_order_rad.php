@@ -24,6 +24,7 @@ function GetUmur($tgl_lahir)
 
 $dataArr = json_decode($data);
 foreach ($dataArr->data as $item) { ?>
+    <?= form_open('Radiologi/simpanOrder', ['class' => 'formOrderRad']); ?>
     <div class="modal fade" id="modalOrderRad" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
@@ -35,12 +36,12 @@ foreach ($dataArr->data as $item) { ?>
                             <td>
                                 <select class="form-control select2 form-control-sm" id="orda" name="orda" required>
                                     <option value="N">Tidak</option>
-                                    <option value="N">YA</option>
+                                    <option value="Y">YA</option>
                                 </select>
                             </td>
-                            <td><input type="text" id="nopen_order_labpk" class="form-control form-control-sm input-danger" name="nopen_order_labpk" readonly required></td>
-                            <td><input type="date" name="tgl_order_labpk" value="<?= date('Y-m-d'); ?>" class="form-control form-control-sm"></td>
-                            <td><input type="time" name="jam_order_labpk" value="<?= date("H:i:s"); ?>" class="form-control form-control-sm"></td>
+                            <td><input type="text" id="nopen_order_rad" class="form-control form-control-sm input-danger" name="nopen_order_rad" readonly required></td>
+                            <td><input type="date" name="tgl_order" value="<?= date('Y-m-d'); ?>" class="form-control form-control-sm"></td>
+                            <td><input type="time" name="jam_order" value="<?= date("H:i:s"); ?>" class="form-control form-control-sm"></td>
                             <td>
                                 <button type="submit" class="btn btn-sm btn-primary btn-block btn-simpan">Kirim</button>
                             </td>
@@ -119,12 +120,8 @@ foreach ($dataArr->data as $item) { ?>
                                                         </select></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>UNIT ASAL</td>
-                                                    <td>: <?= user()->name; ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>KELUHAN</td>
-                                                    <td>: </td>
+                                                    <td>KLINIS</td>
+                                                    <td>: <input type="text" class="form-control-sm" name="klinis" placeholder="Klinis..." required style="width: 100%;"></td>
                                                 </tr>
 
                                             </table>
@@ -157,7 +154,7 @@ foreach ($dataArr->data as $item) { ?>
                                     <h5>DAFTAR TINDAKAN RADIOLOGI</h5>
                                 </div>
                                 <div class="card-body myScroll2">
-                                    <table class="display table-hover" cellspacing="0" id="daftartindakanrad" style="width: 100%;">
+                                    <table class="table-hover" cellspacing="0" id="daftartindakanrad" style="width: 100%;">
                                         <thead>
                                             <tr>
                                                 <th class="text-center">NAMA PEMERIKSAAN</th>
@@ -179,12 +176,43 @@ foreach ($dataArr->data as $item) { ?>
             </div>
         </div>
     </div>
-
+    <input type="hidden" value="<?= user()->id; ?>" name="userPengirim" id="userPengirim" required>
+    <input type="hidden" value="<?= $item->IDPASIEN; ?>" name="idPasien" id="idPasien" required>
+    <input type="hidden" value="<?= $item->NORM; ?>" name="norm" id="norm" required>
+    <input type="hidden" value="<?= $item->IDRUANGAN; ?>" name="idruangan" id="idruangan" required>
+    <input type="hidden" value="<?= $item->NOPEN; ?>" name="nopen" id="nopen" required>
+    <?= form_close(); ?>
 <?php } ?>
 
 <script>
+    $('.formOrderRad').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "post",
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            dataType: "json",
+            beforeSend: function() {
+                $('.btn-simpan').attr('disable', 'disabled');
+                $('.btn-simpan').html('<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>Menyimpan...');
+            },
+            complete: function() {
+                $('.btn-simpan').removeAttr('disable', 'disabled');
+                $('.btn-simpan').html('Simpan');
+            },
+            success: function(response) {
+                Swal.fire(
+                    'Berhasil!',
+                    'Order Radiologi Berhasil Dikirim!',
+                    'success'
+                )
+                $('#modalOrderRad').modal('hide');
+                $('#torder_rad').DataTable().ajax.reload(null, false);
+            }
+        });
+        return false;
+    })
     $(document).ready(function() {
-
         $('#daftartindakanrad').DataTable({
             oLanguage: {
                 "sEmptyTable": "Data tidak ditemukan!",
@@ -207,6 +235,7 @@ foreach ($dataArr->data as $item) { ?>
             processing: true,
             serverSide: true,
             ordering: true,
+
             ajax: {
                 url: '<?= base_url('radiologi/datatindakanradiologi'); ?>',
 
@@ -216,12 +245,14 @@ foreach ($dataArr->data as $item) { ?>
                 name: 'NAMA_TINDAKAN'
             }, {
                 data: 'KATEGORI',
-                name: 'KATEGORI'
+                name: 'KATEGORI',
+                class: 'text-center'
             }, {
                 data: 'aksi',
                 name: 'aksi'
             }, ],
         });
+
 
         // generate nopen inap
         detik = new Date().getSeconds();
@@ -230,7 +261,7 @@ foreach ($dataArr->data as $item) { ?>
         tglSekarang = new Date().getDate();
         blnSekarang = new Date().getMonth();
         thnSekarang = new Date().getFullYear();
-        document.getElementById("nopen_order_labpk").value = 'RAD-' + getNopen(5) + '/' + tglSekarang + '/' + blnSekarang + '/' + thnSekarang + '.' + jamSekarang + '' + menit + '' + detik;
+        document.getElementById("nopen_order_rad").value = 'RAD-' + getNopen(5) + '/' + tglSekarang + '/' + blnSekarang + '/' + thnSekarang + '.' + jamSekarang + '' + menit + '' + detik;
 
         $('.btn-info').click(function() {
             $('.btn-info').removeClass('bg-red');

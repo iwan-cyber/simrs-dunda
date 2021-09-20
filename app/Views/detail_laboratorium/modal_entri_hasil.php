@@ -289,8 +289,8 @@ foreach ($dataArr->data as $item) { ?>
                     text: response.sukses,
                     icon: 'success'
                 })
-                // $('#modalOrderLabPk').modal('hide');
-                // $('#torder_labpk').DataTable().ajax.reload(null, false);
+                $('#ModalProsesOrder').modal('hide');
+                $('#torder_labpk').DataTable().ajax.reload(null, false);
             }
         });
         return false;

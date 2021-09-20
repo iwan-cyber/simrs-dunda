@@ -49,7 +49,79 @@ foreach ($dataArr->data as $item) { ?>
         });
 
     }
+
+    function ProsesOrder(NOORDER) {
+        $.ajax({
+            type: 'POST',
+            url: "<?= base_url('Radiologi/form_entri_hasil'); ?>",
+            data: {
+                "norder": NOORDER,
+            },
+            // dataType: 'json',
+            success: function(response) {
+                $('.tampilmodal').html(response);
+                $('#ModalProsesOrder').modal('show');
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+
+            }
+        });
+    }
+
+    function BatalOrder(NOORDER) {
+        Swal.fire({
+            title: 'Yakin ingin menghapus?',
+            html: "Anda akan membatalkan nomor order <br><b>" + NOORDER + "</b>",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya!',
+            cancelButtonText: 'Tidak',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "post",
+                    url: "<?= base_url('Radiologi/BatalkanOrderByNoOrder'); ?>",
+                    data: {
+                        noorder: NOORDER
+                    },
+                    success: function(response, sukses) {
+                        Swal.fire({
+                            title: 'Berhasil!',
+                            text: response.sukses,
+                            icon: 'success'
+                        })
+                    }
+                });
+
+            }
+        })
+    }
+
+    function cetakHasil(NOORDER) {
+        $.ajax({
+            type: 'POST',
+            url: "<?= base_url('radiologi/cetakhasil'); ?>",
+            data: {
+                "norder": NOORDER,
+            },
+            // dataType: 'json',
+            success: function(response) {
+                $('.tampilmodal').html(response);
+                $('#ModalCetakHasil').modal('show');
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+
+            }
+        });
+    }
+
+
     $(document).ready(function() {
+        var getnorm = $('#id_norm').val();
         $('#torder_rad').DataTable({
             oLanguage: {
                 "sEmptyTable": "Data tidak ditemukan!",
@@ -72,6 +144,42 @@ foreach ($dataArr->data as $item) { ?>
             processing: true,
             serverSide: true,
             ordering: true,
+            ajax: {
+                url: '<?= base_url('Radiologi/TampilOrderRadByNorm'); ?>',
+                data: {
+                    norm: getnorm
+                }
+            },
+
+            columns: [{
+                    data: 'NOORDER',
+                    name: 'NO_ORDER'
+
+                }, {
+                    data: 'NOPEN',
+                    name: 'NOPEN'
+
+                }, {
+                    data: 'TANGGAL',
+                    name: 'TANGGAL'
+                },
+                {
+                    data: 'JAMORDER',
+                    name: 'JAMORDER'
+                }, {
+                    data: 'NAMA_PEGAWAI',
+                    name: 'NAMA_PEGAWAI'
+                }, {
+                    data: 'STATUS',
+                    name: 'STATUS'
+                }, {
+                    data: 'aksi',
+                    name: 'aksi'
+
+                }
+            ],
+            scrollY: '50vh',
+            scrollCollapse: true,
 
         });
     });

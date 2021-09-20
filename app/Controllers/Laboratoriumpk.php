@@ -287,7 +287,7 @@ class laboratoriumpk extends BaseController
 
                     <button type=\"button\" class=\"btn btn-primary btn-mini waves-effect waves-light btn-ubah\" onclick=\"cetakHasil('" . $data->NOORDER . "')\" data-toggle=\"modal\" data-target=\"#GSCCModal\" title=\"Print Hasil\"><i class=\"fas fa-print\"></i>  </button>
 
-                    <button type=\"button\" onclick=\"BatalOrder('" . $data->NOORDER . "')\"  data-backdrop=\"static\" class=\"btn btn-danger btn-mini waves-effect waves-light\" title=\"Hapus Order\"><i class=\"fas fa-trash-alt\"></i> </button>
+                    <button type=\"button\" onclick=\"BatalOrder('" . $data->NOORDER . "')\"  data-backdrop=\"static\" class=\"btn btn-danger btn-mini waves-effect waves-light\" title=\"Batalkan Order\"><i class=\"fas fa-ban\"></i> </button>
 
                     <button type=\"button\" onclick=\"ProsesOrder('" . $data->NOORDER . "')\"  data-backdrop=\"static\" class=\"btn btn-success btn-mini waves-effect waves-light\" title=\"Proses Order / Pelayanan Laboratorium\"><i class=\"fas fa-vials\"></i> </button>
 
@@ -297,11 +297,11 @@ class laboratoriumpk extends BaseController
                 if ($data->STATUS == 0) { //sampel baru dikirim
                     return "<button type=\"button\" class=\"btn btn-primary btn-mini waves-effect waves-light btn-ubah\" onclick=\"ubahData('" . $data->NOORDER . "')\" data-backdrop=\"static\" data-toggle=\"modal\" data-target=\"#GSCCModal\"><i class=\"ti-pencil-alt\"></i> Ubah Order </button>";
                 } elseif ($data->STATUS == 1) { // sampel sudah diterima dilab pk
-                    return "<label class='label label-primary'>Sampel sudah diterima</label>";
+                    return "<label class='label label-primary'> Sampel sudah diterima</label>";
                 } elseif ($data->STATUS == 2) { // hasil lab
-                    return "<button type=\"button\" class=\"btn btn-success btn-mini waves-effect waves-light btn-ubah\" onclick=\"ubahData('" . $data->NOORDER . "')\" data-backdrop=\"static\" data-toggle=\"modal\" data-target=\"#GSCCModal\"><i class=\"ti-pencil-alt\"></i> Cetak Salinan Hasil Lab</button>";
+                    return "<button type=\"button\" class=\"btn btn-success btn-mini waves-effect waves-light btn-ubah\" onclick=\"cetakHasil('" . $data->NOORDER . "')\" data-backdrop=\"static\" data-toggle=\"modal\" data-target=\"#GSCCModal\"><i class=\"fas fa-print\"></i> Cetak Salinan Hasil Lab</button>";
                 } elseif ($data->STATUS == 3) { // hasil lab
-                    return "<label class='label label-danger'>Order dibatalkan</label>";
+                    return "<label class='label label-danger'> Order dibatalkan</label>";
                 }
             })
 
@@ -678,13 +678,14 @@ class laboratoriumpk extends BaseController
                     'HASIL_METODE' => $metode[$index],
                     'HASIL_KESAN' => $kesan,
                     'HASIL_VALIDATOR_I' => $validi,
-                    'HASIL_VALIDATOR_II' => $validii
+                    'HASIL_VALIDATOR_II' => $validii,
+                    'STATUS_ORDER' => 2,
                 ));
                 $index++;
             }
 
             $torderlabPk = new Modelorder_labpk();
-            $torderlabPk->updateBatch($data, 'ID'); // insert banyak record
+            $torderlabPk->update_batch($data, 'ID'); // update banyak record
             $msg = [
                 'sukses' => 'Simpan hasil lab berhasil!!'
             ];

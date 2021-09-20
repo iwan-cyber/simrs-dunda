@@ -138,7 +138,19 @@
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/jquery-ui-1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
 <!-- <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script> -->
+
 <script type="text/javascript" src="<?= base_url() ?>/template/files/assets/js/print.js"></script>
+
+<script type="text/javascript" src="<?= base_url() ?>/template/files/assets/ckeditor/ckeditor.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+        CKEDITOR.replace('ckeditor', {
+            filebrowserImageBrowseUrl: '<?php echo base_url('template/files/assets/kcfinder/browse.php'); ?>',
+            height: '400px'
+        });
+    });
+</script>
 
 <script type="text/javascript">
     function printDiv(divName) {
