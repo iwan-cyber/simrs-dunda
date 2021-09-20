@@ -10,26 +10,9 @@ class Pegawai extends \App\Controllers\BaseController
 
     public function index()
     {
-
-        $data = [];
-
-        $data['content'] = [
-            'TITLE'=>'Data Pegawai',
-            'DESC'=>'Pengelolaan Data Pegawai',
-        ];
-
-        $data['content']['ITEM'] = [
-            ['LINK'=>'#', 'DESC'=>'Master'],
-            ['LINK'=>'#', 'DESC'=>'Pegawai']
-        ];
-
-        $this->startTema();
-        echo view('mega/box/content-header', $data);
+       
         echo view('master/pegawai');
-        echo view('mega/box/content-footer');
-        $this->endTema();
-        
-    }
+    }    
 
     public function data() 
     {

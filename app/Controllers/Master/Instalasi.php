@@ -10,25 +10,7 @@ class Instalasi extends \App\Controllers\BaseController
 
     public function index()
     {
-
-        $data = [];
-
-        $data['content'] = [
-            'TITLE'=>'Data Instalasi',
-            'DESC'=>'Pengelolaan Data Instalasi',
-        ];
-
-        $data['content']['ITEM'] = [
-            ['LINK'=>'#', 'DESC'=>'Master'],
-            ['LINK'=>'#', 'DESC'=>'Instalasi']
-        ];
-
-        $this->startTema();
-        echo view('mega/box/content-header', $data);       
-        echo view('master/instalasi');
-        echo view('mega/box/content-footer');
-        $this->endTema();
-        
+        echo view('master/instalasi');    
     }
 
     public function register()

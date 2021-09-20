@@ -13,19 +13,6 @@ class Kamar extends \App\Controllers\BaseController
 
     public function index()
     {
-
-        $data = [];
-
-        $data['content'] = [
-            'TITLE'=>'Data Kamar',
-            'DESC'=>'Pengelolaan Data Kamar',
-        ];
-
-        $data['content']['ITEM'] = [
-            ['LINK'=>'#', 'DESC'=>'Master'],
-            ['LINK'=>'#', 'DESC'=>'Kamar']
-        ];
-
         
         $unit = new UnitModel();
         $kelas = new KelasModel();
@@ -33,12 +20,8 @@ class Kamar extends \App\Controllers\BaseController
         $kamar['UNIT'] = $unit->get(2); // 2 = instalasi rawat inap
         $kamar['KELAS'] = $kelas->findAll();
 
-        $this->startTema();
-        echo view('mega/box/content-header', $data);
-        echo view('master/kamar', $kamar);
-        echo view('mega/box/content-footer');
-        $this->endTema();
         
+        echo view('master/kamar', $kamar);
     }
 
     public function data() 
@@ -192,21 +175,6 @@ class Kamar extends \App\Controllers\BaseController
         $this->response->setJSON($data);
         $this->response->send();
     }
-
-    public function startTema()
-    {
-        echo view('mega/box/header');
-        echo view('mega/box/navbar');
-        echo view('mega/box/sidebar-menu');
-    }
-
-    public function endTema()
-    {
-        echo view('mega/box/footer');
-    }
-
-
-
 
 
 }

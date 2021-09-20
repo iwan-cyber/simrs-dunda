@@ -13,18 +13,6 @@ class PegawaiProfesi extends \App\Controllers\BaseController
     public function index()
     {
 
-        $data = [];
-
-        $data['content'] = [
-            'TITLE'=>'Data Profesi Pegawai',
-            'DESC'=>'Pengelolaan Data Profesi Pegawai',
-        ];
-
-        $data['content']['ITEM'] = [
-            ['LINK'=>'#', 'DESC'=>'Master'],
-            ['LINK'=>'#', 'DESC'=>'Profesi Pegawai']
-        ];
-
         $pegawaiKelompok = new PegawaiKelompokModel();
         $pegawai = new PegawaiModel();
 
@@ -32,11 +20,8 @@ class PegawaiProfesi extends \App\Controllers\BaseController
         $data['PEGAWAI'] = $pegawai->findAll();
 
 
-        $this->startTema();
-        echo view('mega/box/content-header', $data);
         echo view('master/pegawaiProfesi');
-        echo view('mega/box/content-footer');
-        $this->endTema();
+        
         
     }    
 

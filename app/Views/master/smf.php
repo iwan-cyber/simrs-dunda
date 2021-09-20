@@ -1,14 +1,13 @@
-<?php 
+<?= $this->extend('mega/horizontal/template'); ?>
 
-echo view('mega/box/css-dt');
+<?= $this->section('content'); ?>
 
-?>
+<?= $this->include('mega/horizontal/css-dt'); ?>
 
-<div class="col-sm-12">
     <div class="card">
 
         <div class="card-header">
-            <h5>Instalasi</h5>
+            <h5>DATA SMF</h5>
             <div class="card-header-right">
                 <div class="row">
                     <div class="col-md-12">
@@ -43,7 +42,7 @@ echo view('mega/box/css-dt');
         </div><!-- card-block-->
 
     </div><!-- card -->
-</div><!-- col-sm-12 -->
+
 
 
 <!-- Modal -->
@@ -77,15 +76,16 @@ echo view('mega/box/css-dt');
   </div>
 </div>
 
-
-<?php echo view("mega/box/script"); ?>
-
-<?php echo view("mega/box/script-dt"); ?>
-
-
-
+<?= $this->include('mega/horizontal/script'); ?>
+<?= $this->include('mega/horizontal/script-dt'); ?>
 
 <script>
     const url = '<?= base_url('master/smf'); ?>';
 </script>
 <script src="<?= base_url('app/master/smf.js?'.rand()); ?>"></script>
+
+
+<?= $this->endSection(); ?>
+
+
+
