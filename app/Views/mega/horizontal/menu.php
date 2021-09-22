@@ -4,56 +4,44 @@
             <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                    <span class="pcoded-mtext">RUANGAN</span>
+                    <span class="pcoded-mtext">RUMAH SAKIT</span>
                     <span class="pcoded-mcaret"></span>
                 </a>
                 <ul class="pcoded-submenu">
                     
                     <li class="">
                         <a href="<?= base_url('master/smf'); ?>" class="waves-effect waves-dark">
-                            <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                            <span class="pcoded-mtext" data-i18n="nav.navigate.main">SMF</span>
-                            <span class="pcoded-mcaret"></span>
+                            <i class="ti-agenda"></i> SMF
                         </a>
                     </li>
 
                     <li class="">
                         <a href="<?= base_url('master/instalasi'); ?>" class="waves-effect waves-dark">
-                            <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                            <span class="pcoded-mtext" data-i18n="nav.navigate.main">INSTALASI</span>
-                            <span class="pcoded-mcaret"></span>
+                            <i class="ti-agenda"></i> INSTALASI
                         </a>
                     </li>
 
                     <li class="">
                         <a href="<?= base_url('master/unit'); ?>" class="waves-effect waves-dark">
-                            <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                            <span class="pcoded-mtext" data-i18n="nav.navigate.main">UNIT</span>
-                            <span class="pcoded-mcaret"></span>
+                            <i class="ti-agenda"></i> UNIT
                         </a>
                     </li>
 
                     <li class="">
                         <a href="<?= base_url('master/ruangan'); ?>" class="waves-effect waves-dark">
-                            <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                            <span class="pcoded-mtext" data-i18n="nav.navigate.main">RUANGAN</span>
-                            <span class="pcoded-mcaret"></span>
+                            <i class="ti-agenda"></i> RUANGAN
                         </a>
                     </li>
 
                     <li class="">
                         <a href="<?= base_url('master/kamar'); ?>" class="waves-effect waves-dark">
-                            <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                            <span class="pcoded-mtext" data-i18n="nav.navigate.main">KAMAR</span>
-                            <span class="pcoded-mcaret"></span>
+                            <i class="ti-agenda"></i> KAMAR
                         </a>
                     </li>
 
                     <li class="">
                         <a href="<?= base_url('master/bed'); ?>" class="waves-effect waves-dark">
-                            <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                            <span class="pcoded-mtext" data-i18n="nav.navigate.main">TEMPAT TIDUR</span>
-                            <span class="pcoded-mcaret"></span>
+                            <i class="ti-agenda"></i> TEMPAT TIDUR
                         </a>
                     </li>
 
@@ -63,33 +51,25 @@
 
             <li class="pcoded-hasmenu">
                 <a href="javascript:void(0)" class="waves-effect waves-dark">
-                    <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                    <span class="pcoded-mtext">PEGAWAI</span>
-                    <span class="pcoded-mcaret"></span>
+                    <i class="ti-id-badge"></i> PEGAWAI
                 </a>
                 <ul class="pcoded-submenu">
                     
                     <li class="">
                         <a href="<?= base_url('master/pegawai/kelompok'); ?>" class="waves-effect waves-dark">
-                            <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                            <span class="pcoded-mtext" data-i18n="nav.navigate.main">KELOMPOK PEGAWAI</span>
-                            <span class="pcoded-mcaret"></span>
+                            <i class="ti-id-badge"></i> KELOMPOK PEGAWAI
                         </a>
                     </li>
 
                     <li class="">
                         <a href="<?= base_url('master/pegawai'); ?>" class="waves-effect waves-dark">
-                            <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                            <span class="pcoded-mtext" data-i18n="nav.navigate.main">DATA PEGAWAI</span>
-                            <span class="pcoded-mcaret"></span>
+                            <i class="ti-id-badge"></i> DATA PEGAWAI
                         </a>
                     </li>
 
                     <li class="">
                         <a href="<?= base_url('master/pegawai/profesi'); ?>" class="waves-effect waves-dark">
-                            <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                            <span class="pcoded-mtext" data-i18n="nav.navigate.main">PROFESI PEGAWAI</span>
-                            <span class="pcoded-mcaret"></span>
+                            <i class="ti-id-badge"></i> PROFESI PEGAWAI
                         </a>
                     </li>
 
@@ -98,34 +78,28 @@
 
             <li class="">
                 <a href="<?= base_url('master/referensi'); ?>" class="waves-effect waves-dark">
-                    <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                    <span class="pcoded-mtext">REFERENSI</span>
-                    <span class="pcoded-mcaret"></span>
+                    <i class="ti-book"></i> REFERENSI
                   </a>
             </li>
 
             <li class="">
                 <a href="<?= base_url('master/user'); ?>" class="waves-effect waves-dark">
-                    <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                    <span class="pcoded-mtext">USER</span>
-                    <span class="pcoded-mcaret"></span>
+                    <i class="ti-user"></i> USER
                   </a>
             </li>
 
-            <li class="">
+            <!--li class="">
                 <a href="<?= base_url('master/penjamin'); ?>" class="waves-effect waves-dark">
                     <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
                     <span class="pcoded-mtext">PENJAMIN</span>
                     <span class="pcoded-mcaret"></span>
                   </a>
-            </li>
+            </li-->
 
             <li class="">
                 <a href="<?= base_url('master/ppk'); ?>" class="waves-effect waves-dark">
-                    <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                    <span class="pcoded-mtext">PPK</span>
-                    <span class="pcoded-mcaret"></span>
-                  </a>
+                    <i class="ti-location-arrow"></i> PPK
+                </a>
             </li>
 
         </ul>

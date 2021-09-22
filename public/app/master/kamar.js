@@ -176,8 +176,8 @@ function setKamar(dataKamar)
         
         let tombol = `<div class="btn-group " role="group" data-toggle="tooltip" data-placement="top" title="" data-original-title=".btn-xlg">`;
 
-        let tombol_edit = `<button type="button" class="btn btn-info btn-out btn-sm waves-effect waves-light" id="edit_${kamar.ID}" onclick="edit(${kamar.ID})" data-kamar='${data_kamar}'><i class="ti-close"></i>Edit</button>`;
-        let tombol_hapus = `<button type="button" class="btn btn-danger btn-out btn-sm waves-effect waves-light" id="hapus_${kamar.ID}" onclick="konfirmasi_hapus(${kamar.ID})"><i class="ti-pencil"></i>Hapus</button>`;
+        let tombol_edit = `<button type="button" class="btn btn-info btn-mini waves-effect waves-light" id="edit_${kamar.ID}" onclick="edit(${kamar.ID})" data-kamar='${data_kamar}'><i class="ti-close"></i>Edit</button>`;
+        let tombol_hapus = `<button type="button" class="btn btn-danger btn-mini waves-effect waves-light" id="hapus_${kamar.ID}" onclick="konfirmasi_hapus(${kamar.ID})"><i class="ti-pencil"></i>Hapus</button>`;
 
         let tombol_end = `</div>`;
 

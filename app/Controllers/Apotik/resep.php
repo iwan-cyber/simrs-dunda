@@ -1,57 +1,63 @@
 <?php
 
-namespace App\Controllers\Master;
+namespace App\Controllers\Apotik;
 
-use App\Models\Master\PegawaiKelompokModel;
+//use App\Models\Master\ApotikModel;
 
-class PegawaiKelompok extends \App\Controllers\BaseController
+class Resep extends \App\Controllers\BaseController
 {
 
     public function index()
-    {
-
-        echo view('master/pegawaiKelompok');
-    }    
+    { {
+            $data = [
+                'title'         => 'Resep Pasien',
+                'subtitle'      => 'Order Resep',
+                'isi'           => 'apotik/order_baru_view.php',
+            ];
+        }
+        echo view('layout/v_wrapper', $data);
+    }
 
     public function data() 
     {
 
-        $pegawai = new PegawaiKelompokModel();
+        $apotik = new ApotikModel();
 
-        //var_dump($pegawai->getAll());
+        //var_dump($apotik->getAll());
             
         $start = (int) $this->request->getPost('start');
         $length = (int) $this->request->getPost('length');
 
         
-        $data = $pegawai->findAll();
+        $data = $apotik->findAll();
         
         foreach ($data as $row)
         {
             $id = $row['ID'];
             
-            $edit = '<button type="button" class="btn btn-info btn-mini waves-effect waves-light" 
+            $edit = '<button type="button" class="btn btn-info btn-out btn-sm waves-effect waves-light" 
                         id="edit_' . $id . '" 
                         onclick="edit(' . $id . ')"
-                        data-kelompok="' . $row['KELOMPOK_PEGAWAI'] . '">
-                            <i class="ti-pencil"></i>Edit
+                        apotik="' . $row['KELAS'] . '">
+                            <i class="ti-close"></i>Edit
                     </button>&nbsp;';
 
-            $hapus = '<button type="button" class="btn btn-danger btn-mini waves-effect waves-light" 
+            $hapus = '<button type="button" class="btn btn-danger btn-out btn-sm waves-effect waves-light" 
                         id="hapus_' . $id . '" 
                         onclick="konfirmasi_hapus(' . $id . ')">
-                            <i class="ti-close"></i>Hapus
+                            <i class="ti-pencil"></i>Hapus
                     </button>';
 
 
             $tombol = '<div class="btn-group " role="group" data-toggle="tooltip" data-placement="top" title="" data-original-title=".btn-xlg">'.$edit.$hapus.'</div>';
                     
-    
+            
+
             $list[] = [
                 $row['ID'],
-                $row['KELOMPOK_PEGAWAI'],
+                $row['KELAS'],
                 $tombol
-         ];
+            ];
 
         }
         
@@ -68,34 +74,23 @@ class PegawaiKelompok extends \App\Controllers\BaseController
         $this->response->send();
     }
 
-    public function register()
-    {
-        $pegawai = new PegawaiKelompokModel();
-
-        $register = $pegawai->findAll();
-
-        $this->sukses('Berhasil mengambil data register', $register);
-
-
-    }
-
     public function simpan()
     {
 
-            $pegawai = new PegawaiKelompokModel();
+            $apotik = new ApotikModel();
 
             $data = [
-                'KELOMPOK_PEGAWAI'=>$this->request->getPost('KELOMPOK_PEGAWAI')
+                'KELAS'=>$this->request->getPost('KELAS'),
             ];
 
             if(empty($this->request->getPost('ID')))
             {
-                $proses = $pegawai->insert($data);
+                $proses = $apotik->insert($data);
             }
             else
             {
                 $id = $this->request->getPost('ID');
-                $proses = $pegawai->update($id, $data);
+                $proses = $apotik->update($id, $data);
             }
 
 
@@ -117,8 +112,8 @@ class PegawaiKelompok extends \App\Controllers\BaseController
 
             if( ! empty($id))
             {
-                $pegawai = new PegawaiKelompokModel();
-                $hapus = $pegawai->delete($id);
+                $apotik = new ApotikModel();
+                $hapus = $apotik->delete($id);
 
                 if($hapus)
                     $this->sukses('Berhasil menghapus Item', $hapus);

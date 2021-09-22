@@ -3,6 +3,7 @@
 <script type="text/javascript" src="<?= base_url('template/files/bower_components/jquery-ui/js/jquery-ui.min.js'); ?>"></script>
 <script type="text/javascript" src="<?= base_url('template/files/bower_components/popper.js/js/popper.min.js'); ?>"></script>
 <script type="text/javascript" src="<?= base_url('template/files/bower_components/bootstrap/js/bootstrap.min.js'); ?>"></script>
+
 <!-- waves js -->
 <script src="<?= base_url('template/files/assets/pages/waves/js/waves.min.js'); ?>"></script>
 <!-- jquery slimscroll js -->

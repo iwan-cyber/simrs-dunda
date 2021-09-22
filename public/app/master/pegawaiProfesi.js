@@ -75,14 +75,14 @@ function setListPegawai(dataPegawai) {
 
     dataPegawai.forEach(function(pegawai) {
 
-        let edit = `<button type="button" class="btn btn-info btn-out btn-sm waves-effect waves-light" 
+        let edit = `<button type="button" class="btn btn-info btn-mini waves-effect waves-light" 
                         id="edit_${pegawai.ID}" 
                         onclick="edit(${pegawai.ID})"
                         data-pegawai='${JSON.stringify(pegawai)}'>
                             <i class="ti-close"></i>Edit
                     </button>&nbsp;`;
 
-        let hapus = `<button type="button" class="btn btn-danger btn-out btn-sm waves-effect waves-light" 
+        let hapus = `<button type="button" class="btn btn-danger btn-mini waves-effect waves-light" 
                         id="hapus_${pegawai.ID}" 
                         onclick="konfirmasi_hapus(${pegawai.ID})">
                             <i class="ti-pencil"></i>Hapus

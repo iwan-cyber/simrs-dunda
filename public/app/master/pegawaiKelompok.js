@@ -89,7 +89,13 @@ function register() {
         serverSide: true,
         ajax:{
             url: url+'/data'
-        }
+        },
+        columns: [
+            {width: "5%"},
+            {width: "75%"},
+            {width: "15%"},
+
+        ]
     });
 }
 

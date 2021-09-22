@@ -14,30 +14,14 @@ class Bed extends \App\Controllers\BaseController
     public function index()
     {
 
-        $data = [];
-
-        $data['content'] = [
-            'TITLE'=>'Data Bed',
-            'DESC'=>'Pengelolaan Data Bed',
-        ];
-
-        $data['content']['ITEM'] = [
-            ['LINK'=>'#', 'DESC'=>'Master'],
-            ['LINK'=>'#', 'DESC'=>'Bed']
-        ];
-
-        
         $unit = new UnitModel();
         $kelas = new KelasModel();
 
         $bed['UNIT'] = $unit->get(2); // 2 = instalasi rawat inap
         $bed['KELAS'] = $kelas->findAll();
 
-        $this->startTema();
-        echo view('mega/box/content-header', $data);
         echo view('master/bed', $bed);
-        echo view('mega/box/content-footer');
-        $this->endTema();
+        
         
     }
 

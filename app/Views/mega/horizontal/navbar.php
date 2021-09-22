@@ -21,6 +21,13 @@
                                 </a>
                             </li>
                         </ul>
+                        <ul class="nav-right">
+                            <li>
+                                <a href="<?= base_url(); ?>">
+                                   <i class="ti-home"></i> Ke Menu Utama
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>

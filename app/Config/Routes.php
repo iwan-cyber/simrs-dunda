@@ -71,9 +71,11 @@ $routes->get('/master/pegawai/unit', 'Master/PegawaiUnit::index');
 
 //routing untuk pegawai
 $routes->get('/master/pegawai/profesi', 'Master/PegawaiProfesi::index');
+$routes->get('/master/pegawai/kelompok', 'Master/PegawaiKelompok::index');
 $routes->post('/master/pegawai/profesi/simpan', 'Master/PegawaiProfesi::simpan');
 $routes->post('/master/pegawai/profesi/hapus/(:num)', 'Master/PegawaiProfesi::hapus');
 $routes->post('/master/pegawai/profesi/(:num)', 'Master/PegawaiProfesi::get');
+
 
 
 /*
