@@ -94,8 +94,11 @@ function register() {
         },
         columns: [
             {width: "5%"},
+            {width: "5%"},
+            {width: "5%"},
+            {width: "5%"},
+            {width: "40%"},
             {width: "15%"},
-            {width: "65%"},
             {width: "15%"},
         ]
 
