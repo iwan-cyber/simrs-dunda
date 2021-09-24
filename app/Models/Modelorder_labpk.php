@@ -29,6 +29,10 @@ class Modelorder_labpk extends Model
         'USER_PENGIRIM',
         'HASIL_LAB',
         'HASIL_TANGGAL',
-        'HASIL_JAM'
+        'HASIL_JAM',
+        'HASIL_METODE',
+        'HASIL_KESAN',
+        'HASIL_VALIDATOR_I',
+        'HASIL_VALIDATOR_II'
     ];
 }

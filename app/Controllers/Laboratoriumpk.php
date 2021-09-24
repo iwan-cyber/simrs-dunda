@@ -31,6 +31,61 @@ class laboratoriumpk extends BaseController
         return  view('detail_laboratorium/modal_entri_hasil', $data);
     }
 
+    public function cetakhasil()
+    {
+        $db = \Config\Database::connect();
+        $noOrder = $this->request->getVar('norder');
+        $row = DataTables::use('v_group_order_labpk')
+            ->select('m_pegawai.NAMA_PEGAWAI as NAMA_PEGAWAI, v_group_order_labpk.NO_ORDER as NOORDER, v_group_order_labpk.TGL_ORDER as TGLORDER, v_group_order_labpk.JAM_ORDER as JAMORDER, v_group_order_labpk.STATUS_ORDER as STATUSORDER, v_group_order_labpk.NOPEN as NOPEN, m_pasien.NAMA as NAMA, m_pasien.TGLLAHIR as TGL_LAHIR, m_pasien.JENISKELAMIN as JENKEL, m_pasien.id as IDPASIEN, v_group_order_labpk.NORM, m_pegawai.NAMA_PEGAWAI as DOKTERPENGIRIM, m_penjamin.PENJAMIN as PENJAMIN, m_ruangan.RUANGAN as RUANGAN, pendaftaran.STATUS as STATUS, v_group_order_labpk.ORDA AS ORDA, v_group_order_labpk.HASIL_TANGGAL as HASILTGL, v_group_order_labpk.HASIL_JAM as HASILJAM, v_group_order_labpk.HASIL_KESAN as KESAN, v_group_order_labpk.HASIL_VALIDATOR_I AS VALIDI, v_group_order_labpk.HASIL_VALIDATOR_II AS VALIDII')
+
+            ->join('m_pegawai', 'v_group_order_labpk.DOKTER_PENGIRIM = m_pegawai.ID', 'INNER')
+            ->join('m_pasien', 'v_group_order_labpk.NORM = m_pasien.NOMR', 'INNER')
+            ->join('pendaftaran', 'v_group_order_labpk.NOPEN = pendaftaran.NOPEN', 'INNER')
+            ->join('m_penjamin', 'pendaftaran.ID_PENJAMIN = m_penjamin.ID', 'INNER')
+            ->join('m_ruangan', 'pendaftaran.ID_RUANGAN = m_ruangan.ID', 'INNER')
+            ->where(['v_group_order_labpk.NO_ORDER' => $noOrder])
+            ->make(true);
+        $data = [
+            'id' => $noOrder,
+            'data'  => $row
+        ];
+        return  view('detail_laboratorium/modal_cetak_hasil', $data);
+    }
+
+    public function DataHasilOrderByNorder()
+    {
+        if ($this->request->isAJAX()) {
+            $noOrder = $this->request->getVar('noorderlpk');
+            $DaftarOrderLPK = DataTables::use('t_order_labpk')
+                ->select('t_order_labpk.HASIL_LAB as HASIL, t_order_labpk.ID as IDORDER, m_uji_tes.id_uji AS IDUJI, m_uji_tes.uji_tes AS NAMAPEMERIKSAAN, t_order_labpk.NO_ORDER AS NOORDER, m_uji_tes.satuan AS SATUAN, m_uji_tes.nilai_normal AS NILAI_NORMAL, t_order_labpk.HASIL_METODE as METODE, m_sub_kelompok.nama_sub AS SUBKELOMPOK, t_order_labpk.HASIL_VALIDATOR_I AS VALIDI, t_order_labpk.HASIL_VALIDATOR_II AS VALIDII')
+                ->join('m_uji_tes', 't_order_labpk.ID_UJI = m_uji_tes.id_uji', 'LEFT')
+                ->join('m_sub_kelompok', 't_order_labpk.ID_SUB=m_sub_kelompok.id_sub', 'LEFT')
+
+                ->addColumn('PEMERIKSAAN', function ($data) {
+                    return "$data->NAMAPEMERIKSAAN";
+                })
+                ->addColumn('HASIL', function ($data) {
+                    return "$data->HASIL";
+                })
+                ->addColumn('SUBKELOMPOK', function ($data) {
+                    return "$data->SUBKELOMPOK";
+                })
+                ->addColumn('METODE', function ($data) {
+                    return "$data->METODE";
+                })
+                ->addColumn('SATUAN', function ($data) {
+                    return "$data->SATUAN";
+                })
+                ->addColumn('NILAI_NORMAL', function ($data) {
+                    return "$data->NILAI_NORMAL";
+                })
+
+                ->where(['t_order_labpk.NO_ORDER' => $noOrder])
+                ->make(true);
+            return $DaftarOrderLPK;
+        }
+    }
+
     public function form_order()
     {
         $db = \Config\Database::connect();
@@ -232,7 +287,7 @@ class laboratoriumpk extends BaseController
 
                     <button type=\"button\" class=\"btn btn-primary btn-mini waves-effect waves-light btn-ubah\" onclick=\"cetakHasil('" . $data->NOORDER . "')\" data-toggle=\"modal\" data-target=\"#GSCCModal\" title=\"Print Hasil\"><i class=\"fas fa-print\"></i>  </button>
 
-                    <button type=\"button\" onclick=\"BatalOrder('" . $data->NOORDER . "')\"  data-backdrop=\"static\" class=\"btn btn-danger btn-mini waves-effect waves-light\" title=\"Hapus Order\"><i class=\"fas fa-trash-alt\"></i> </button>
+                    <button type=\"button\" onclick=\"BatalOrder('" . $data->NOORDER . "')\"  data-backdrop=\"static\" class=\"btn btn-danger btn-mini waves-effect waves-light\" title=\"Batalkan Order\"><i class=\"fas fa-ban\"></i> </button>
 
                     <button type=\"button\" onclick=\"ProsesOrder('" . $data->NOORDER . "')\"  data-backdrop=\"static\" class=\"btn btn-success btn-mini waves-effect waves-light\" title=\"Proses Order / Pelayanan Laboratorium\"><i class=\"fas fa-vials\"></i> </button>
 
@@ -242,11 +297,11 @@ class laboratoriumpk extends BaseController
                 if ($data->STATUS == 0) { //sampel baru dikirim
                     return "<button type=\"button\" class=\"btn btn-primary btn-mini waves-effect waves-light btn-ubah\" onclick=\"ubahData('" . $data->NOORDER . "')\" data-backdrop=\"static\" data-toggle=\"modal\" data-target=\"#GSCCModal\"><i class=\"ti-pencil-alt\"></i> Ubah Order </button>";
                 } elseif ($data->STATUS == 1) { // sampel sudah diterima dilab pk
-                    return "<label class='label label-primary'>Sampel sudah diterima</label>";
+                    return "<label class='label label-primary'> Sampel sudah diterima</label>";
                 } elseif ($data->STATUS == 2) { // hasil lab
-                    return "<button type=\"button\" class=\"btn btn-success btn-mini waves-effect waves-light btn-ubah\" onclick=\"ubahData('" . $data->NOORDER . "')\" data-backdrop=\"static\" data-toggle=\"modal\" data-target=\"#GSCCModal\"><i class=\"ti-pencil-alt\"></i> Cetak Salinan Hasil Lab</button>";
+                    return "<button type=\"button\" class=\"btn btn-success btn-mini waves-effect waves-light btn-ubah\" onclick=\"cetakHasil('" . $data->NOORDER . "')\" data-backdrop=\"static\" data-toggle=\"modal\" data-target=\"#GSCCModal\"><i class=\"fas fa-print\"></i> Cetak Salinan Hasil Lab</button>";
                 } elseif ($data->STATUS == 3) { // hasil lab
-                    return "<label class='label label-danger'>Order dibatalkan</label>";
+                    return "<label class='label label-danger'> Order dibatalkan</label>";
                 }
             })
 
@@ -264,7 +319,7 @@ class laboratoriumpk extends BaseController
             $noOrder = $this->request->getVar('noorderlpk');
 
             $DaftarOrderLPK = $this->db->table('t_order_labpk')
-                ->select('t_order_labpk.HASIL_LAB as HASIL, t_order_labpk.ID as IDORDER, m_uji_tes.id_uji AS IDUJI, m_uji_tes.uji_tes AS NAMAPEMERIKSAAN, t_order_labpk.NO_ORDER AS NOORDER, m_uji_tes.satuan AS SATUAN, m_uji_tes.nilai_normal AS NILAI_NORMAL')
+                ->select('t_order_labpk.HASIL_LAB as HASIL, t_order_labpk.ID as IDORDER, m_uji_tes.id_uji AS IDUJI, m_uji_tes.uji_tes AS NAMAPEMERIKSAAN, t_order_labpk.NO_ORDER AS NOORDER, m_uji_tes.satuan AS SATUAN, m_uji_tes.nilai_normal AS NILAI_NORMAL, t_order_labpk.HASIL_METODE as METODE')
                 ->join('m_uji_tes', 't_order_labpk.ID_UJI = m_uji_tes.id_uji', 'LEFT')
                 ->where(['t_order_labpk.NO_ORDER' => $noOrder])
                 ->get();
@@ -277,7 +332,303 @@ class laboratoriumpk extends BaseController
                         <td style=\"text-align: left;\">" . $row['NAMAPEMERIKSAAN'] . "
                         <input type=\"hidden\" name=\"idorder[]\" value=\"" . $row['IDORDER'] . "\" required>
                         </td>
-                        <td><input type=\"text\" placeholder=\"Entri hasil...\" value=\"" . $row['HASIL'] . "\" name=\"hasil[]\" id=\"hasil[]\" required></td>
+                        <td><input type=\"text\" placeholder=\"Entri hasil...\" value=\"" . $row['HASIL'] . "\" name=\"hasil[]\" id=\"hasil[]\" style=\"width: 50px;\" required></td>
+                        <td>
+                            <select class=\"form-control-sm\" name=\"metode[]\" id=\"metode[]\" required>
+                                
+                                ";
+                if ($row['METODE'] == 'Imunokromatografi') {
+                    $isidata .= "
+                                    <option value=\"\">Pilih</option>
+                                    <option value=\"Imunokromatografi\" selected>Imunokromatografi</option>
+                                    <option value=\"Enzimatik: Heksokinase\">Enzimatik: Heksokinase</option>
+                                    <option value=\"Enzimatik Jaffe\">Enzimatik Jaffe</option>
+                                    <option value=\"Westergreen\">Westergreen</option>
+                                    <option value=\"POCT Imunokromatografi\">POCT Imunokromatografi</option>
+                                    <option value=\"GOD POD\">GOD POD</option>
+                                    <option value=\"Spektrofotometri\">Spektrofotometri</option>
+                                    <option value=\"Enzimatik Kinetik\">Enzimatik Kinetik</option>
+                                    <option value=\"GPO - PAP\">GPO - PAP</option>
+                                    <option value=\"CHOD - PAP\">CHOD - PAP</option>
+                                    <option value=\"Biuret\">Biuret</option>
+                                    <option value=\"Brom Creasol Green (BCG)\">Brom Creasol Green (BCG)</option>
+                                    <option value=\"Enzimatik UV\">Enzimatik UV</option>
+                                    <option value=\"Kololimetrik\">Kololimetrik</option>
+                                    <option value=\"Afinitas Boronat\">Afinitas Boronat</option>";
+                } elseif ($row['METODE'] == 'Enzimatik: Heksokinase') {
+                    $isidata .= "
+                                    <option value=\"\">Pilih</option>
+                                    <option value=\"Imunokromatografi\">Imunokromatografi</option>
+                                    <option value=\"Enzimatik: Heksokinase\" selected>Enzimatik: Heksokinase</option>
+                                    <option value=\"Enzimatik Jaffe\">Enzimatik Jaffe</option>
+                                    <option value=\"Westergreen\">Westergreen</option>
+                                    <option value=\"POCT Imunokromatografi\">POCT Imunokromatografi</option>
+                                    <option value=\"GOD POD\">GOD POD</option>
+                                    <option value=\"Spektrofotometri\">Spektrofotometri</option>
+                                    <option value=\"Enzimatik Kinetik\">Enzimatik Kinetik</option>
+                                    <option value=\"GPO - PAP\">GPO - PAP</option>
+                                    <option value=\"CHOD - PAP\">CHOD - PAP</option>
+                                    <option value=\"Biuret\">Biuret</option>
+                                    <option value=\"Brom Creasol Green (BCG)\">Brom Creasol Green (BCG)</option>
+                                    <option value=\"Enzimatik UV\">Enzimatik UV</option>
+                                    <option value=\"Kololimetrik\">Kololimetrik</option>
+                                    <option value=\"Afinitas Boronat\">Afinitas Boronat</option>";
+                } elseif ($row['METODE'] == 'Enzimatik Jaffe') {
+                    $isidata .= "
+                                    <option value=\"\">Pilih</option>
+                                    <option value=\"Imunokromatografi\">Imunokromatografi</option>
+                                    <option value=\"Enzimatik: Heksokinase\">Enzimatik: Heksokinase</option>
+                                    <option value=\"Enzimatik Jaffe\" selected>Enzimatik Jaffe</option>
+                                    <option value=\"Westergreen\">Westergreen</option>
+                                    <option value=\"POCT Imunokromatografi\">POCT Imunokromatografi</option>
+                                    <option value=\"GOD POD\">GOD POD</option>
+                                    <option value=\"Spektrofotometri\">Spektrofotometri</option>
+                                    <option value=\"Enzimatik Kinetik\">Enzimatik Kinetik</option>
+                                    <option value=\"GPO - PAP\">GPO - PAP</option>
+                                    <option value=\"CHOD - PAP\">CHOD - PAP</option>
+                                    <option value=\"Biuret\">Biuret</option>
+                                    <option value=\"Brom Creasol Green (BCG)\">Brom Creasol Green (BCG)</option>
+                                    <option value=\"Enzimatik UV\">Enzimatik UV</option>
+                                    <option value=\"Kololimetrik\">Kololimetrik</option>
+                                    <option value=\"Afinitas Boronat\">Afinitas Boronat</option>";
+                } elseif ($row['METODE'] == 'Westergreen') {
+                    $isidata .= "
+                                    <option value=\"\">Pilih</option>
+                                    <option value=\"Imunokromatografi\">Imunokromatografi</option>
+                                    <option value=\"Enzimatik: Heksokinase\">Enzimatik: Heksokinase</option>
+                                    <option value=\"Enzimatik Jaffe\">Enzimatik Jaffe</option>
+                                    <option value=\"Westergreen\" selected>Westergreen</option>
+                                    <option value=\"POCT Imunokromatografi\">POCT Imunokromatografi</option>
+                                    <option value=\"GOD POD\">GOD POD</option>
+                                    <option value=\"Spektrofotometri\">Spektrofotometri</option>
+                                    <option value=\"Enzimatik Kinetik\">Enzimatik Kinetik</option>
+                                    <option value=\"GPO - PAP\">GPO - PAP</option>
+                                    <option value=\"CHOD - PAP\">CHOD - PAP</option>
+                                    <option value=\"Biuret\">Biuret</option>
+                                    <option value=\"Brom Creasol Green (BCG)\">Brom Creasol Green (BCG)</option>
+                                    <option value=\"Enzimatik UV\">Enzimatik UV</option>
+                                    <option value=\"Kololimetrik\">Kololimetrik</option>
+                                    <option value=\"Afinitas Boronat\">Afinitas Boronat</option>";
+                } elseif ($row['METODE'] == 'POCT Imunokromatografi') {
+                    $isidata .= "
+                                    <option value=\"\">Pilih</option>
+                                    <option value=\"Imunokromatografi\">Imunokromatografi</option>
+                                    <option value=\"Enzimatik: Heksokinase\">Enzimatik: Heksokinase</option>
+                                    <option value=\"Enzimatik Jaffe\">Enzimatik Jaffe</option>
+                                    <option value=\"Westergreen\">Westergreen</option>
+                                    <option value=\"POCT Imunokromatografi\" selected>POCT Imunokromatografi</option>
+                                    <option value=\"GOD POD\">GOD POD</option>
+                                    <option value=\"Spektrofotometri\">Spektrofotometri</option>
+                                    <option value=\"Enzimatik Kinetik\">Enzimatik Kinetik</option>
+                                    <option value=\"GPO - PAP\">GPO - PAP</option>
+                                    <option value=\"CHOD - PAP\">CHOD - PAP</option>
+                                    <option value=\"Biuret\">Biuret</option>
+                                    <option value=\"Brom Creasol Green (BCG)\">Brom Creasol Green (BCG)</option>
+                                    <option value=\"Enzimatik UV\">Enzimatik UV</option>
+                                    <option value=\"Kololimetrik\">Kololimetrik</option>
+                                    <option value=\"Afinitas Boronat\">Afinitas Boronat</option>";
+                } elseif ($row['METODE'] == 'GOD POD') {
+                    $isidata .= "
+                                    <option value=\"\">Pilih</option>
+                                    <option value=\"Imunokromatografi\">Imunokromatografi</option>
+                                    <option value=\"Enzimatik: Heksokinase\">Enzimatik: Heksokinase</option>
+                                    <option value=\"Enzimatik Jaffe\">Enzimatik Jaffe</option>
+                                    <option value=\"Westergreen\">Westergreen</option>
+                                    <option value=\"POCT Imunokromatografi\">POCT Imunokromatografi</option>
+                                    <option value=\"GOD POD\" selected>GOD POD</option>
+                                    <option value=\"Spektrofotometri\">Spektrofotometri</option>
+                                    <option value=\"Enzimatik Kinetik\">Enzimatik Kinetik</option>
+                                    <option value=\"GPO - PAP\">GPO - PAP</option>
+                                    <option value=\"CHOD - PAP\">CHOD - PAP</option>
+                                    <option value=\"Biuret\">Biuret</option>
+                                    <option value=\"Brom Creasol Green (BCG)\">Brom Creasol Green (BCG)</option>
+                                    <option value=\"Enzimatik UV\">Enzimatik UV</option>
+                                    <option value=\"Kololimetrik\">Kololimetrik</option>
+                                    <option value=\"Afinitas Boronat\">Afinitas Boronat</option>";
+                } elseif ($row['METODE'] == 'Spektrofotometri') {
+                    $isidata .= "
+                                    <option value=\"\">Pilih</option>
+                                    <option value=\"Imunokromatografi\">Imunokromatografi</option>
+                                    <option value=\"Enzimatik: Heksokinase\">Enzimatik: Heksokinase</option>
+                                    <option value=\"Enzimatik Jaffe\">Enzimatik Jaffe</option>
+                                    <option value=\"Westergreen\">Westergreen</option>
+                                    <option value=\"POCT Imunokromatografi\">POCT Imunokromatografi</option>
+                                    <option value=\"GOD POD\">GOD POD</option>
+                                    <option value=\"Spektrofotometri\" selected>Spektrofotometri</option>
+                                    <option value=\"Enzimatik Kinetik\">Enzimatik Kinetik</option>
+                                    <option value=\"GPO - PAP\">GPO - PAP</option>
+                                    <option value=\"CHOD - PAP\">CHOD - PAP</option>
+                                    <option value=\"Biuret\">Biuret</option>
+                                    <option value=\"Brom Creasol Green (BCG)\">Brom Creasol Green (BCG)</option>
+                                    <option value=\"Enzimatik UV\">Enzimatik UV</option>
+                                    <option value=\"Kololimetrik\">Kololimetrik</option>
+                                    <option value=\"Afinitas Boronat\">Afinitas Boronat</option>";
+                } elseif ($row['METODE'] == 'Enzimatik Kinetik') {
+                    $isidata .= "
+                                    <option value=\"\">Pilih</option>
+                                    <option value=\"Imunokromatografi\">Imunokromatografi</option>
+                                    <option value=\"Enzimatik: Heksokinase\">Enzimatik: Heksokinase</option>
+                                    <option value=\"Enzimatik Jaffe\">Enzimatik Jaffe</option>
+                                    <option value=\"Westergreen\">Westergreen</option>
+                                    <option value=\"POCT Imunokromatografi\">POCT Imunokromatografi</option>
+                                    <option value=\"GOD POD\">GOD POD</option>
+                                    <option value=\"Spektrofotometri\">Spektrofotometri</option>
+                                    <option value=\"Enzimatik Kinetik\" selected>Enzimatik Kinetik</option>
+                                    <option value=\"GPO - PAP\">GPO - PAP</option>
+                                    <option value=\"CHOD - PAP\">CHOD - PAP</option>
+                                    <option value=\"Biuret\">Biuret</option>
+                                    <option value=\"Brom Creasol Green (BCG)\">Brom Creasol Green (BCG)</option>
+                                    <option value=\"Enzimatik UV\">Enzimatik UV</option>
+                                    <option value=\"Kololimetrik\">Kololimetrik</option>
+                                    <option value=\"Afinitas Boronat\">Afinitas Boronat</option>";
+                } elseif ($row['METODE'] == 'GPO - PAP') {
+                    $isidata .= "
+                                    <option value=\"\">Pilih</option>
+                                    <option value=\"Imunokromatografi\">Imunokromatografi</option>
+                                    <option value=\"Enzimatik: Heksokinase\">Enzimatik: Heksokinase</option>
+                                    <option value=\"Enzimatik Jaffe\">Enzimatik Jaffe</option>
+                                    <option value=\"Westergreen\">Westergreen</option>
+                                    <option value=\"POCT Imunokromatografi\">POCT Imunokromatografi</option>
+                                    <option value=\"GOD POD\">GOD POD</option>
+                                    <option value=\"Spektrofotometri\">Spektrofotometri</option>
+                                    <option value=\"Enzimatik Kinetik\">Enzimatik Kinetik</option>
+                                    <option value=\"GPO - PAP\" selected>GPO - PAP</option>
+                                    <option value=\"CHOD - PAP\">CHOD - PAP</option>
+                                    <option value=\"Biuret\">Biuret</option>
+                                    <option value=\"Brom Creasol Green (BCG)\">Brom Creasol Green (BCG)</option>
+                                    <option value=\"Enzimatik UV\">Enzimatik UV</option>
+                                    <option value=\"Kololimetrik\">Kololimetrik</option>
+                                    <option value=\"Afinitas Boronat\">Afinitas Boronat</option>";
+                } elseif ($row['METODE'] == 'CHOD - PAP') {
+                    $isidata .= "
+                                    <option value=\"\">Pilih</option>
+                                    <option value=\"Imunokromatografi\">Imunokromatografi</option>
+                                    <option value=\"Enzimatik: Heksokinase\">Enzimatik: Heksokinase</option>
+                                    <option value=\"Enzimatik Jaffe\">Enzimatik Jaffe</option>
+                                    <option value=\"Westergreen\">Westergreen</option>
+                                    <option value=\"POCT Imunokromatografi\">POCT Imunokromatografi</option>
+                                    <option value=\"GOD POD\">GOD POD</option>
+                                    <option value=\"Spektrofotometri\">Spektrofotometri</option>
+                                    <option value=\"Enzimatik Kinetik\">Enzimatik Kinetik</option>
+                                    <option value=\"GPO - PAP\">GPO - PAP</option>
+                                    <option value=\"CHOD - PAP\" selected>CHOD - PAP</option>
+                                    <option value=\"Biuret\">Biuret</option>
+                                    <option value=\"Brom Creasol Green (BCG)\">Brom Creasol Green (BCG)</option>
+                                    <option value=\"Enzimatik UV\">Enzimatik UV</option>
+                                    <option value=\"Kololimetrik\">Kololimetrik</option>
+                                    <option value=\"Afinitas Boronat\">Afinitas Boronat</option>";
+                } elseif ($row['METODE'] == 'Biuret') {
+                    $isidata .= "
+                                    <option value=\"\">Pilih</option>
+                                    <option value=\"Imunokromatografi\">Imunokromatografi</option>
+                                    <option value=\"Enzimatik: Heksokinase\">Enzimatik: Heksokinase</option>
+                                    <option value=\"Enzimatik Jaffe\">Enzimatik Jaffe</option>
+                                    <option value=\"Westergreen\">Westergreen</option>
+                                    <option value=\"POCT Imunokromatografi\">POCT Imunokromatografi</option>
+                                    <option value=\"GOD POD\">GOD POD</option>
+                                    <option value=\"Spektrofotometri\">Spektrofotometri</option>
+                                    <option value=\"Enzimatik Kinetik\">Enzimatik Kinetik</option>
+                                    <option value=\"GPO - PAP\">GPO - PAP</option>
+                                    <option value=\"CHOD - PAP\">CHOD - PAP</option>
+                                    <option value=\"Biuret\" selected>Biuret</option>
+                                    <option value=\"Brom Creasol Green (BCG)\">Brom Creasol Green (BCG)</option>
+                                    <option value=\"Enzimatik UV\">Enzimatik UV</option>
+                                    <option value=\"Kololimetrik\">Kololimetrik</option>
+                                    <option value=\"Afinitas Boronat\">Afinitas Boronat</option>";
+                } elseif ($row['METODE'] == 'Brom Creasol Green (BCG)') {
+                    $isidata .= "
+                                    <option value=\"\">Pilih</option>
+                                    <option value=\"Imunokromatografi\">Imunokromatografi</option>
+                                    <option value=\"Enzimatik: Heksokinase\">Enzimatik: Heksokinase</option>
+                                    <option value=\"Enzimatik Jaffe\">Enzimatik Jaffe</option>
+                                    <option value=\"Westergreen\">Westergreen</option>
+                                    <option value=\"POCT Imunokromatografi\">POCT Imunokromatografi</option>
+                                    <option value=\"GOD POD\">GOD POD</option>
+                                    <option value=\"Spektrofotometri\">Spektrofotometri</option>
+                                    <option value=\"Enzimatik Kinetik\">Enzimatik Kinetik</option>
+                                    <option value=\"GPO - PAP\">GPO - PAP</option>
+                                    <option value=\"CHOD - PAP\">CHOD - PAP</option>
+                                    <option value=\"Biuret\">Biuret</option>
+                                    <option value=\"Brom Creasol Green (BCG)\" selected>Brom Creasol Green (BCG)</option>
+                                    <option value=\"Enzimatik UV\">Enzimatik UV</option>
+                                    <option value=\"Kololimetrik\">Kololimetrik</option>
+                                    <option value=\"Afinitas Boronat\">Afinitas Boronat</option>";
+                } elseif ($row['METODE'] == 'Enzimatik UV') {
+                    $isidata .= "
+                                    <option value=\"\">Pilih</option>
+                                    <option value=\"Imunokromatografi\">Imunokromatografi</option>
+                                    <option value=\"Enzimatik: Heksokinase\">Enzimatik: Heksokinase</option>
+                                    <option value=\"Enzimatik Jaffe\">Enzimatik Jaffe</option>
+                                    <option value=\"Westergreen\">Westergreen</option>
+                                    <option value=\"POCT Imunokromatografi\">POCT Imunokromatografi</option>
+                                    <option value=\"GOD POD\">GOD POD</option>
+                                    <option value=\"Spektrofotometri\">Spektrofotometri</option>
+                                    <option value=\"Enzimatik Kinetik\">Enzimatik Kinetik</option>
+                                    <option value=\"GPO - PAP\">GPO - PAP</option>
+                                    <option value=\"CHOD - PAP\">CHOD - PAP</option>
+                                    <option value=\"Biuret\">Biuret</option>
+                                    <option value=\"Brom Creasol Green (BCG)\">Brom Creasol Green (BCG)</option>
+                                    <option value=\"Enzimatik UV\" selected>Enzimatik UV</option>
+                                    <option value=\"Kololimetrik\">Kololimetrik</option>
+                                    <option value=\"Afinitas Boronat\">Afinitas Boronat</option>";
+                } elseif ($row['METODE'] == 'Kololimetrik') {
+                    $isidata .= "
+                                    <option value=\"\">Pilih</option>
+                                    <option value=\"Imunokromatografi\">Imunokromatografi</option>
+                                    <option value=\"Enzimatik: Heksokinase\">Enzimatik: Heksokinase</option>
+                                    <option value=\"Enzimatik Jaffe\">Enzimatik Jaffe</option>
+                                    <option value=\"Westergreen\">Westergreen</option>
+                                    <option value=\"POCT Imunokromatografi\">POCT Imunokromatografi</option>
+                                    <option value=\"GOD POD\">GOD POD</option>
+                                    <option value=\"Spektrofotometri\">Spektrofotometri</option>
+                                    <option value=\"Enzimatik Kinetik\">Enzimatik Kinetik</option>
+                                    <option value=\"GPO - PAP\">GPO - PAP</option>
+                                    <option value=\"CHOD - PAP\">CHOD - PAP</option>
+                                    <option value=\"Biuret\">Biuret</option>
+                                    <option value=\"Brom Creasol Green (BCG)\">Brom Creasol Green (BCG)</option>
+                                    <option value=\"Enzimatik UV\">Enzimatik UV</option>
+                                    <option value=\"Kololimetrik\" selected>Kololimetrik</option>
+                                    <option value=\"Afinitas Boronat\">Afinitas Boronat</option>";
+                } elseif ($row['METODE'] == 'Afinitas Boronat') {
+                    $isidata .= "
+                                    <option value=\"\">Pilih</option>
+                                    <option value=\"Imunokromatografi\">Imunokromatografi</option>
+                                    <option value=\"Enzimatik: Heksokinase\">Enzimatik: Heksokinase</option>
+                                    <option value=\"Enzimatik Jaffe\">Enzimatik Jaffe</option>
+                                    <option value=\"Westergreen\">Westergreen</option>
+                                    <option value=\"POCT Imunokromatografi\">POCT Imunokromatografi</option>
+                                    <option value=\"GOD POD\">GOD POD</option>
+                                    <option value=\"Spektrofotometri\">Spektrofotometri</option>
+                                    <option value=\"Enzimatik Kinetik\">Enzimatik Kinetik</option>
+                                    <option value=\"GPO - PAP\">GPO - PAP</option>
+                                    <option value=\"CHOD - PAP\">CHOD - PAP</option>
+                                    <option value=\"Biuret\">Biuret</option>
+                                    <option value=\"Brom Creasol Green (BCG)\">Brom Creasol Green (BCG)</option>
+                                    <option value=\"Enzimatik UV\">Enzimatik UV</option>
+                                    <option value=\"Kololimetrik\">Kololimetrik</option>
+                                    <option value=\"Afinitas Boronat\" selected>Afinitas Boronat</option>";
+                } else {
+                    $isidata .= "
+                                    <option value=\"\" selected>Pilih</option>
+                                    <option value=\"Imunokromatografi\">Imunokromatografi</option>
+                                    <option value=\"Enzimatik: Heksokinase\">Enzimatik: Heksokinase</option>
+                                    <option value=\"Enzimatik Jaffe\">Enzimatik Jaffe</option>
+                                    <option value=\"Westergreen\">Westergreen</option>
+                                    <option value=\"POCT Imunokromatografi\">POCT Imunokromatografi</option>
+                                    <option value=\"GOD POD\">GOD POD</option>
+                                    <option value=\"Spektrofotometri\">Spektrofotometri</option>
+                                    <option value=\"Enzimatik Kinetik\">Enzimatik Kinetik</option>
+                                    <option value=\"GPO - PAP\">GPO - PAP</option>
+                                    <option value=\"CHOD - PAP\">CHOD - PAP</option>
+                                    <option value=\"Biuret\">Biuret</option>
+                                    <option value=\"Brom Creasol Green (BCG)\">Brom Creasol Green (BCG)</option>
+                                    <option value=\"Enzimatik UV\">Enzimatik UV</option>
+                                    <option value=\"Kololimetrik\">Kololimetrik</option>
+                                    <option value=\"Afinitas Boronat\">Afinitas Boronat</option>";
+                }
+
+                $isidata .= "</select>
+                        </td>
                         <td>" . $row['SATUAN'] . "</td>
                         <td>" . $row['NILAI_NORMAL'] . "</td>
                     </tr>           
@@ -312,7 +663,10 @@ class laboratoriumpk extends BaseController
             $hasil = $this->request->getPost('hasil');
             $tanggal = $this->request->getPost('tgl_order_labpk');
             $jam = $this->request->getPost('jam_order_labpk');
-            // $UserPengirim = $this->request->getPost('userPengirim');
+            $metode = $this->request->getPost('metode');
+            $kesan = $this->request->getPost('kesan');
+            $validi = $this->request->getPost('validatori');
+            $validii = $this->request->getPost('validatorii');
             $data = array();
             $index = 0;
             foreach ($idorder as $dataidorder) {
@@ -320,13 +674,18 @@ class laboratoriumpk extends BaseController
                     'ID' => $idorder[$index],
                     'HASIL_LAB' => $hasil[$index],
                     'HASIL_TANGGAL' => $tanggal,
-                    'HASIL_JAM' => $jam
+                    'HASIL_JAM' => $jam,
+                    'HASIL_METODE' => $metode[$index],
+                    'HASIL_KESAN' => $kesan,
+                    'HASIL_VALIDATOR_I' => $validi,
+                    'HASIL_VALIDATOR_II' => $validii,
+                    'STATUS_ORDER' => 2,
                 ));
                 $index++;
             }
 
             $torderlabPk = new Modelorder_labpk();
-            $torderlabPk->updateBatch($data, 'ID'); // insert banyak record
+            $torderlabPk->update_batch($data, 'ID'); // update banyak record
             $msg = [
                 'sukses' => 'Simpan hasil lab berhasil!!'
             ];

@@ -6,9 +6,8 @@ namespace App\Controllers;
 /** template controller untuk starter */
 
 
-
-
-class Starter extends BaseController {
+class Starter extends BaseController
+{
 
 	public function index()
 	{
@@ -16,13 +15,13 @@ class Starter extends BaseController {
 		$data = [];
 
 		$data['content'] = [
-			'TITLE'=>'ini judul',
-			'DESC'=>'ini deskripsi',
+			'TITLE' => 'ini judul',
+			'DESC' => 'ini deskripsi',
 		];
 
 		$data['content']['ITEM'] = [
-			['LINK'=>'#', 'DESC'=>'ini deskripsi'],
-			['LINK'=>'#', 'DESC'=>'ini deskripsi']
+			['LINK' => '#', 'DESC' => 'ini deskripsi'],
+			['LINK' => '#', 'DESC' => 'ini deskripsi']
 		];
 
 		$this->startTema();
@@ -30,7 +29,6 @@ class Starter extends BaseController {
 		echo view('mega/box/content');
 		echo view('mega/box/content-footer');
 		$this->endTema();
-		
 	}
 
 	public function startTema()
@@ -44,5 +42,4 @@ class Starter extends BaseController {
 	{
 		echo view('mega/box/footer');
 	}
-
 }

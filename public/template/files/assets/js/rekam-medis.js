@@ -14,10 +14,13 @@ function btn_tab_laboratorium(nopen) {
 }
 
 // tabes - menu radiologi
-function btn_tab_radiologi() {
+function btn_tab_radiologi(nopen) {
     $.ajax({
         type: "post",
         url: "Detailpasien/body_radiologi",
+        data:{
+            nopen: nopen
+        },
         success: function(response) {
             $('.card-body-anamnesis').html(response).show()
         }

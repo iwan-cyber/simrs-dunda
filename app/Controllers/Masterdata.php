@@ -130,7 +130,7 @@ class Masterdata extends BaseController
         if ($this->request->isAJAX()) {
             $smf = $this->request->getVar('smf');
             $DataDokterLayanan = $this->db->table('m_pegawai')
-                ->where('ID', $smf)
+                ->where('ID_SMF', $smf)
                 ->get();
 
             if ($DataDokterLayanan->getNumRows() > 0) {

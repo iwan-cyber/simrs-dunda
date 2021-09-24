@@ -21,8 +21,8 @@ foreach ($dataArr->data as $item) { ?>
                     <table>
                         <tr>
                             <td><input type="text" value="<?= $item->NOORDER; ?>" required id="norder_labpk" class="form-control form-control-sm input-danger" name="norder_labpk" readonly required></td>
-                            <td><input type="date" value="<?= $item->HASILTGL; ?>" name="tgl_order_labpk" value="" required class="form-control form-control-sm"></td>
-                            <td><input type="time" value="<?= $item->HASILJAM; ?>" name="jam_order_labpk" value="" required class="form-control form-control-sm"></td>
+                            <td><input type="date" name="tgl_order_labpk" required class="form-control form-control-sm"></td>
+                            <td><input type="time" name="jam_order_labpk" required class="form-control form-control-sm"></td>
                             <td>
                                 <button type="submit" class="btn btn-sm btn-primary btn-block btn-simpan">Simpan</button>
                             </td>
@@ -144,7 +144,6 @@ foreach ($dataArr->data as $item) { ?>
                                     </td>
                                 </tr>
                             </table>
-
                         </div>
                         <div class="col-md-6">
                             <table style="width: 100%;">
@@ -157,13 +156,14 @@ foreach ($dataArr->data as $item) { ?>
 
                                                 </div>
                                             </div>
-                                            <div class="card-block">
-                                                <table style="width: 100%;" class="table-bordered table-hover">
+                                            <div class="card-block myScroll">
+                                                <table style="width: 100%;" class="table-bordered table-hover table-responsive">
                                                     <thead>
                                                         <tr>
                                                             <th class="text-center">#</th>
                                                             <th class="text-center">PEMERIKSAAN</th>
                                                             <th class="text-center">HASIL</th>
+                                                            <th class="text-center">METODE</th>
                                                             <th class="text-center">SATUAN</th>
                                                             <th class="text-center">NILAI NORMAL</th>
                                                         </tr>
@@ -178,6 +178,22 @@ foreach ($dataArr->data as $item) { ?>
                                     </td>
                                 </tr>
                             </table>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="Kesan">Kesan</label>
+                            <textarea class="form-control" required name="kesan" id="kesan" style="width: 100%;" placeholder="Kesan..."></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="mt-3">Validator I</label>
+                                <input type="text" class="form-control" name="validatori" id="validatori" placeholder="Masukkan nama validator I" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="mt-3">Validator II</label>
+                                <input type="text" class="form-control" name="validatorii" id="validatorii" placeholder="Masukkan nama validator II" required>
+                            </div>
                         </div>
                     </div>
 
@@ -217,7 +233,7 @@ foreach ($dataArr->data as $item) { ?>
                             icon: 'success',
 
                         })
-                        ListOrder();
+                        ListOrder(null, false);
                     }
                 });
 
@@ -248,6 +264,7 @@ foreach ($dataArr->data as $item) { ?>
     }
 
     $(document).ready(function() {
+
         ListOrder();
     });
 
@@ -272,8 +289,8 @@ foreach ($dataArr->data as $item) { ?>
                     text: response.sukses,
                     icon: 'success'
                 })
-                // $('#modalOrderLabPk').modal('hide');
-                // $('#torder_labpk').DataTable().ajax.reload(null, false);
+                $('#ModalProsesOrder').modal('hide');
+                $('#torder_labpk').DataTable().ajax.reload(null, false);
             }
         });
         return false;
