@@ -17,6 +17,11 @@
     <!-- Google font-->     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
     <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('template/files/bower_components/bootstrap/css/bootstrap.min.css'); ?>">
+    <!-- Font-awesome -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('template/files/bower_components/font-awesome/css/all.css'); ?>">
+    <!-- select2 -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('template/files/bower_components/select2/css/select2.min.css'); ?>">
+
     <!-- waves.css -->
     <link rel="stylesheet" href="<?= base_url('template/files/assets/pages/waves/css/waves.min.css'); ?>" type="text/css" media="all">
     <!-- themify-icons line icon -->

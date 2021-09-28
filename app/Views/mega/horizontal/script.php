@@ -6,6 +6,8 @@
 
 <!-- waves js -->
 <script src="<?= base_url('template/files/assets/pages/waves/js/waves.min.js'); ?>"></script>
+<!-- select2 -->
+<script src="<?= base_url('template/files/bower_components/select2/js/select2.full.min.js'); ?>"></script>
 <!-- jquery slimscroll js -->
 <script type="text/javascript" src="<?= base_url('template/files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js'); ?>"></script>
 <!-- modernizr js -->

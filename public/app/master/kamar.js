@@ -1,4 +1,10 @@
 
+$('document').ready(function() {
+
+    $('select').select2();
+
+});
+
 
 const modalKamar = (tipe='show') => $('#modal').modal(tipe);
 
