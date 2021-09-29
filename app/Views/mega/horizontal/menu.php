@@ -77,6 +77,21 @@
                         </a>
                     </li>
                 </ul>
+            </li>               
+
+            <li class="pcoded-hasmenu">
+                <a href="javascript:void(0)" class="waves-effect waves-dark">
+                    <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                    <span class="pcoded-mtext">RADIOLOGI</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="<?= base_url('master/radiologi/tarif'); ?>" class="waves-effect waves-dark">
+                            <i class="ti-agenda"></i> TARIF
+                        </a>
+                    </li>
+                </ul>
             </li>            
 
             <li class="pcoded-hasmenu">

@@ -84,6 +84,10 @@ $routes->get('/master/lab/tindakan', 'Master/Lab/TindakanLab::index');
 $routes->get('/master/lab/subkelompok', 'Master/Lab/SubKelompokUji::index');
 $routes->get('/master/lab/ujites', 'Master/Lab/UjiTes::index');
 
+
+//master rad
+$routes->get('/master/radiologi/tarif', 'Master/Radiologi/TarifRad::index');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
