@@ -67,12 +67,12 @@
                         </a>
                     </li>
                     <li class="">
-                        <a href="<?= base_url('master/smf'); ?>" class="waves-effect waves-dark">
+                        <a href="<?= base_url('master/lab/ujites'); ?>" class="waves-effect waves-dark">
                             <i class="ti-agenda"></i> UJI TES
                         </a>
                     </li>
                     <li class="">
-                        <a href="<?= base_url('master/smf'); ?>" class="waves-effect waves-dark">
+                        <a href="<?= base_url('master/lab/tindakan'); ?>" class="waves-effect waves-dark">
                             <i class="ti-agenda"></i> TINDAKAN LAB
                         </a>
                     </li>

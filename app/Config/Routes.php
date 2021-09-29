@@ -80,7 +80,9 @@ $routes->post('/master/pegawai/profesi/(:num)', 'Master/PegawaiProfesi::get');
 
 //master lab
 $routes->get('/master/lab/kelompok', 'Master/Lab/KelompokUji::index');
+$routes->get('/master/lab/tindakan', 'Master/Lab/TindakanLab::index');
 $routes->get('/master/lab/subkelompok', 'Master/Lab/SubKelompokUji::index');
+$routes->get('/master/lab/ujites', 'Master/Lab/UjiTes::index');
 
 /*
  * --------------------------------------------------------------------
