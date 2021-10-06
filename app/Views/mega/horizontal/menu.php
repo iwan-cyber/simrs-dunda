@@ -76,6 +76,11 @@
                             <i class="ti-agenda"></i> TINDAKAN LAB
                         </a>
                     </li>
+                    <li class="">
+                        <a href="<?= base_url('master/lab/tarif'); ?>" class="waves-effect waves-dark">
+                            <i class="ti-agenda"></i> TARIF
+                        </a>
+                    </li>
                 </ul>
             </li>               
 
@@ -121,10 +126,18 @@
                 </ul>
             </li>
 
-            <li class="">
+            <li class="pcoded-hasmenu">
                 <a href="<?= base_url('master/referensi'); ?>" class="waves-effect waves-dark">
-                    <i class="ti-book"></i> REFERENSI
-                  </a>
+                    <i class="ti-id-badge"></i> REFERENSI
+                </a>
+                <ul class="pcoded-submenu">
+                    
+                    <li class="">
+                        <a href="<?= base_url('master/wilayah'); ?>" class="waves-effect waves-dark">
+                            <i class="ti-id-badge"></i> DATA WILAYAH
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <li class="">
