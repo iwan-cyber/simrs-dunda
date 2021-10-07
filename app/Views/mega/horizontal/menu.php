@@ -131,10 +131,14 @@
                     <i class="ti-id-badge"></i> REFERENSI
                 </a>
                 <ul class="pcoded-submenu">
-                    
                     <li class="">
                         <a href="<?= base_url('master/wilayah'); ?>" class="waves-effect waves-dark">
                             <i class="ti-id-badge"></i> DATA WILAYAH
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="<?= base_url('master/rekanan'); ?>" class="waves-effect waves-dark">
+                            <i class="ti-id-badge"></i> DATA REKANAN
                         </a>
                     </li>
                 </ul>
