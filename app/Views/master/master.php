@@ -1,3 +1,10 @@
+<?= $this->extend('mega/horizontal/template'); ?>
+
+<?= $this->section('content'); ?>
+
+<?= $this->include('mega/horizontal/css-dt'); ?>
+
+
 <div class="col-sm-12">
     <div class="card">
 
@@ -20,4 +27,15 @@
     </div><!-- card -->
 </div><!-- col-sm-12 -->
 
-<?php echo view("mega/box/script"); ?>
+<?= $this->include('mega/horizontal/script'); ?>
+
+
+<!-- list-scroll js -->
+<script src="<?= base_url('template/files/bower_components/stroll/js/stroll.js'); ?>"></script>
+<script src="<?= base_url('template/files/assets/pages/list-scroll/list-custom.js'); ?>"></script>
+
+<script>
+    
+</script>
+
+<?= $this->endSection(); ?>

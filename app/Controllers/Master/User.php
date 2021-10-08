@@ -31,18 +31,17 @@ class User extends \App\Controllers\BaseController
         {
             $id = $row['id'];
             
-            $edit = '<button type="button" class="btn btn-info btn-out btn-sm waves-effect waves-light" 
+            $edit = '<button type="button" class="btn btn-info btn-mini waves-effect waves-light" 
                         id="edit_' . $id . '" 
                         onclick="edit(' . $id . ')"
                         data-user=\'' . json_encode($row) . '\'>
-                         <i class="ti-pencil"></i>   
+                        <i class="ti-pencil"></i> Edit
                     </button>&nbsp;';
 
-            $hapus = '<button type="button" class="btn btn-danger btn-out btn-sm waves-effect waves-light" 
+            $hapus = '<button type="button" class="btn btn-danger btn-mini waves-effect waves-light" 
                         id="hapus_' . $id . '" 
                         onclick="konfirmasi_hapus(' . $id . ')">
-                            
-                            <i class="ti-close"></i>
+                        <i class="ti-close"></i> Hapus
                     </button>';
 
 

@@ -20,7 +20,7 @@ class PegawaiProfesi extends \App\Controllers\BaseController
         $data['PEGAWAI'] = $pegawai->findAll();
 
 
-        echo view('master/pegawaiProfesi');
+        echo view('master/pegawaiProfesi', $data);
         
         
     }    

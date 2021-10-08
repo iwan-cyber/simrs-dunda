@@ -214,8 +214,8 @@ function setBed(dataBed)
         
         let tombol = `<div class="btn-group " role="group" data-toggle="tooltip" data-placement="top" title="" data-original-title=".btn-xlg">`;
 
-        let tombol_edit = `<button type="button" class="btn btn-info btn-out btn-sm waves-effect waves-light" id="edit_${bed.ID}" onclick="edit(${bed.ID})" data-bed='${data_bed}'><i class="ti-close"></i>Edit</button>`;
-        let tombol_hapus = `<button type="button" class="btn btn-danger btn-out btn-sm waves-effect waves-light" id="hapus_${bed.ID}" onclick="konfirmasi_hapus(${bed.ID})"><i class="ti-pencil"></i>Hapus</button>`;
+        let tombol_edit = `<button type="button" class="btn btn-info btn-mini waves-effect waves-light" id="edit_${bed.ID}" onclick="edit(${bed.ID})" data-bed='${data_bed}'><i class="ti-pencil"></i>Edit</button>`;
+        let tombol_hapus = `<button type="button" class="btn btn-danger btn-mini waves-effect waves-light" id="hapus_${bed.ID}" onclick="konfirmasi_hapus(${bed.ID})"><i class="ti-close"></i>Hapus</button>`;
 
         let tombol_end = `</div>`;
 

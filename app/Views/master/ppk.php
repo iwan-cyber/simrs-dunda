@@ -24,12 +24,15 @@
                 <div class="col-md-12">
 
                     <div class="dt-responsive table-responsive">
-                        <table class="table table-bordered compact dataTable table-striped" id="table">
+                        <table class="table table-bordered compact table-striped" id="table">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>KODE PPK</th>
+                                    <th>PPK</th>
+                                    <th>BPJS</th>
+                                    <th>JENIS</th>
                                     <th>NAMA PPK</th>
+                                    <th>ALAMAT</th>
                                     <th>#</th>
                                 </tr>
                             </thead>

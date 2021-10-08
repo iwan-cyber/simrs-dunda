@@ -19,30 +19,33 @@ class Ppk extends \App\Controllers\BaseController
 
         $ppk = new PpkModel();
 
-        //var_dump($ppk->getAll());
-            
-        $start = (int) $this->request->getPost('start');
-        $length = (int) $this->request->getPost('length');
+        $length = $this->request->getGet('length');
+        $start = $this->request->getGet('start');
 
+        $list = [];
+
+        $data = $ppk->get($_GET);
+
+        // var_dump($data);
+
+        $jumlah = $data['JUMLAH'];
         
-        $data = $ppk->findAll();
-        
-        foreach ($data as $row)
+        foreach ($data['DATA'] as $row)
         {
             $id = $row['ID'];
             
-            $edit = '<button type="button" class="btn btn-info btn-out btn-sm waves-effect waves-light" 
+            $edit = '<button type="button" class="btn btn-info btn-mini waves-effect waves-light" 
                         id="edit_' . $id . '" 
                         onclick="edit(' . $id . ')"
                         nama="' . $row['NAMA_PPK'] . '"
                         kode="' . $row['KODE_PPK'] . '">
-                            <i class="ti-close"></i>Edit
+                            <i class="ti-pencil"></i>Edit
                     </button>&nbsp;';
 
-            $hapus = '<button type="button" class="btn btn-danger btn-out btn-sm waves-effect waves-light" 
+            $hapus = '<button type="button" class="btn btn-danger btn-mini waves-effect waves-light" 
                         id="hapus_' . $id . '" 
                         onclick="konfirmasi_hapus(' . $id . ')">
-                            <i class="ti-pencil"></i>Hapus
+                            <i class="ti-close"></i>Hapus
                     </button>';
 
 
@@ -53,16 +56,19 @@ class Ppk extends \App\Controllers\BaseController
             $list[] = [
                 $row['ID'],
                 $row['KODE_PPK'],
+                $row['BPJS'],
+                $row['JENIS'],
                 $row['NAMA_PPK'],
+                $row['ALAMAT'],
                 $tombol
          ];
 
         }
         
         $json_data = array(
-                "draw"            => intval($this->request->getPost('draw')),
-                "recordsTotal"    => intval($length),
-                "recordsFiltered" => intval($length),
+                "draw"            => intval($this->request->getGet('draw')),
+                "recordsTotal"    => intval($jumlah),
+                "recordsFiltered" => intval($jumlah),
                 "data"            => $list
         );
         
