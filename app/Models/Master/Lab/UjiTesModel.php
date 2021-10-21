@@ -49,6 +49,35 @@ class UjiTesModel extends Model
         
         return $query;
 
+    }    
+
+    public function getTarif($get, $tarif="umum") {
+
+        $query = [];
+
+        $length = (int) $get['length'];
+        $start = (int) $get['start'];
+        $cari = $get['search']['value'];
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('m_uji_tes u');
+        $builder->select('u.id_uji, u.uji_tes, u.urutan, u.satuan, u.nilai_normal, mku.nama_kelompok, mut.nama_sub, u.id_kelompok, u.id_sub, u.tarif_umum, u.umum_i, u.umum_ii, u.umum_iii, u.umum_vip, u.umum_vvip');
+        $builder->join('m_kelompok_uji mku', 'mku.id_kelompok = u.id_kelompok');
+        $builder->join('m_sub_kelompok mut', 'mut.id_sub = u.id_sub');
+
+
+        if(!empty($cari)) {
+            $builder->like('uji_tes', $cari);
+        }
+
+        
+        $builder->limit($length, $start);
+
+        $query['DATA']  = $builder->get()->getResultArray(); 
+        $query['JUMLAH'] = $builder->countAllResults();
+        
+        return $query;
+
     }
 
 
