@@ -2,50 +2,59 @@
 
 namespace App\Controllers\Apotik;
 
-//use App\Models\Master\ApotikModel;
-
 class Resep extends \App\Controllers\BaseController
 {
 
     public function index()
-    { {
-            $data = [
-                'title'         => 'Resep Pasien',
-                'subtitle'      => 'Order Resep',
-                'isi'           => 'apotik/order_baru_view.php',
-            ];
-        }
-        echo view('layout/v_wrapper', $data);
+    {
+
+        echo view('apotik/resep/form_resep');
+       
+    }
+
+    public function register()
+    {
+
+        echo view('apotik/resep/register_resep');
+       
     }
 
     public function data() 
     {
 
-        $apotik = new ApotikModel();
+        $Penerimaan = new PenerimaanModel();
 
-        //var_dump($apotik->getAll());
-            
-        $start = (int) $this->request->getPost('start');
-        $length = (int) $this->request->getPost('length');
+        $length = $this->request->getGet('length');
+        $start = $this->request->getGet('start');
 
+        $list = [];
+
+        $data = $Penerimaan->get($_GET);
+
+        // var_dump($data);
+
+        $jumlah = $data['JUMLAH'];
         
-        $data = $apotik->findAll();
-        
-        foreach ($data as $row)
+        foreach ($data['DATA'] as $row)
         {
-            $id = $row['ID'];
+            $id = $row['id'];
             
-            $edit = '<button type="button" class="btn btn-info btn-out btn-sm waves-effect waves-light" 
+            $edit = '<button type="button" class="btn btn-info btn-mini waves-effect waves-light" 
                         id="edit_' . $id . '" 
                         onclick="edit(' . $id . ')"
-                        apotik="' . $row['KELAS'] . '">
-                            <i class="ti-close"></i>Edit
+                        nama="' . $row['nama_Penerimaan'] . '"
+                        besar="' . $row['sat_besar'] . '"
+                        kecil="' . $row['sat_kecil'] . '"
+                        frac="' . $row['frac'] . '"
+                        jenis="' . $row['jenis'] . '"
+                        golongan="' . $row['golongan'] . '">
+                            <i class="ti-pencil"></i>Edit
                     </button>&nbsp;';
 
-            $hapus = '<button type="button" class="btn btn-danger btn-out btn-sm waves-effect waves-light" 
+            $hapus = '<button type="button" class="btn btn-danger btn-mini waves-effect waves-light" 
                         id="hapus_' . $id . '" 
                         onclick="konfirmasi_hapus(' . $id . ')">
-                            <i class="ti-pencil"></i>Hapus
+                            <i class="ti-close"></i>Hapus
                     </button>';
 
 
@@ -54,17 +63,22 @@ class Resep extends \App\Controllers\BaseController
             
 
             $list[] = [
-                $row['ID'],
-                $row['KELAS'],
+                $row['kode_Penerimaan'],
+                $row['nama_Penerimaan'],
+                $row['sat_besar'],
+                $row['sat_kecil'],
+                $row['frac'],
+                $row['golongan'],
+                $row['jenis'],
                 $tombol
-            ];
+         ];
 
         }
         
         $json_data = array(
-                "draw"            => intval($this->request->getPost('draw')),
-                "recordsTotal"    => intval($length),
-                "recordsFiltered" => intval($length),
+                "draw"            => intval($this->request->getGet('draw')),
+                "recordsTotal"    => intval($jumlah),
+                "recordsFiltered" => intval($jumlah),
                 "data"            => $list
         );
         
@@ -77,20 +91,25 @@ class Resep extends \App\Controllers\BaseController
     public function simpan()
     {
 
-            $apotik = new ApotikModel();
+            $Penerimaan = new PenerimaanModel();
 
             $data = [
-                'KELAS'=>$this->request->getPost('KELAS'),
+                'kode_Penerimaan'=>$this->request->getPost('kode_Penerimaan'),
+                'nama_Penerimaan'=>$this->request->getPost('nama_Penerimaan'),
+                'sat_besar'=>$this->request->getPost('sat_besar'),
+                'sat_kecil'=>$this->request->getPost('sat_kecil'),
+                'frac'=>$this->request->getPost('frac'),
+                'golongan'=>$this->request->getPost('golongan'),
             ];
 
-            if(empty($this->request->getPost('ID')))
+            if(empty($this->request->getPost('id')))
             {
-                $proses = $apotik->insert($data);
+                $proses = $Penerimaan->insert($data);
             }
             else
             {
-                $id = $this->request->getPost('ID');
-                $proses = $apotik->update($id, $data);
+                $id = $this->request->getPost('id');
+                $proses = $Penerimaan->update($id, $data);
             }
 
 
@@ -112,14 +131,14 @@ class Resep extends \App\Controllers\BaseController
 
             if( ! empty($id))
             {
-                $apotik = new ApotikModel();
-                $hapus = $apotik->delete($id);
+                $Penerimaan = new PenerimaanModel();
+                $hapus = $Penerimaan->delete($id);
 
                 if($hapus)
-                    $this->sukses('Berhasil menghapus Item', $hapus);
+                    $this->sukses('Berhasil menghapus Penerimaan', $hapus);
 
                 else
-                    $this->gagal('Tidak berhasil menghapus item', $hapus);
+                    $this->gagal('Tidak berhasil menghapus Penerimaan', $hapus);
             }
             else
             {
@@ -151,21 +170,4 @@ class Resep extends \App\Controllers\BaseController
         $this->response->setJSON($data);
         $this->response->send();
     }
-
-    public function startTema()
-    {
-        echo view('mega/box/header');
-        echo view('mega/box/navbar');
-        echo view('mega/box/sidebar-menu');
-    }
-
-    public function endTema()
-    {
-        echo view('mega/box/footer');
-    }
-
-
-
-
-
 }

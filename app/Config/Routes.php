@@ -88,6 +88,22 @@ $routes->get('/master/lab/ujites', 'Master/Lab/UjiTes::index');
 //master rad
 $routes->get('/master/radiologi/tarif', 'Master/Radiologi/TarifRad::index');
 
+
+//master item
+$routes->get('/master/gudang/item', 'Master/Gudang/ItemGudang::index');
+
+//farmasi 
+$routes->get('/farmasi', 'Farmasi/Farmasi::index');
+
+//apotik
+$routes->get('/apotik', 'Apotik/Apotik::index');
+
+//gudang
+$routes->get('/gudang', 'Gudang/gudang::index');
+
+//alkes
+$routes->get('/alkes', 'Alkes/alkes::index');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

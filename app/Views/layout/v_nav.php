@@ -5,270 +5,7 @@
             <ul class="pcoded-item pcoded-left-item">
 
                 <?php if (in_groups('admin')) : ?>
-                    <!-- Seting Aplikasi -->
-                    <li class="pcoded-hasmenu">
-                        <a href="javascript:void(0)" class="waves-effect waves-dark">
-                            <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                            <span class="pcoded-mtext">Seting Aplikasi</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                        <ul class="pcoded-submenu">
-                            <li class="">
-                                <a href="<?= base_url('setingaplikasi/managemenUser'); ?>" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Manajemen User</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="<?= base_url('setingaplikasi/maneglayanan'); ?>" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Manajemen Pelayanan</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="<?= base_url('setingaplikasi/pengaturanumum'); ?>" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Pengaturan Umum</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="<?= base_url('setingaplikasi/BridgingEktp'); ?>" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Bridging e-KTP</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class="pcoded-hasmenu ">
-                                <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Layanan Mandiri</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                                <ul class="pcoded-submenu">
-                                    <li class="">
-                                        <a href="<?= base_url('setingaplikasi/ambilAntrianLoket'); ?>" class="waves-effect waves-dark">
-                                            <span class="ti-hand-point-right"></span>
-                                            <span>Kios-K Ambil Antrian</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
-                                            <span class="ti-hand-point-right"></span>
-                                            <span>Kios-K SEP</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
-                                            <span class="ti-hand-point-right"></span>
-                                            <span>Display Antrian Loket</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
-                                            <span class="ti-hand-point-right"></span>
-                                            <span>Display Antrian Poli</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
-                                            <span class="ti-hand-point-right"></span>
-                                            <span>Display Jadwal Dokter</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
-                                            <span class="ti-hand-point-right"></span>
-                                            <span>Display Info Ranap</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="pcoded-hasmenu ">
-                                <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Bridging Kemkes</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                                <ul class="pcoded-submenu">
-                                    <li class="">
-                                        <a href="#" class="waves-effect waves-dark">
-                                            <span class="ti-hand-point-right"></span>
-                                            <span>Siranap</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
-                                            <span class="ti-hand-point-right"></span>
-                                            <span>Sisrute</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
-                                            <span class="ti-hand-point-right"></span>
-                                            <span>Sirs</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="pcoded-hasmenu ">
-                                <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Bridging BPJS</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                                <ul class="pcoded-submenu">
-                                    <li class="">
-                                        <a href="#" class="waves-effect waves-dark">
-                                            <span class="ti-hand-point-right"></span>
-                                            <span>SEP</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
-                                            <span class="ti-hand-point-right"></span>
-                                            <span>INA-CBG's</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
-                                            <span class="ti-hand-point-right"></span>
-                                            <span>Mobile JKN</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-
                     <!-- Master Data -->
-                    <li class="pcoded-hasmenu">
-                        <a href="<?= base_url('master'); ?>" class="waves-effect waves-dark">
-                            <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                            <span class="pcoded-mtext">Master Data</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                        <!--ul class="pcoded-submenu">
-                            <li class="">
-                                <a href="<?= base_url('seting/seting1'); ?>" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Perbub Tarif</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="<?= base_url('seting/seting1'); ?>" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Tindakan dan Tarif</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="<?= base_url('seting/seting1'); ?>" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Spesialis (SFM)</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="<?= base_url('seting/seting1'); ?>" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Jabatan</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="<?= base_url('seting/seting1'); ?>" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Golongan Darah</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="<?= base_url('master/pekerjaan'); ?>" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Pekerjaan</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="<?= base_url('master/ruangan'); ?>" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>ruangan</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="<?= base_url('seting/seting1'); ?>" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Kelas</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class="pcoded-hasmenu ">
-                                <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Manajemen Pengguna</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                                <ul class="pcoded-submenu">
-                                    <li class="">
-                                        <a href="#" class="waves-effect waves-dark">
-                                            <span class="ti-hand-point-right"></span>
-                                            <span>Data Pengguna</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
-                                            <span class="ti-hand-point-right"></span>
-                                            <span>Modul Pengguna</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="pcoded-hasmenu ">
-                                <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Ruangan dan Bed</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                                <ul class="pcoded-submenu">
-                                    <li class="">
-                                        <a href="#" class="waves-effect waves-dark">
-                                            <span class="ti-hand-point-right"></span>
-                                            <span>Jaminan</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
-                                            <span class="ti-hand-point-right"></span>
-                                            <span>Sub 1</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul-->
-                    </li>
-
                     <!-- Rawat Jalan -->
                     <li class="pcoded-hasmenu">
                         <a href="javascript:void(0)" class="waves-effect waves-dark">
@@ -435,39 +172,76 @@
                             </li>
 
                         </ul>
-                    </li>
+                    </li>                    
 
-                    <!-- Apotik -->
+                    <!-- Rawat Inap -->
                     <li class="pcoded-hasmenu">
                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                             <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                            <span class="pcoded-mtext">Apotik</span>
+                            <span class="pcoded-mtext">Kasir</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
-                        <ul class="pcoded-submenu">
-                            <li class="">
-                                <a href="#" class="waves-effect waves-dark">
+                        <ul class="pcoded-submenu">                            
+                            
+                            <li class="pcoded-hasmenu ">
+                                <a href="javascript:void(0)" class="waves-effect waves-dark">
                                     <span class="ti-hand-point-right"></span>
-                                    <span>Cek Oder</span>
+                                    <span>Kasir Rawat Jalan</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
-                            </li>
-                            <li class="">
-                                <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
+                                <ul class="pcoded-submenu">
+                                    <li class="">
+                                        <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
+                                            <span class="ti-hand-point-right"></span>
+                                            <span>Pembayaran Rawat Jalan</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
+                                            <span class="ti-hand-point-right"></span>
+                                            <span>Data Pembayaran Rawat Jalan</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>                            
+
+                            <li class="pcoded-hasmenu ">
+                                <a href="javascript:void(0)" class="waves-effect waves-dark">
                                     <span class="ti-hand-point-right"></span>
-                                    <span>Order baru</span>
+                                    <span>Kasir Rawat Inap</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
+                                <ul class="pcoded-submenu">
+                                    <li class="">
+                                        <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
+                                            <span class="ti-hand-point-right"></span>
+                                            <span>Pembayaran Rawat Inap</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
+                                            <span class="ti-hand-point-right"></span>
+                                            <span>Data Pembayaran Rawat Inap</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
+
                             <li class="">
-                                <a href="<?= base_url('setingaplikasi/belumadamodul'); ?>" class="waves-effect waves-dark">
+                                <a href="<?= base_url('seting/seting1'); ?>" class="waves-effect waves-dark">
                                     <span class="ti-hand-point-right"></span>
                                     <span>Laporan</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
+
                         </ul>
-                    </li>
+                    </li><!-- kasir -->
+
 
                     <!-- Penunjang -->
                     <li class="pcoded-hasmenu">
@@ -568,21 +342,31 @@
                                 </ul>
                             </li>
 
+                                <li class="">
+                                    <a href="<?= base_url('farmasi'); ?>" class="waves-effect waves-dark">
+                                        <span class="ti-hand-point-right"></span>
+                                        <span>Gudang Farmasi</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
 
-                            <li class="">
-                                <a href="<?= base_url(''); ?>" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Gudang Farmasi</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="<?= base_url(''); ?>" class="waves-effect waves-dark">
-                                    <span class="ti-hand-point-right"></span>
-                                    <span>Gudang Umum</span>
-                                    <span class="pcoded-mcaret"></span>
-                                </a>
-                            </li>
+                                <li class="">
+                                    <a href="<?= base_url('barang'); ?>" class="waves-effect waves-dark">
+                                        <span class="ti-hand-point-right"></span>
+                                        <span>Gudang Barang</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>                                
+
+                                <li class="">
+                                    <a href="<?= base_url('apotik'); ?>" class="waves-effect waves-dark">
+                                        <span class="ti-hand-point-right"></span>
+                                        <span>Apotik</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+
+
                             <li class="">
                                 <a href="<?= base_url(''); ?>" class="waves-effect waves-dark">
                                     <span class="ti-hand-point-right"></span>
@@ -599,6 +383,8 @@
                             </li>
                         </ul>
                     </li>
+
+
 
                     <!-- Rekam medis -->
                     <li class="pcoded-hasmenu">

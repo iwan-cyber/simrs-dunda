@@ -14740,21 +14740,21 @@ body.menu-bottom #collapse-menu {
 .select2-container--default
   .select2-selection--single
   .select2-selection__rendered {
-  background-color: #448aff;
-  color: #fff;
-  padding: 8px 30px 8px 20px;
+  /* background-color: #448aff;
+   color: #fff;  */
+  padding: 0px 30px 0px 20px;
 }
 .select2-container--default
   .select2-selection--single
   .select2-selection__arrow {
-  top: 10px;
+  top: 0px;
   right: 15px;
 }
 .select2-container--default
   .select2-selection--single
   .select2-selection__arrow
   b {
-  border-color: #fff transparent transparent transparent;
+  /* border-color: #fff transparent transparent transparent; */
 }
 
 /*===== Select-2 css ends =====*/

@@ -93,8 +93,8 @@
                     </a>
                     <ul class="show-notification profile-notification">
                         <li class="waves-effect waves-light">
-                            <a href="#!">
-                                <i class="ti-settings"></i> Settings
+                            <a href="<?= base_url('master'); ?>">
+                                <i class="ti-settings"></i> Pengaturan
                             </a>
                         </li>
                         <li class="waves-effect waves-light">

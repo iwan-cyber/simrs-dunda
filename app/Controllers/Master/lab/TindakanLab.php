@@ -84,6 +84,74 @@ class TindakanLab extends \App\Controllers\BaseController
 
         $this->response->setJSON($json_data);
         $this->response->send();
+    }    
+
+    public function tarifUmum() 
+    {
+
+        $tindakanLabModel = new TindakanLabModel();
+
+        $length = $this->request->getGet('length');
+        $start = $this->request->getGet('start');
+
+        $list = [];
+
+        $data = $tindakanLabModel->get($_GET);
+
+        // var_dump($data);
+
+        $jumlah = $data['JUMLAH'];
+        
+        foreach ($data['DATA'] as $row)
+        {
+            $id = $row['ID'];
+            
+            $edit = '<button type="button" class="btn btn-info btn-mini waves-effect waves-light" 
+                        id="edit_' . $id . '" 
+                        onclick="edit(' . $id . ')"
+                        nama="' . $row['NAMA_TINDAKAN'] . '"
+                        nilai="' . $row['NILAI_NORMAL'] . '"
+                        kelas="' . $row['IDKELAS_SETING'] . '"
+                        satuan="' . $row['SATUAN'] . '">
+                            <i class="ti-pencil"></i>
+                    </button>&nbsp;';
+
+            $hapus = '<button type="button" class="btn btn-danger btn-mini waves-effect waves-light" 
+                        id="hapus_' . $id . '" 
+                        onclick="konfirmasi_hapus(' . $id . ')">
+                            <i class="ti-close"></i>
+                    </button>';
+
+
+            $tombol = '<div class="btn-group " role="group" data-toggle="tooltip" data-placement="top" title="" data-original-title=".btn-xlg">'.$edit.$hapus.'</div>';
+                    
+            
+
+            $list[] = [
+                $row['ID'],
+                $row['NAMA_TINDAKAN'],
+                $row['SATUAN'],
+                $row['NILAI_NORMAL'],
+                $row['JASA_SARANA'],
+                $row['JASA_PELAYANAN'],
+                $row['JUMLAH'],
+                $row['STATUS'],
+                $tombol
+         ];
+
+        }
+        
+        $json_data = array(
+                "draw"            => intval($this->request->getGet('draw')),
+                "recordsTotal"    => intval($jumlah),
+                "recordsFiltered" => intval($jumlah),
+                "data"            => $list
+        );
+        
+        
+
+        $this->response->setJSON($json_data);
+        $this->response->send();
     }
 
     public function simpan()
